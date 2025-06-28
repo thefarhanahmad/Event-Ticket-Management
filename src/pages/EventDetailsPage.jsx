@@ -1,7 +1,12 @@
-
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { FiMapPin, FiCalendar, FiUser, FiDownload, FiMessageCircle } from "react-icons/fi";
+import {
+  FiMapPin,
+  FiCalendar,
+  FiUser,
+  FiDownload,
+  FiMessageCircle,
+} from "react-icons/fi";
 
 const events = [
   {
@@ -20,14 +25,40 @@ const events = [
     dressCode: "No sweats or shorts",
     highlight: "Biggest 18+ Juneteenth Party in NYC",
     rsvpCount: "999+",
-    image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=400&h=300&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=400&h=300&fit=crop",
     tickets: [
-      { type: "General Admission", price: "$18", status: "50 last chance tickets", available: true },
-      { type: "Ladies Group of 3", price: "$30", status: "SOLD OUT", available: false },
-      { type: "VIP Experience", price: "$35", status: "Available", available: true },
-      { type: "VIP Section Reservation", price: "$50", status: "10% deposit", available: true },
-      { type: "Everyone Free 1st Hour", price: "Free", status: "RSVP & repost required – SOLD OUT", available: false }
-    ]
+      {
+        type: "General Admission",
+        price: "$18",
+        status: "50 last chance tickets",
+        available: true,
+      },
+      {
+        type: "Ladies Group of 3",
+        price: "$30",
+        status: "SOLD OUT",
+        available: false,
+      },
+      {
+        type: "VIP Experience",
+        price: "$35",
+        status: "Available",
+        available: true,
+      },
+      {
+        type: "VIP Section Reservation",
+        price: "$50",
+        status: "10% deposit",
+        available: true,
+      },
+      {
+        type: "Everyone Free 1st Hour",
+        price: "Free",
+        status: "RSVP & repost required – SOLD OUT",
+        available: false,
+      },
+    ],
   },
   {
     id: 2,
@@ -43,10 +74,16 @@ const events = [
     endTime: "11PM",
     highlight: "Best wing deals in the city",
     rsvpCount: "250+",
-    image: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400&h=300&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400&h=300&fit=crop",
     tickets: [
-      { type: "General Entry", price: "Free", status: "Available", available: true }
-    ]
+      {
+        type: "General Entry",
+        price: "Free",
+        status: "Available",
+        available: true,
+      },
+    ],
   },
   {
     id: 3,
@@ -62,10 +99,16 @@ const events = [
     endTime: "9PM",
     highlight: "Exclusive dinner experience",
     rsvpCount: "85+",
-    image: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&h=300&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&h=300&fit=crop",
     tickets: [
-      { type: "Dinner Reservation", price: "$75", status: "Available", available: true }
-    ]
+      {
+        type: "Dinner Reservation",
+        price: "$75",
+        status: "Available",
+        available: true,
+      },
+    ],
   },
   {
     id: 4,
@@ -81,10 +124,16 @@ const events = [
     endTime: "2AM",
     highlight: "Waterfront party experience",
     rsvpCount: "500+",
-    image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&h=300&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&h=300&fit=crop",
     tickets: [
-      { type: "General Admission", price: "$25", status: "Available", available: true }
-    ]
+      {
+        type: "General Admission",
+        price: "$25",
+        status: "Available",
+        available: true,
+      },
+    ],
   },
   {
     id: 5,
@@ -100,10 +149,16 @@ const events = [
     endTime: "12AM",
     highlight: "Best rooftop views in Tampa",
     rsvpCount: "350+",
-    image: "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=400&h=300&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=400&h=300&fit=crop",
     tickets: [
-      { type: "General Admission", price: "$30", status: "Available", available: true }
-    ]
+      {
+        type: "General Admission",
+        price: "$30",
+        status: "Available",
+        available: true,
+      },
+    ],
   },
   {
     id: 6,
@@ -119,10 +174,16 @@ const events = [
     endTime: "10PM",
     highlight: "Luxury sunset cruise experience",
     rsvpCount: "200+",
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=300&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=300&fit=crop",
     tickets: [
-      { type: "Cruise Ticket", price: "$65", status: "Available", available: true }
-    ]
+      {
+        type: "Cruise Ticket",
+        price: "$65",
+        status: "Available",
+        available: true,
+      },
+    ],
   },
   {
     id: 7,
@@ -138,10 +199,16 @@ const events = [
     endTime: "12PM",
     highlight: "Fitness meets fun",
     rsvpCount: "75+",
-    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop",
     tickets: [
-      { type: "Class & Drinks", price: "$45", status: "Available", available: true }
-    ]
+      {
+        type: "Class & Drinks",
+        price: "$45",
+        status: "Available",
+        available: true,
+      },
+    ],
   },
   {
     id: 8,
@@ -157,10 +224,16 @@ const events = [
     endTime: "2AM",
     highlight: "Brooklyn's premier poetry scene",
     rsvpCount: "125+",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop",
     tickets: [
-      { type: "General Entry", price: "$15", status: "Available", available: true }
-    ]
+      {
+        type: "General Entry",
+        price: "$15",
+        status: "Available",
+        available: true,
+      },
+    ],
   },
 ];
 
@@ -173,14 +246,16 @@ const EventDetailsPage = () => {
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center">
         <div className="text-white text-center">
           <h2 className="text-2xl font-bold mb-2">Event not found</h2>
-          <p className="text-slate-400">The event you're looking for doesn't exist.</p>
+          <p className="text-slate-400">
+            The event you're looking for doesn't exist.
+          </p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative">
       {/* Starry Background Effect */}
       <div className="absolute inset-0 bg-black">
         <div className="stars"></div>
@@ -205,14 +280,14 @@ const EventDetailsPage = () => {
                   className="w-full h-[600px] object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                
+
                 {/* Event Category Badge */}
                 <div className="absolute top-4 left-4">
                   <span className="bg-blue-600/80 backdrop-blur-sm text-white text-xs font-bold px-3 py-2 rounded-full border border-blue-400/30">
                     {event.category}
                   </span>
                 </div>
-                
+
                 {/* Event Title Overlay */}
                 <div className="absolute bottom-6 left-6 right-6">
                   <h1 className="text-white font-bold text-3xl lg:text-4xl mb-2 leading-tight">
@@ -231,26 +306,30 @@ const EventDetailsPage = () => {
             >
               {/* Basic Event Info */}
               <div className="bg-slate-800/60 backdrop-blur-md rounded-2xl p-6 border border-slate-700/50">
-                <h2 className="text-white text-2xl font-bold mb-4">{event.title}</h2>
-                
+                <h2 className="text-white text-2xl font-bold mb-4">
+                  {event.title}
+                </h2>
+
                 <div className="space-y-3">
                   <div className="flex items-center text-slate-300">
                     <FiMapPin className="w-5 h-5 mr-3 text-blue-400" />
                     <span className="font-medium">{event.venue}</span>
                   </div>
-                  
+
                   <div className="flex items-center text-slate-300">
                     <FiUser className="w-5 h-5 mr-3 text-blue-400" />
                     <span className="font-medium">BY {event.host}</span>
                   </div>
-                  
+
                   <div className="flex items-center text-slate-300">
                     <FiCalendar className="w-5 h-5 mr-3 text-blue-400" />
                     <span className="font-medium">{event.fullDate}</span>
                   </div>
-                  
+
                   <div className="mt-4 p-3 bg-slate-700/50 rounded-lg">
-                    <p className="text-slate-300 text-sm font-medium">{event.address}</p>
+                    <p className="text-slate-300 text-sm font-medium">
+                      {event.address}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -258,10 +337,14 @@ const EventDetailsPage = () => {
               {/* Event Details */}
               {event.id === 1 && (
                 <div className="bg-slate-800/60 backdrop-blur-md rounded-2xl p-6 border border-slate-700/50">
-                  <h3 className="text-white text-xl font-bold mb-4">Event Details</h3>
+                  <h3 className="text-white text-xl font-bold mb-4">
+                    Event Details
+                  </h3>
                   <div className="space-y-2 text-slate-300">
                     <p>🔞 {event.ageLimit}</p>
-                    <p>⏰ Time: {event.time} – {event.endTime}</p>
+                    <p>
+                      ⏰ Time: {event.time} – {event.endTime}
+                    </p>
                     <p>👗 Dress Code: {event.dressCode}</p>
                     <p>🏙 {event.highlight}</p>
                   </div>
@@ -285,21 +368,27 @@ const EventDetailsPage = () => {
                     <motion.div
                       key={index}
                       className={`p-4 rounded-xl border ${
-                        ticket.available 
-                          ? 'bg-slate-700/50 border-slate-600/50 hover:border-blue-500/50' 
-                          : 'bg-red-900/20 border-red-500/30'
+                        ticket.available
+                          ? "bg-slate-700/50 border-slate-600/50 hover:border-blue-500/50"
+                          : "bg-red-900/20 border-red-500/30"
                       } transition-all duration-200`}
                       whileHover={ticket.available ? { scale: 1.02 } : {}}
                     >
                       <div className="flex justify-between items-center">
                         <div>
-                          <h4 className="text-white font-semibold">{ticket.type}</h4>
-                          <p className={`text-sm ${ticket.available ? 'text-slate-400' : 'text-red-400'}`}>
+                          <h4 className="text-white font-semibold">
+                            {ticket.type}
+                          </h4>
+                          <p
+                            className={`text-sm ${ticket.available ? "text-slate-400" : "text-red-400"}`}
+                          >
                             {ticket.status}
                           </p>
                         </div>
                         <div className="text-right">
-                          <p className="text-white font-bold text-lg">{ticket.price}</p>
+                          <p className="text-white font-bold text-lg">
+                            {ticket.price}
+                          </p>
                           {ticket.available && (
                             <button className="bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium px-3 py-1 rounded-full transition-colors duration-200">
                               Select
@@ -314,9 +403,12 @@ const EventDetailsPage = () => {
 
               {/* Exclusive Guest List */}
               <div className="bg-gradient-to-r from-blue-900/50 to-purple-900/50 backdrop-blur-md rounded-2xl p-6 border border-blue-500/30">
-                <h3 className="text-white text-xl font-bold mb-3">EXCLUSIVE GUEST LIST</h3>
+                <h3 className="text-white text-xl font-bold mb-3">
+                  EXCLUSIVE GUEST LIST
+                </h3>
                 <p className="text-slate-300 text-sm mb-4">
-                  Download the Discover to access the full guest list, enjoy exclusive perks, and manage your bookings.
+                  Download the Discover to access the full guest list, enjoy
+                  exclusive perks, and manage your bookings.
                 </p>
                 <div className="flex items-center space-x-3 mb-4">
                   <div className="flex -space-x-2">
@@ -324,7 +416,9 @@ const EventDetailsPage = () => {
                     <div className="w-8 h-8 bg-gradient-to-r from-green-400 to-blue-400 rounded-full border-2 border-slate-800"></div>
                     <div className="w-8 h-8 bg-gradient-to-r from-pink-400 to-red-400 rounded-full border-2 border-slate-800"></div>
                   </div>
-                  <span className="text-slate-300 text-sm">+{event.rsvpCount} more</span>
+                  <span className="text-slate-300 text-sm">
+                    +{event.rsvpCount} more
+                  </span>
                 </div>
                 <motion.button
                   className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-3 px-6 rounded-xl transition-all duration-200 flex items-center justify-center space-x-2"
