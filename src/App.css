@@ -239,6 +239,40 @@ a {
   background: rgba(30, 41, 59, 0.9);
 }
 
+/* Starry Background Animation */
+.stars, .stars2, .stars3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.stars {
+  background: transparent url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="white" opacity="0.8"/><circle cx="80" cy="50" r="0.5" fill="white" opacity="0.6"/><circle cx="50" cy="80" r="1.5" fill="white" opacity="0.4"/><circle cx="10" cy="70" r="0.8" fill="white" opacity="0.7"/><circle cx="90" cy="10" r="1.2" fill="white" opacity="0.5"/></svg>') repeat;
+  animation: animateStars 50s linear infinite;
+}
+
+.stars2 {
+  background: transparent url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="30" cy="40" r="1" fill="white" opacity="0.6"/><circle cx="70" cy="70" r="0.8" fill="white" opacity="0.8"/><circle cx="40" cy="10" r="1.2" fill="white" opacity="0.4"/><circle cx="85" cy="85" r="0.6" fill="white" opacity="0.7"/></svg>') repeat;
+  animation: animateStars 100s linear infinite;
+}
+
+.stars3 {
+  background: transparent url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="60" cy="30" r="0.5" fill="white" opacity="0.5"/><circle cx="25" cy="60" r="1" fill="white" opacity="0.3"/><circle cx="75" cy="15" r="0.8" fill="white" opacity="0.6"/><circle cx="45" cy="90" r="1.5" fill="white" opacity="0.4"/></svg>') repeat;
+  animation: animateStars 150s linear infinite;
+}
+
+@keyframes animateStars {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-100vh);
+  }
+}
+
 /* Preloader Styles */
 .scroll-preloader {
   position: fixed;

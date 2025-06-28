@@ -1,15 +1,18 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 export default function EventCard({ event, index }) {
   return (
-    <motion.div
-      className="bg-slate-800/80 backdrop-blur-sm rounded-2xl overflow-hidden border border-slate-700/50 event-card-hover font-sans cursor-pointer"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      whileHover={{ y: -8, scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-    >
+    <Link to={`/event/${event.id}`}>
+      <motion.div
+        className="bg-slate-800/80 backdrop-blur-sm rounded-2xl overflow-hidden border border-slate-700/50 event-card-hover font-sans cursor-pointer"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: index * 0.1 }}
+        whileHover={{ y: -8, scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+      ></motion.div>
+    </Link>
       <div className="relative overflow-hidden">
         <img
           src={event.image}
@@ -45,5 +48,6 @@ export default function EventCard({ event, index }) {
         </div>
       </div>
     </motion.div>
+    </Link>
   )
 }
