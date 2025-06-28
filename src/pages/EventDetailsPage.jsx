@@ -1,3 +1,4 @@
+
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -263,66 +264,68 @@ const EventDetailsPage = () => {
         <div className="stars3"></div>
       </div>
 
-      <div className="relative z-10 py-8 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex lg:flex-row flex-col gap-8">
-            {/* Left Column - Event Poster (Sticky) */}
+      <div className="relative z-10 pt-24 pb-8 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex lg:flex-row flex-col gap-6 lg:gap-8">
+            {/* Left Column - Event Poster */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="lg:w-1/2 lg:sticky lg:top-8 lg:h-screen lg:flex lg:items-start"
+              className="lg:w-1/2 flex-shrink-0"
             >
-              <div className="relative rounded-2xl overflow-hidden border-2 border-slate-700/50 shadow-2xl w-full">
-                <img
-                  src={event.image}
-                  alt={event.title}
-                  className="w-full h-[600px] object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+              <div className="sticky top-24">
+                <div className="relative rounded-2xl overflow-hidden border-2 border-slate-700/50 shadow-2xl">
+                  <img
+                    src={event.image}
+                    alt={event.title}
+                    className="w-full h-[400px] sm:h-[500px] lg:h-[600px] object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
 
-                {/* Event Category Badge */}
-                <div className="absolute top-4 left-4">
-                  <span className="bg-blue-600/80 backdrop-blur-sm text-white text-xs font-bold px-3 py-2 rounded-full border border-blue-400/30">
-                    {event.category}
-                  </span>
-                </div>
+                  {/* Event Category Badge */}
+                  <div className="absolute top-4 left-4">
+                    <span className="bg-blue-600/80 backdrop-blur-sm text-white text-xs font-bold px-3 py-2 rounded-full border border-blue-400/30">
+                      {event.category}
+                    </span>
+                  </div>
 
-                {/* Event Title Overlay */}
-                <div className="absolute bottom-6 left-6 right-6">
-                  <h1 className="text-white font-bold text-3xl lg:text-4xl mb-2 leading-tight">
-                    {event.title}
-                  </h1>
+                  {/* Event Title Overlay */}
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <h1 className="text-white font-bold text-2xl sm:text-3xl lg:text-4xl mb-2 leading-tight">
+                      {event.title}
+                    </h1>
+                  </div>
                 </div>
               </div>
             </motion.div>
 
-            {/* Right Column - Event Details (Scrollable) */}
+            {/* Right Column - Event Details */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="lg:w-1/2 space-y-6 lg:overflow-y-auto lg:max-h-screen lg:pb-8"
+              className="lg:w-1/2 space-y-6"
             >
               {/* Basic Event Info */}
               <div className="bg-slate-800/60 backdrop-blur-md rounded-2xl p-6 border border-slate-700/50">
-                <h2 className="text-white text-2xl font-bold mb-4">
+                <h2 className="text-white text-xl sm:text-2xl font-bold mb-4">
                   {event.title}
                 </h2>
 
                 <div className="space-y-3">
                   <div className="flex items-center text-slate-300">
-                    <FiMapPin className="w-5 h-5 mr-3 text-blue-400" />
+                    <FiMapPin className="w-5 h-5 mr-3 text-blue-400 flex-shrink-0" />
                     <span className="font-medium">{event.venue}</span>
                   </div>
 
                   <div className="flex items-center text-slate-300">
-                    <FiUser className="w-5 h-5 mr-3 text-blue-400" />
+                    <FiUser className="w-5 h-5 mr-3 text-blue-400 flex-shrink-0" />
                     <span className="font-medium">BY {event.host}</span>
                   </div>
 
                   <div className="flex items-center text-slate-300">
-                    <FiCalendar className="w-5 h-5 mr-3 text-blue-400" />
+                    <FiCalendar className="w-5 h-5 mr-3 text-blue-400 flex-shrink-0" />
                     <span className="font-medium">{event.fullDate}</span>
                   </div>
 
@@ -375,8 +378,8 @@ const EventDetailsPage = () => {
                       whileHover={ticket.available ? { scale: 1.02 } : {}}
                     >
                       <div className="flex justify-between items-center">
-                        <div>
-                          <h4 className="text-white font-semibold">
+                        <div className="flex-1 min-w-0">
+                          <h4 className="text-white font-semibold truncate">
                             {ticket.type}
                           </h4>
                           <p
@@ -385,7 +388,7 @@ const EventDetailsPage = () => {
                             {ticket.status}
                           </p>
                         </div>
-                        <div className="text-right">
+                        <div className="text-right ml-4">
                           <p className="text-white font-bold text-lg">
                             {ticket.price}
                           </p>
