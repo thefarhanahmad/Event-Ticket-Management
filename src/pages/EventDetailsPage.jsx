@@ -190,15 +190,15 @@ const EventDetailsPage = () => {
 
       <div className="relative z-10 py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-8 items-start">
-            {/* Left Column - Event Poster */}
+          <div className="flex lg:flex-row flex-col gap-8">
+            {/* Left Column - Event Poster (Sticky) */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="sticky top-8"
+              className="lg:w-1/2 lg:sticky lg:top-8 lg:h-screen lg:flex lg:items-start"
             >
-              <div className="relative rounded-2xl overflow-hidden border-2 border-slate-700/50 shadow-2xl">
+              <div className="relative rounded-2xl overflow-hidden border-2 border-slate-700/50 shadow-2xl w-full">
                 <img
                   src={event.image}
                   alt={event.title}
@@ -222,12 +222,12 @@ const EventDetailsPage = () => {
               </div>
             </motion.div>
 
-            {/* Right Column - Event Details */}
+            {/* Right Column - Event Details (Scrollable) */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="space-y-6"
+              className="lg:w-1/2 space-y-6 lg:overflow-y-auto lg:max-h-screen lg:pb-8"
             >
               {/* Basic Event Info */}
               <div className="bg-slate-800/60 backdrop-blur-md rounded-2xl p-6 border border-slate-700/50">
