@@ -1,4 +1,3 @@
-
 import "./App.css";
 
 // Components
@@ -21,6 +20,11 @@ import Marketing from "./pages/Marketing";
 import Audience from "./pages/Audience";
 import LaunchAd from "./pages/LaunchAd";
 import AttendeeDashboard from "./pages/AttendeeDashboard";
+import Payouts from './pages/Payouts';
+import Disputes from './pages/Disputes';
+import Members from './pages/Members';
+import Analytics from './pages/Analytics';
+import SupportCenter from './pages/SupportCenter';
 
 export default function App() {
   const location = useLocation();
@@ -51,6 +55,11 @@ export default function App() {
             <Route path="organization" element={<ManageOrganization />} />
             <Route path="management" element={<Management />} />
             <Route path="createEvent" element={<CreateEvent />} />
+            <Route path="payouts" element={<Payouts />} />
+            <Route path="disputes" element={<Disputes />} />
+            <Route path="members" element={<Members />} />
+            <Route path="analytics" element={<Analytics />} />
+            <Route path="support-center" element={<SupportCenter />} />
           </Route>
         </Routes>
       </>

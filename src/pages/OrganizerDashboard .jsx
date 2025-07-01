@@ -45,19 +45,59 @@ const navItems = [
     ],
   },
   {
-    to: "/organizer/finances",
     label: "Finances",
     icon: <FiDollarSign />,
+    hasDropdown: true,
+    subItems: [
+      {
+        to: "/organizer/payouts",
+        label: "Payouts",
+      },
+      {
+        to: "/organizer/disputes",
+        label: "Disputes",
+      },
+      {
+        to: "/organizer/finances",
+        label: "Finances",
+        badge: "NEW",
+      },
+    ],
   },
   {
-    to: "/organizer/organization",
     label: "Manage Organization",
     icon: <FiSettings />,
+    hasDropdown: true,
+    subItems: [
+      {
+        to: "/organizer/members",
+        label: "Members",
+      },
+      {
+        to: "/organizer/organization",
+        label: "Edit Org",
+      },
+    ],
   },
   {
-    to: "/organizer/management",
     label: "Management",
     icon: <FiLayers />,
+    hasDropdown: true,
+    subItems: [
+      {
+        to: "/organizer/management",
+        label: "My Team",
+      },
+      {
+        to: "/organizer/analytics",
+        label: "Analytics",
+      },
+      {
+        to: "/organizer/support-center",
+        label: "Support Center",
+        badge: "NEW",
+      },
+    ],
   },
 ];
 
@@ -66,6 +106,9 @@ const OrganizerDashboard = () => {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
   const [marketingDropdownOpen, setMarketingDropdownOpen] = useState(false);
+  const [financesDropdownOpen, setFinancesDropdownOpen] = useState(false);
+  const [organizationDropdownOpen, setOrganizationDropdownOpen] = useState(false);
+  const [managementDropdownOpen, setManagementDropdownOpen] = useState(false);
 
   const handleLogout = () => {
     localStorage.removeItem("user");
@@ -107,16 +150,41 @@ const OrganizerDashboard = () => {
             <ul className="space-y-2">
               {navItems.map((item, index) => {
                 if (item.hasDropdown) {
-                  const isMarketingActive = location.pathname.startsWith("/organizer/marketing") || 
-                                           location.pathname.startsWith("/organizer/audience") || 
-                                           location.pathname.startsWith("/organizer/launch-ad");
+                  let isActive = false;
+                  let dropdownOpen = false;
+                  let setDropdownOpen = null;
+
+                  if (item.label === "Marketing") {
+                    isActive = location.pathname.startsWith("/organizer/marketing") || 
+                              location.pathname.startsWith("/organizer/audience") || 
+                              location.pathname.startsWith("/organizer/launch-ad");
+                    dropdownOpen = marketingDropdownOpen;
+                    setDropdownOpen = setMarketingDropdownOpen;
+                  } else if (item.label === "Finances") {
+                    isActive = location.pathname.startsWith("/organizer/payouts") || 
+                              location.pathname.startsWith("/organizer/disputes") || 
+                              location.pathname === "/organizer/finances";
+                    dropdownOpen = financesDropdownOpen;
+                    setDropdownOpen = setFinancesDropdownOpen;
+                  } else if (item.label === "Manage Organization") {
+                    isActive = location.pathname.startsWith("/organizer/members") || 
+                              location.pathname.startsWith("/organizer/organization");
+                    dropdownOpen = organizationDropdownOpen;
+                    setDropdownOpen = setOrganizationDropdownOpen;
+                  } else if (item.label === "Management") {
+                    isActive = location.pathname.startsWith("/organizer/management") || 
+                              location.pathname.startsWith("/organizer/analytics") || 
+                              location.pathname.startsWith("/organizer/support-center");
+                    dropdownOpen = managementDropdownOpen;
+                    setDropdownOpen = setManagementDropdownOpen;
+                  }
                   
                   return (
                     <li key={item.label}>
                       <button
-                        onClick={() => setMarketingDropdownOpen(!marketingDropdownOpen)}
+                        onClick={() => setDropdownOpen(!dropdownOpen)}
                         className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm transition-all duration-200 group ${
-                          isMarketingActive
+                          isActive
                             ? "bg-gray-800 text-white shadow-sm"
                             : "text-gray-400 hover:bg-gray-800 hover:text-white"
                         }`}
@@ -125,14 +193,14 @@ const OrganizerDashboard = () => {
                           <span className="text-lg">{item.icon}</span>
                           <span className="font-medium">{item.label}</span>
                         </div>
-                        {marketingDropdownOpen ? (
+                        {dropdownOpen ? (
                           <FiChevronDown className="w-4 h-4 transition-transform duration-200 text-gray-400" />
                         ) : (
                           <FiChevronRight className="w-4 h-4 transition-transform duration-200 text-gray-600 group-hover:text-gray-400" />
                         )}
                       </button>
                       
-                      {marketingDropdownOpen && (
+                      {dropdownOpen && (
                         <ul className="ml-6 mt-2 space-y-1 border-l border-gray-700 pl-4">
                           {item.subItems.map((subItem) => {
                             const isSubActive = location.pathname === subItem.to;
