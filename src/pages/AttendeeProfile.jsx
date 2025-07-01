@@ -1,18 +1,19 @@
-
 import { useState } from "react";
 import { FiCamera, FiX } from "react-icons/fi";
 
 export default function AttendeeProfile() {
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [profile, setProfile] = useState({
-    firstName: "Farhan",
-    lastName: "Attendee",
-    phone: "090565 13532",
-    email: "farhanahmad1243@gmail.com",
-    instagram: "@x.farhan___",
-    address: "",
-    dateOfBirth: "",
-    pincode: "#000",
-    gender: "male"
+    firstName: user.firstName || "Farhan",
+    lastName: user.lastName || "Attendee",
+    phone: user.phone || "090565 13532",
+    email: user.email || "farhanahmad1243@gmail.com",
+    instagram: user.instagram || "@x.farhan___",
+    address: user.address || "",
+    dateOfBirth: user.dateOfBirth || "",
+    pincode: user.pincode || "#000",
+    gender: user.gender || "male"
   });
 
   const [notifications, setNotifications] = useState({
@@ -21,7 +22,6 @@ export default function AttendeeProfile() {
     weeklySales: { email: false, push: false }
   });
 
-  const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [passwordForm, setPasswordForm] = useState({
     currentPassword: "",
     newPassword: "",
@@ -68,7 +68,7 @@ export default function AttendeeProfile() {
           </div>
         </div>
         <div>
-          <h2 className="text-2xl font-bold text-white mb-2">Farhan Attendee</h2>
+          <h2 className="text-2xl font-bold text-white mb-2">{user.firstName || "Farhan"} {user.lastName || "Attendee"}</h2>
           <button 
             onClick={() => setShowPasswordModal(true)}
             className="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded text-sm transition-colors"
@@ -177,7 +177,7 @@ export default function AttendeeProfile() {
       {/* Notifications Center */}
       <div className="bg-gray-800 rounded-lg p-6 mb-8">
         <h3 className="text-white font-medium mb-6">Notifications Center</h3>
-        
+
         {Object.entries(notifications).map(([category, settings]) => (
           <div key={category} className="flex items-center justify-between mb-4">
             <span className="text-white capitalize">

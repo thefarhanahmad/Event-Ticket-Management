@@ -451,6 +451,7 @@ export default function LaunchAd() {
           </div>
         ))}
       </div>
+      </div>
     </div>
   );
 }

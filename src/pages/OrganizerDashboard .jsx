@@ -234,10 +234,10 @@ const OrganizerDashboard = () => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-white text-sm font-medium truncate">
-                    Farhans Organization
+                    {user?.organizationName || `${user?.name || user?.email?.split("@")[0] || "User"}'s Organization`}
                   </p>
                   <p className="text-gray-400 text-xs truncate">
-                    {user?.email || "akhtarfahraan281@gmail.com"}
+                    {user?.email || "user@example.com"}
                   </p>
                 </div>
               </div>

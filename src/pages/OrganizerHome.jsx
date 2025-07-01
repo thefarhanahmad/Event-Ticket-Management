@@ -513,6 +513,7 @@ export default function OrganizerHome() {
           </div>
         </div>
       </div>
+      </div>
     </div>
   );
 }
