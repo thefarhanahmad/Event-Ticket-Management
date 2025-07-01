@@ -146,7 +146,7 @@ export default function Navbar() {
                     }}
                   >
                     <Link
-                      to={"/attendee-dashboard"}
+                      to="/attendee-dashboard"
                       className="relative px-4 py-2.5 text-sm font-semibold tracking-wide transition-all duration-300 cursor-pointer rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 backdrop-blur-sm border border-transparent hover:border-slate-600/50 group overflow-hidden"
                     >
                       <span className="relative z-10">My Tickets</span>
