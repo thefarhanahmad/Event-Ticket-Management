@@ -1,3 +1,4 @@
+
 import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
 import {
   FiHome,
@@ -7,6 +8,7 @@ import {
   FiSettings,
   FiLayers,
   FiLogOut,
+  FiChevronRight,
 } from "react-icons/fi";
 
 const navItems = [
@@ -47,69 +49,122 @@ const OrganizerDashboard = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
+  
   const handleLogout = () => {
     localStorage.removeItem("user");
     navigate("/login");
   };
 
   return (
-    <div className="flex min-h-screen bg-gray-900">
+    <div className="flex min-h-screen bg-black">
       {/* Sidebar */}
-      <aside className="w-64 bg-gray-800 shadow-lg flex flex-col justify-between">
-        <div className="p-5">
-          <h2 className="text-xl font-bold text-white">FLITE</h2>
-          <h3 className="text-sm text-gray-400">My Organization</h3>
-          <p className="text-gray-400 mb-4">{user?.email || ""}</p>
-          <nav>
-            <ul>
-              {navItems.map(({ to, label, icon, exact }) => {
-                const isActive = exact
-                  ? location.pathname === to
-                  : location.pathname.startsWith(to);
-
-                return (
-                  <li key={to}>
-                    <Link
-                      to={to}
-                      className={`flex items-center gap-3 py-2 px-4 rounded-md text-sm ${
-                        isActive
-                          ? "bg-gray-700 text-white"
-                          : "text-gray-300 hover:bg-gray-700"
-                      }`}
-                    >
-                      {icon}
-                      {label}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </nav>
+      <aside className="w-64 bg-gray-900 border-r border-gray-800 flex flex-col">
+        {/* Logo Section */}
+        <div className="p-6 border-b border-gray-800">
+          <div className="flex items-center space-x-3 mb-4">
+            <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
+              <span className="text-black font-bold text-sm">F</span>
+            </div>
+            <span className="text-white font-bold text-xl">FLITE</span>
+          </div>
+          
+          <div className="flex items-center space-x-3">
+            <div className="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center">
+              <span className="text-white text-xs">F</span>
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-white text-sm font-medium truncate">
+                Farhans Organization
+              </p>
+              <p className="text-gray-400 text-xs truncate">
+                {user?.email || "admin@farhans.org"}
+              </p>
+            </div>
+          </div>
         </div>
 
-        {/* Logout Button */}
-        <div className="p-5 border-t border-gray-700">
+        {/* Navigation */}
+        <nav className="flex-1 px-4 py-6">
+          <ul className="space-y-2">
+            {navItems.map(({ to, label, icon, exact }) => {
+              const isActive = exact
+                ? location.pathname === to
+                : location.pathname.startsWith(to);
+
+              return (
+                <li key={to}>
+                  <Link
+                    to={to}
+                    className={`flex items-center justify-between px-3 py-2.5 rounded-lg text-sm transition-all duration-200 group ${
+                      isActive
+                        ? "bg-gray-800 text-white shadow-sm"
+                        : "text-gray-400 hover:bg-gray-800 hover:text-white"
+                    }`}
+                  >
+                    <div className="flex items-center space-x-3">
+                      <span className="text-lg">{icon}</span>
+                      <span className="font-medium">{label}</span>
+                    </div>
+                    <FiChevronRight className={`w-4 h-4 transition-transform duration-200 ${
+                      isActive ? "text-gray-400" : "text-gray-600 group-hover:text-gray-400"
+                    }`} />
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+
+        {/* Flite AI Section */}
+        <div className="p-4 border-t border-gray-800">
+          <div className="bg-gradient-to-r from-purple-900/50 to-pink-900/50 rounded-lg p-4 border border-purple-700/30">
+            <div className="flex items-center space-x-2 mb-2">
+              <div className="w-6 h-6 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+                <span className="text-white text-xs font-bold">AI</span>
+              </div>
+              <span className="text-white text-sm font-semibold">Flite AI</span>
+              <span className="bg-purple-600 text-white text-xs px-2 py-0.5 rounded-full">Beta</span>
+            </div>
+            <p className="text-gray-300 text-xs mb-3">
+              Your AI-powered event assistant
+            </p>
+            <button className="w-full bg-purple-600 hover:bg-purple-700 text-white text-xs font-medium py-2 px-3 rounded-md transition-colors duration-200">
+              Try Now
+            </button>
+          </div>
+        </div>
+
+        {/* User Section */}
+        <div className="p-4 border-t border-gray-800">
+          <div className="flex items-center space-x-3 mb-3">
+            <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+              <span className="text-white text-sm font-bold">
+                {user?.email?.charAt(0).toUpperCase() || "F"}
+              </span>
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-white text-sm font-medium truncate">
+                Farhan Akhtar
+              </p>
+              <p className="text-gray-400 text-xs truncate">
+                {user?.email || "akhtar@farhan51@gmail.com"}
+              </p>
+            </div>
+          </div>
+          
           <button
             onClick={handleLogout}
-            className="w-full flex items-center gap-3 py-2 px-4 rounded-md text-sm text-red-400 hover:bg-gray-700 hover:text-red-300 transition"
+            className="w-full flex items-center justify-center space-x-2 py-2 px-3 rounded-lg text-sm text-red-400 hover:bg-red-900/20 hover:text-red-300 transition-all duration-200 border border-gray-700 hover:border-red-700/50"
           >
-            <FiLogOut />
-            Logout
+            <FiLogOut className="w-4 h-4" />
+            <span>Logout</span>
           </button>
         </div>
       </aside>
 
-      {/* Main section */}
-      <div className="flex-grow p-6">
-        <header className="flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-white">
-            Welcome Back, {user?.email.split("@")[0] || ""}
-          </h1>
-          <button className="px-4 py-2 bg-blue-600 text-white rounded-lg">
-            Try Now
-          </button>
-        </header>
-        <main className="mt-4 w-full">
+      {/* Main Content */}
+      <div className="flex-1 bg-black">
+        <main className="h-full">
           <Outlet />
         </main>
       </div>
