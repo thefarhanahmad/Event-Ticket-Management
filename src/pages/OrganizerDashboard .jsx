@@ -7,9 +7,14 @@ import {
   FiDollarSign,
   FiSettings,
   FiLayers,
-  FiLogOut,
   FiChevronRight,
   FiChevronDown,
+  FiLogOut,
+  FiChevronUp,
+  FiPlus,
+  FiSearch,
+  FiX,
+  FiUpload,
 } from "react-icons/fi";
 
 const navItems = [
@@ -110,6 +115,8 @@ const OrganizerDashboard = () => {
   const [organizationDropdownOpen, setOrganizationDropdownOpen] =
     useState(false);
   const [managementDropdownOpen, setManagementDropdownOpen] = useState(false);
+  const [orgSwitcherOpen, setOrgSwitcherOpen] = useState(false); // Organization switcher popup state
+  const [createOrgModalOpen, setCreateOrgModalOpen] = useState(false);
 
   const handleLogout = () => {
     localStorage.removeItem("user");
@@ -129,18 +136,25 @@ const OrganizerDashboard = () => {
             <span className="text-white font-bold text-xl">FLITE</span>
           </div>
 
-          <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center">
-              <span className="text-white text-xs">F</span>
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-white text-sm font-medium truncate">
-                Farhans Organization
-              </p>
-              <p className="text-gray-400 text-xs truncate">
-                {user?.email || "admin@farhans.org"}
-              </p>
-            </div>
+          {/* Organization Info - Fixed */}
+          <div className="flex-shrink-0 p-4 border-b border-gray-800">
+            <button
+              onClick={() => setOrgSwitcherOpen(true)}
+              className="flex items-center space-x-3 w-full hover:bg-gray-800 rounded-lg p-2 transition-colors duration-200"
+            >
+              <div className="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center">
+                <span className="text-white text-xs">F</span>
+              </div>
+              <div className="flex-1 min-w-0 text-left">
+                <p className="text-white text-sm font-medium truncate">
+                  Farhans Organization
+                </p>
+                <p className="text-gray-400 text-xs truncate">
+                  {user?.email || "akhtar@farhan51@gmail.com"}
+                </p>
+              </div>
+              <FiChevronDown className="w-4 h-4 text-gray-400" />
+            </button>
           </div>
         </div>
 
@@ -325,6 +339,151 @@ const OrganizerDashboard = () => {
           <Outlet />
         </main>
       </div>
+
+      {/* Organization Switcher Popup */}
+      {orgSwitcherOpen && (
+        <div className="absolute top-0 right-0 h-screen w-96 bg-gray-900 border-l border-gray-800 shadow-lg z-50">
+          {/* Header */}
+          <div className="p-4 border-b border-gray-800 flex items-center justify-between">
+            <h2 className="text-white font-semibold">Switch Organization</h2>
+            <button onClick={() => setOrgSwitcherOpen(false)}>
+              <FiX className="w-5 h-5 text-gray-500 hover:text-gray-400" />
+            </button>
+          </div>
+
+          {/* Search Bar */}
+          <div className="p-4">
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <FiSearch className="w-5 h-5 text-gray-500" />
+              </div>
+              <input
+                type="search"
+                className="block w-full p-3 pl-10 text-sm text-gray-900 border border-gray-700 rounded-lg bg-gray-700 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Search organization..."
+                required
+              />
+            </div>
+          </div>
+
+          {/* Organization List */}
+          <div className="p-4 overflow-y-auto" style={{ maxHeight: "60vh" }}>
+            <ul>
+              <li className="py-2">
+                <button className="flex items-center space-x-3 w-full hover:bg-gray-800 rounded-lg p-2 transition-colors duration-200">
+                  <div className="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center">
+                    <span className="text-white text-xs">F</span>
+                  </div>
+                  <div className="flex-1 min-w-0 text-left">
+                    <p className="text-white text-sm font-medium truncate">
+                      Farhans Organization
+                    </p>
+                    <p className="text-gray-400 text-xs truncate">
+                      akhtar@farhan51@gmail.com
+                    </p>
+                  </div>
+                </button>
+              </li>
+              {/* Add more organizations here */}
+              <li className="py-2">
+                <button className="flex items-center space-x-3 w-full hover:bg-gray-800 rounded-lg p-2 transition-colors duration-200">
+                  <div className="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center">
+                    <span className="text-white text-xs">A</span>
+                  </div>
+                  <div className="flex-1 min-w-0 text-left">
+                    <p className="text-white text-sm font-medium truncate">
+                      Another Org
+                    </p>
+                    <p className="text-gray-400 text-xs truncate">
+                      test@example.com
+                    </p>
+                  </div>
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          {/* Create Organization Button */}
+          <div className="p-4 border-t border-gray-800">
+            <button
+              onClick={() => setCreateOrgModalOpen(true)}
+              className="w-full flex items-center justify-center space-x-2 py-2 px-3 rounded-lg text-sm text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-200"
+            >
+              <FiPlus className="w-4 h-4" />
+              <span>Create Organization</span>
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Create Organization Modal */}
+      {createOrgModalOpen && (
+        <div className="fixed top-0 left-0 w-full h-full bg-black/50 z-50 flex items-center justify-center">
+          <div className="bg-gray-900 rounded-lg shadow-lg w-96">
+            {/* Modal Header */}
+            <div className="p-4 border-b border-gray-800 flex items-center justify-between">
+              <h2 className="text-white font-semibold">Create Organization</h2>
+              <button onClick={() => setCreateOrgModalOpen(false)}>
+                <FiX className="w-5 h-5 text-gray-500 hover:text-gray-400" />
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <div className="p-4 space-y-4">
+              <div>
+                <label
+                  htmlFor="orgName"
+                  className="block text-sm font-medium text-gray-400"
+                >
+                  Organization Name
+                </label>
+                <input
+                  type="text"
+                  id="orgName"
+                  className="mt-1 block w-full rounded-md border-gray-700 bg-gray-800 text-white shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                  placeholder="Enter organization name"
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="orgLogo"
+                  className="block text-sm font-medium text-gray-400"
+                >
+                  Organization Logo
+                </label>
+                <div className="mt-1 flex items-center">
+                  <span className="inline-flex items-center rounded-md border border-gray-700 bg-gray-800 px-3 py-2 text-sm font-medium text-gray-400">
+                    <FiUpload className="mr-2 h-4 w-4" aria-hidden="true" />
+                    Upload
+                  </span>
+                  <input
+                    type="file"
+                    id="orgLogo"
+                    className="sr-only"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Modal Footer */}
+            <div className="p-4 border-t border-gray-800 flex justify-end space-x-2">
+              <button
+                onClick={() => setCreateOrgModalOpen(false)}
+                className="rounded-md border border-gray-700 bg-gray-800 px-4 py-2 text-sm font-medium text-gray-400 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="inline-flex justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              >
+                Create
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
