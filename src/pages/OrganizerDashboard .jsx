@@ -115,27 +115,27 @@ const OrganizerDashboard = () => {
   const [organizationDropdownOpen, setOrganizationDropdownOpen] =
     useState(false);
   const [managementDropdownOpen, setManagementDropdownOpen] = useState(false);
-  
+
   // Organization selector states
   const [orgSelectorOpen, setOrgSelectorOpen] = useState(false);
-  
+
   // User profile popup states
   const [userProfileOpen, setUserProfileOpen] = useState(false);
   const userProfileRef = useRef(null);
   const [createOrgModalOpen, setCreateOrgModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const orgSelectorRef = useRef(null);
-  
+
   // Sample organizations data
   const [organizations] = useState([
     {
       id: 1,
       name: "Farhans Organization",
       email: "akhtarfahraan281@gmail.com",
-      current: true
-    }
+      current: true,
+    },
   ]);
-  
+
   // Create organization form state
   const [newOrgForm, setNewOrgForm] = useState({
     name: "",
@@ -145,7 +145,7 @@ const OrganizerDashboard = () => {
     country: "",
     instagram: "",
     description: "",
-    location: ""
+    location: "",
   });
 
   const handleLogout = () => {
@@ -156,10 +156,16 @@ const OrganizerDashboard = () => {
   // Handle clicking outside dropdowns to close them
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (orgSelectorRef.current && !orgSelectorRef.current.contains(event.target)) {
+      if (
+        orgSelectorRef.current &&
+        !orgSelectorRef.current.contains(event.target)
+      ) {
         setOrgSelectorOpen(false);
       }
-      if (userProfileRef.current && !userProfileRef.current.contains(event.target)) {
+      if (
+        userProfileRef.current &&
+        !userProfileRef.current.contains(event.target)
+      ) {
         setUserProfileOpen(false);
       }
     };
@@ -171,16 +177,16 @@ const OrganizerDashboard = () => {
   }, []);
 
   // Filter organizations based on search term
-  const filteredOrganizations = organizations.filter(org =>
-    org.name.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredOrganizations = organizations.filter((org) =>
+    org.name.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   // Handle new organization form change
   const handleNewOrgFormChange = (e) => {
     const { name, value } = e.target;
-    setNewOrgForm(prev => ({
+    setNewOrgForm((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -198,7 +204,7 @@ const OrganizerDashboard = () => {
       country: "",
       instagram: "",
       description: "",
-      location: ""
+      location: "",
     });
   };
 
@@ -244,8 +250,10 @@ const OrganizerDashboard = () => {
             {orgSelectorOpen && (
               <div className="absolute left-full top-0 ml-2 w-80 bg-gray-900 border border-gray-700 rounded-lg shadow-xl z-50">
                 <div className="p-4 border-b border-gray-700">
-                  <h3 className="text-white font-semibold mb-3">Organizations</h3>
-                  
+                  <h3 className="text-white font-semibold mb-3">
+                    Organizations
+                  </h3>
+
                   {/* Search Input */}
                   <div className="relative">
                     <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
@@ -267,11 +275,17 @@ const OrganizerDashboard = () => {
                       className="w-full flex items-center space-x-3 p-3 hover:bg-gray-800 transition-colors duration-200 text-left"
                     >
                       <div className="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center">
-                        <span className="text-white text-xs">{org.name.charAt(0)}</span>
+                        <span className="text-white text-xs">
+                          {org.name.charAt(0)}
+                        </span>
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-white text-sm font-medium truncate">{org.name}</p>
-                        <p className="text-gray-400 text-xs truncate">{org.email}</p>
+                        <p className="text-white text-sm font-medium truncate">
+                          {org.name}
+                        </p>
+                        <p className="text-gray-400 text-xs truncate">
+                          {org.email}
+                        </p>
                       </div>
                       {org.current && (
                         <div className="w-2 h-2 bg-green-400 rounded-full"></div>
@@ -291,8 +305,12 @@ const OrganizerDashboard = () => {
                       <FiPlus className="w-4 h-4 text-white" />
                     </div>
                     <div>
-                      <p className="text-white text-sm font-medium">Create Organization</p>
-                      <p className="text-gray-400 text-xs">Start since day day started.</p>
+                      <p className="text-white text-sm font-medium">
+                        Create Organization
+                      </p>
+                      <p className="text-gray-400 text-xs">
+                        Start since day day started.
+                      </p>
                     </div>
                   </button>
                 </div>
@@ -496,7 +514,7 @@ const OrganizerDashboard = () => {
                     <button
                       onClick={() => {
                         setUserProfileOpen(false);
-                        navigate('/organizer/edit-profile');
+                        navigate("/organizer/edit-profile");
                       }}
                       className="w-full flex items-center space-x-3 px-4 py-3 hover:bg-gray-800 transition-colors duration-200 text-left"
                     >
@@ -507,7 +525,7 @@ const OrganizerDashboard = () => {
                     <button
                       onClick={() => {
                         setUserProfileOpen(false);
-                        navigate('/organizer/notifications');
+                        navigate("/organizer/notifications");
                       }}
                       className="w-full flex items-center space-x-3 px-4 py-3 hover:bg-gray-800 transition-colors duration-200 text-left"
                     >
