@@ -1,4 +1,3 @@
-
 export default function MyReservations() {
   const reservations = [
     {
@@ -36,13 +35,25 @@ export default function MyReservations() {
     }
   ];
 
+  const handleViewDetails = (id) => {
+    alert(`View details for reservation ID: ${id}`);
+  };
+
+  const handleModifyReservation = (id) => {
+    alert(`Modify reservation ID: ${id}`);
+  };
+
+  const handleCancelReservation = (id) => {
+    alert(`Cancel reservation ID: ${id}`);
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h2 className="text-white text-xl font-bold">My Reservations</h2>
         <span className="text-gray-400 text-sm">{reservations.length} reservations</span>
       </div>
-      
+
       <div className="grid gap-4">
         {reservations.map((reservation) => (
           <div key={reservation.id} className="bg-gray-900 border border-gray-800 rounded-lg p-6">
@@ -64,7 +75,7 @@ export default function MyReservations() {
                 <p className="text-gray-300">{reservation.event}</p>
               </div>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
               <div>
                 <p className="text-gray-400 mb-1">Date & Time</p>
@@ -79,13 +90,25 @@ export default function MyReservations() {
                 <p className="text-white">{reservation.seats} people</p>
               </div>
             </div>
-            
+
             <div className="flex space-x-3 mt-4">
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+              <button
+                onClick={() => handleViewDetails(reservation.id)}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+              >
                 View Details
               </button>
-              <button className="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+              <button
+                onClick={() => handleModifyReservation(reservation.id)}
+                className="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+              >
                 Modify
+              </button>
+              <button
+                onClick={() => handleCancelReservation(reservation.id)}
+                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+              >
+                Cancel
               </button>
             </div>
           </div>

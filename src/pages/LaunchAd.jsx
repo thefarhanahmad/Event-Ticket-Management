@@ -1,9 +1,32 @@
-
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiX, FiChevronDown, FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 export default function LaunchAd() {
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
+
+  const handleViewCampaign = (campaignId) => {
+    alert(`Viewing campaign: ${campaignId}`);
+  };
+
+  const handleEditCampaign = (campaignId) => {
+    alert(`Editing campaign: ${campaignId}`);
+  };
+
+  const handlePauseCampaign = (campaignId) => {
+    alert(`Pausing campaign: ${campaignId}`);
+  };
+
+  const handleDeleteCampaign = (campaignId) => {
+    if (confirm(`Are you sure you want to delete campaign ${campaignId}?`)) {
+      alert(`Campaign ${campaignId} has been deleted`);
+    }
+  };
+
+  const handleCreateNewCampaign = () => {
+    alert("Opening new campaign creation form...");
+  };
+
   const [showForm, setShowForm] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -63,7 +86,7 @@ export default function LaunchAd() {
           <div className="space-y-6">
             <div>
               <h3 className="text-xl font-bold text-white mb-6">Audience</h3>
-              
+
               {/* Event Selection */}
               <div className="mb-6">
                 <label className="block text-white text-sm mb-2">Event</label>
@@ -161,7 +184,7 @@ export default function LaunchAd() {
           <div className="space-y-6">
             <div>
               <h3 className="text-xl font-bold text-white mb-6">Budget & Schedule</h3>
-              
+
               {/* Budget */}
               <div className="mb-6">
                 <label className="block text-white text-sm mb-2">Budget</label>
@@ -217,7 +240,7 @@ export default function LaunchAd() {
           <div className="space-y-6">
             <div>
               <h3 className="text-xl font-bold text-white mb-6">Ad Content</h3>
-              
+
               {/* Ad Title */}
               <div className="mb-6">
                 <label className="block text-white text-sm mb-2">Ad Title</label>
@@ -290,6 +313,42 @@ export default function LaunchAd() {
     }
   };
 
+  const campaigns = [
+    {
+      id: 1,
+      name: "Summer Music Festival Promotion",
+      status: "Active",
+      budget: "$500",
+      spent: "$287.50",
+      reach: "12,500",
+      clicks: "1,234",
+      startDate: "Dec 15, 2024",
+      endDate: "Jan 15, 2025"
+    },
+    {
+      id: 2,
+      name: "Tech Conference Early Bird",
+      status: "Completed",
+      budget: "$750",
+      spent: "$750.00",
+      reach: "18,900",
+      clicks: "2,156",
+      startDate: "Nov 20, 2024",
+      endDate: "Dec 20, 2024"
+    },
+    {
+      id: 3,
+      name: "Food & Wine Expo Launch",
+      status: "Draft",
+      budget: "$300",
+      spent: "$0.00",
+      reach: "0",
+      clicks: "0",
+      startDate: "Jan 05, 2025",
+      endDate: "Feb 05, 2025"
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Header */}
@@ -310,199 +369,88 @@ export default function LaunchAd() {
 
       <div className="px-8 py-6">
         {/* Ad Campaigns List */}
-        <div className="space-y-4">
-          {[
-            {
-              id: 1,
-              name: "Summer Music Festival Promotion",
-              status: "Active",
-              budget: "$500",
-              spent: "$287.50",
-              reach: "12,500",
-              clicks: "1,234",
-              startDate: "Dec 15, 2024",
-              endDate: "Jan 15, 2025"
-            },
-            {
-              id: 2,
-              name: "Tech Conference Early Bird",
-              status: "Completed",
-              budget: "$750",
-              spent: "$750.00",
-              reach: "18,900",
-              clicks: "2,156",
-              startDate: "Nov 20, 2024",
-              endDate: "Dec 20, 2024"
-            },
-            {
-              id: 3,
-              name: "Food & Wine Expo Launch",
-              status: "Draft",
-              budget: "$300",
-              spent: "$0.00",
-              reach: "0",
-              clicks: "0",
-              startDate: "Jan 05, 2025",
-              endDate: "Feb 05, 2025"
-            }
-          ].map((ad) => (
-            <div key={ad.id} className="bg-gray-900 border border-gray-800 rounded-lg p-6">
-              <div className="flex items-center justify-between mb-4">
-                <div>
-                  <h3 className="text-white font-semibold text-lg">{ad.name}</h3>
-                  <p className="text-gray-400 text-sm">{ad.startDate} - {ad.endDate}</p>
-                </div>
-                <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                  ad.status === 'Active' ? 'bg-green-900 text-green-300' :
-                  ad.status === 'Completed' ? 'bg-blue-900 text-blue-300' :
-                  'bg-gray-700 text-gray-300'
-                }`}>
-                  {ad.status}
-                </span>
-              </div>
-              
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div>
-                  <p className="text-gray-400 text-sm">Budget</p>
-                  <p className="text-white font-medium">{ad.budget}</p>
-                </div>
-                <div>
-                  <p className="text-gray-400 text-sm">Spent</p>
-                  <p className="text-white font-medium">{ad.spent}</p>
-                </div>
-                <div>
-                  <p className="text-gray-400 text-sm">Reach</p>
-                  <p className="text-white font-medium">{ad.reach}</p>
-                </div>
-                <div>
-                  <p className="text-gray-400 text-sm">Clicks</p>
-                  <p className="text-white font-medium">{ad.clicks}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-        
-        <div className="text-center mt-8">
+        <div className="flex items-center justify-between mb-6">
+        <h2 className="text-white text-xl font-bold">Ad Campaigns</h2>
+        <div className="flex items-center gap-4">
+          <span className="text-gray-400 text-sm">{campaigns.length} campaigns</span>
           <button
-            onClick={() => setShowForm(true)}
-            className="bg-white text-black px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors"
+            onClick={handleCreateNewCampaign}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
           >
-            Create New Ad
+            Create Campaign
           </button>
         </div>
       </div>
-
-      {/* Multi-step Form Modal */}
-      <AnimatePresence>
-        {showForm && (
-          <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              className="bg-black border border-gray-800 rounded-xl w-full max-w-2xl max-h-[90vh] overflow-hidden"
-            >
-              {/* Modal Header */}
-              <div className="border-b border-gray-800 px-8 py-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h2 className="text-2xl font-bold text-white mb-1">LAUNCH AN AD</h2>
-                    <p className="text-gray-400 text-sm">Launch an ad to Facebook and Instagram</p>
-                  </div>
-                  <div className="flex items-center space-x-4">
-                    <button className="bg-gray-800 text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-700 transition-colors">
-                      Save & Continue
-                    </button>
-                    <button
-                      onClick={() => setShowForm(false)}
-                      className="text-gray-400 hover:text-white transition-colors"
-                    >
-                      <FiX className="w-6 h-6" />
-                    </button>
-                  </div>
-                </div>
-
-                {/* Progress Bar */}
-                <div className="mt-6">
-                  <div className="flex items-center space-x-4 mb-2">
-                    {[1, 2, 3].map((step) => (
-                      <div key={step} className="flex items-center">
-                        <div
-                          className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
-                            step <= currentStep
-                              ? "bg-orange-500 text-white"
-                              : "bg-gray-700 text-gray-400"
-                          }`}
-                        >
-                          {step}
-                        </div>
-                        {step < 3 && (
-                          <div
-                            className={`w-16 h-1 mx-2 ${
-                              step < currentStep ? "bg-orange-500" : "bg-gray-700"
-                            }`}
-                          />
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                  <div className="flex justify-between text-sm text-gray-400">
-                    <span>Audience</span>
-                    <span>Budget & Schedule</span>
-                    <span>Ad Content</span>
-                  </div>
-                </div>
+      <div className="space-y-4">
+        {campaigns.map((campaign) => (
+          <div key={campaign.id} className="bg-gray-900 border border-gray-800 rounded-lg p-6">
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <h3 className="text-white font-semibold text-lg">{campaign.name}</h3>
+                <p className="text-gray-400 text-sm">{campaign.startDate} - {campaign.endDate}</p>
               </div>
-
-              {/* Form Content */}
-              <div className="px-8 py-6 max-h-[60vh] overflow-y-auto">
-                <form onSubmit={handleSubmit}>
-                  {renderStepContent()}
-                </form>
+              <div className="text-right">
+                <span className={`px-3 py-1 rounded-full text-sm font-medium ${
+                  campaign.status === 'Active' ? 'bg-green-500/20 text-green-400' :
+                  campaign.status === 'Paused' ? 'bg-yellow-500/20 text-yellow-400' :
+                  'bg-gray-500/20 text-gray-400'
+                }`}>
+                  {campaign.status}
+                </span>
               </div>
+            </div>
 
-              {/* Modal Footer */}
-              <div className="border-t border-gray-800 px-8 py-6">
-                <div className="flex justify-between">
-                  <button
-                    type="button"
-                    onClick={prevStep}
-                    disabled={currentStep === 1}
-                    className={`flex items-center px-6 py-2 rounded-lg font-medium transition-colors ${
-                      currentStep === 1
-                        ? "bg-gray-800 text-gray-500 cursor-not-allowed"
-                        : "bg-gray-800 text-white hover:bg-gray-700"
-                    }`}
-                  >
-                    <FiChevronLeft className="w-4 h-4 mr-2" />
-                    Previous
-                  </button>
-
-                  {currentStep < totalSteps ? (
-                    <button
-                      type="button"
-                      onClick={nextStep}
-                      className="flex items-center bg-white text-black px-6 py-2 rounded-lg font-medium hover:bg-gray-100 transition-colors"
-                    >
-                      Next
-                      <FiChevronRight className="w-4 h-4 ml-2" />
-                    </button>
-                  ) : (
-                    <button
-                      type="submit"
-                      onClick={handleSubmit}
-                      className="bg-orange-500 text-white px-8 py-2 rounded-lg font-medium hover:bg-orange-600 transition-colors"
-                    >
-                      Launch Ad Campaign
-                    </button>
-                  )}
-                </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div>
+                <p className="text-gray-400 text-sm">Budget</p>
+                <p className="text-white font-medium">{campaign.budget}</p>
               </div>
-            </motion.div>
+              <div>
+                <p className="text-gray-400 text-sm">Spent</p>
+                <p className="text-white font-medium">{campaign.spent}</p>
+              </div>
+              <div>
+                <p className="text-gray-400 text-sm">Reach</p>
+                <p className="text-white font-medium">{campaign.reach}</p>
+              </div>
+              <div>
+                <p className="text-gray-400 text-sm">Clicks</p>
+                <p className="text-white font-medium">{campaign.clicks}</p>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="mt-4 pt-4 border-t border-gray-700 flex gap-3">
+              <button
+                onClick={() => handleViewCampaign(campaign.id)}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors"
+              >
+                View
+              </button>
+              <button
+                onClick={() => handleEditCampaign(campaign.id)}
+                className="bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors"
+              >
+                Edit
+              </button>
+              {campaign.status === 'Active' && (
+                <button
+                  onClick={() => handlePauseCampaign(campaign.id)}
+                  className="bg-yellow-600 hover:bg-yellow-700 text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors"
+                >
+                  Pause
+                </button>
+              )}
+              <button
+                onClick={() => handleDeleteCampaign(campaign.id)}
+                className="bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors"
+              >
+                Delete
+              </button>
+            </div>
           </div>
-        )}
-      </AnimatePresence>
+        ))}
+      </div>
     </div>
   );
 }

@@ -1,7 +1,22 @@
-
 import { useState } from "react";
 
 export default function Disputes() {
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
+
+  const handleViewDetails = (disputeId) => {
+    alert(`Viewing details for dispute: ${disputeId}`);
+  };
+
+  const handleRespondDispute = (disputeId) => {
+    alert(`Opening response form for dispute: ${disputeId}`);
+  };
+
+  const handleResolveDispute = (disputeId) => {
+    if (confirm(`Are you sure you want to resolve dispute ${disputeId}?`)) {
+      alert(`Dispute ${disputeId} has been resolved`);
+    }
+  };
+
   const [activeTab, setActiveTab] = useState("All");
 
   const disputeStats = [

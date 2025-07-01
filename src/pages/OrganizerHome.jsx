@@ -19,8 +19,23 @@ import {
 } from "react-icons/fi";
 
 export default function OrganizerHome() {
-  const [activeTab, setActiveTab] = useState("upcoming");
-  const [searchTerm, setSearchTerm] = useState("");
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
+
+  const handleViewEvent = (eventId) => {
+    alert(`Viewing event: ${eventId}`);
+  };
+
+  const handleEditEvent = (eventId) => {
+    alert(`Editing event: ${eventId}`);
+  };
+
+  const handleManageTickets = (eventId) => {
+    alert(`Managing tickets for event: ${eventId}`);
+  };
+
+  const handleViewAnalytics = (eventId) => {
+    alert(`Viewing analytics for event: ${eventId}`);
+  };
 
   const stats = [
     {
@@ -78,6 +93,9 @@ export default function OrganizerHome() {
     },
   ];
 
+  const [activeTab, setActiveTab] = useState("upcoming");
+  const [searchTerm, setSearchTerm] = useState("");
+
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Header */}
@@ -85,7 +103,7 @@ export default function OrganizerHome() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-bold text-white mb-1">
-              Welcome Back, Farhan
+              Welcome Back, {user?.name || user?.email?.split("@")[0] || "User"}
             </h1>
             <p className="text-gray-400 text-sm">
               Here's what's happening with your events today
@@ -261,7 +279,9 @@ export default function OrganizerHome() {
                   time: "6:00 PM",
                   location: "Central Park Amphitheater",
                   attendees: 1250,
-                  status: "Active"
+                  status: "Active",
+                  revenue: "$125,000",
+                  organizer: user?.name || user?.email?.split("@")[0] || "User",
                 },
                 {
                   id: 2,
@@ -270,7 +290,9 @@ export default function OrganizerHome() {
                   time: "9:00 AM",
                   location: "Convention Center Hall A",
                   attendees: 850,
-                  status: "Active"
+                  status: "Active",
+                  revenue: "$85,000",
+                  organizer: user?.name || user?.email?.split("@")[0] || "User",
                 },
                 {
                   id: 3,
@@ -279,7 +301,9 @@ export default function OrganizerHome() {
                   time: "4:00 PM",
                   location: "Downtown Exhibition Center",
                   attendees: 520,
-                  status: "Draft"
+                  status: "Draft",
+                  revenue: "$52,000",
+                  organizer: user?.name || user?.email?.split("@")[0] || "User",
                 }
               ].map((event) => (
                 <div key={event.id} className="bg-gray-800 border border-gray-700 rounded-lg p-4 hover:bg-gray-750 transition-colors">
@@ -298,23 +322,41 @@ export default function OrganizerHome() {
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-gray-300 text-sm">{event.attendees} registered</span>
-                    <div className="flex space-x-2">
-                      <button className="text-blue-400 hover:text-blue-300 text-sm">Edit</button>
-                      <button className="text-gray-400 hover:text-gray-300 text-sm">View</button>
-                    </div>
+                    <div className="text-right">
+                    <div className="text-2xl font-bold text-green-400">{event.revenue}</div>
+                    <div className="text-sm text-gray-500">Revenue</div>
                   </div>
                 </div>
-              ))}
-            </div>
-            
-            <div className="text-center mt-6">
-              <Link
-                to="/organizer/createEvent"
-                className="bg-white hover:bg-gray-100 text-black px-6 py-2 rounded-lg font-medium transition-colors duration-200"
-              >
-                Create New Event
-              </Link>
-            </div>
+
+                {/* Action Buttons */}
+                <div className="mt-4 pt-4 border-t border-gray-700 flex gap-3">
+                  <button
+                    onClick={() => handleViewEvent(event.id)}
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors"
+                  >
+                    View
+                  </button>
+                  <button
+                    onClick={() => handleEditEvent(event.id)}
+                    className="bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => handleManageTickets(event.id)}
+                    className="bg-purple-600 hover:bg-purple-700 text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors"
+                  >
+                    Tickets
+                  </button>
+                  <button
+                    onClick={() => handleViewAnalytics(event.id)}
+                    className="bg-yellow-600 hover:bg-yellow-700 text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors"
+                  >
+                    Analytics
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
 
           {/* Recent Orders Section */}
@@ -325,7 +367,7 @@ export default function OrganizerHome() {
             <p className="text-gray-400 text-sm mb-6">
               View your latest ticket sales
             </p>
-            
+
             <div className="space-y-3">
               {[
                 {

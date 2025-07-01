@@ -130,8 +130,8 @@ const OrganizerDashboard = () => {
   const [organizations] = useState([
     {
       id: 1,
-      name: "Farhans Organization",
-      email: "akhtarfahraan281@gmail.com",
+      name: `${user?.name || user?.email?.split("@")[0] || "User"}'s Organization`,
+      email: user?.email || "user@example.com",
       current: true,
     },
   ]);
@@ -481,7 +481,7 @@ const OrganizerDashboard = () => {
                 </div>
                 <div className="flex-1 min-w-0 text-left">
                   <p className="text-white text-sm font-medium truncate">
-                    Farhan Akhtar
+                    {user?.name || user?.email?.split("@")[0] || "User"}
                   </p>
                   <p className="text-gray-400 text-xs truncate">
                     {user?.email || "akhtarfarhan281@gmail.com"}
@@ -502,7 +502,7 @@ const OrganizerDashboard = () => {
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-white text-sm font-semibold truncate">
-                          Farhan Akhtar
+                          {user?.name || user?.email?.split("@")[0] || "User"}
                         </p>
                         <p className="text-gray-400 text-xs truncate">
                           {user?.email || "akhtarfarhan281@gmail.com"}

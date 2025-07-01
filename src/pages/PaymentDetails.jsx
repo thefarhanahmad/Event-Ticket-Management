@@ -1,4 +1,24 @@
 export default function PaymentDetails() {
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
+
+  const handleEditCard = (cardId) => {
+    alert(`Editing card: ${cardId}`);
+  };
+
+  const handleDeleteCard = (cardId) => {
+    if (confirm("Are you sure you want to delete this payment method?")) {
+      alert(`Payment method ${cardId} has been deleted`);
+    }
+  };
+
+  const handleSetPrimary = (cardId) => {
+    alert(`Set card ${cardId} as primary payment method`);
+  };
+
+  const handleAddNewCard = () => {
+    alert("Opening add new card form...");
+  };
+
   const payments = [
     {
       id: 1,

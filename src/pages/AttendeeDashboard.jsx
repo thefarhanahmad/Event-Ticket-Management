@@ -6,6 +6,7 @@ export default function AttendeeDashboard() {
   const navigate = useNavigate();
   const location = useLocation();
   const [activeTab, setActiveTab] = useState("my-bookings");
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const handleLogout = () => {
     localStorage.removeItem("user");
@@ -40,7 +41,7 @@ export default function AttendeeDashboard() {
         {/* Welcome Section */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-white mb-4">
-            WELCOME BACK, FARHAN
+            WELCOME BACK, {user?.name?.toUpperCase() || user?.email?.split("@")[0]?.toUpperCase() || "USER"}
           </h1>
           <div className="w-24 h-1 bg-white mx-auto"></div>
         </div>

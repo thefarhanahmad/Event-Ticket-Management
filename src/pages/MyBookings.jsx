@@ -41,6 +41,21 @@ export default function MyBookings() {
     }
   ];
 
+  const handleViewTicket = (bookingId) => {
+    alert(`View ticket for booking ID: ${bookingId}`);
+    // Implement view ticket logic here
+  };
+
+  const handleDownloadTicket = (bookingId) => {
+    alert(`Download ticket for booking ID: ${bookingId}`);
+    // Implement download ticket logic here
+  };
+
+  const handleCancelBooking = (bookingId) => {
+    alert(`Cancel booking for booking ID: ${bookingId}`);
+    // Implement cancel booking logic here
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -88,15 +103,25 @@ export default function MyBookings() {
                 </div>
               </div>
 
+              {/* Action Buttons */}
               <div className="flex space-x-3">
-                <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                <button
+                  onClick={() => handleViewTicket(booking.bookingId)}
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                >
                   View Ticket
                 </button>
-                <button className="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                <button
+                  onClick={() => handleDownloadTicket(booking.bookingId)}
+                  className="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                >
                   Download PDF
                 </button>
                 {booking.status === 'Confirmed' && (
-                  <button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                  <button
+                    onClick={() => handleCancelBooking(booking.bookingId)}
+                    className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                  >
                     Cancel Booking
                   </button>
                 )}
