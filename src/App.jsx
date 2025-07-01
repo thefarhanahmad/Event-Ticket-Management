@@ -3,7 +3,6 @@ import "./App.css";
 // Components
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
-import AboutPage from "./pages/AboutPage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import { Route, Routes, useLocation } from "react-router-dom";
@@ -20,6 +19,11 @@ import Marketing from "./pages/Marketing";
 import Audience from "./pages/Audience";
 import LaunchAd from "./pages/LaunchAd";
 import AttendeeDashboard from "./pages/AttendeeDashboard";
+import MyBookings from "./pages/MyBookings";
+import PaymentDetails from "./pages/PaymentDetails";
+import MyReservations from "./pages/MyReservations";
+import AttendeeProfile from "./pages/AttendeeProfile";
+import AboutPage from "./pages/AboutPage";
 import Payouts from "./pages/Payouts";
 import Disputes from "./pages/Disputes";
 import Members from "./pages/Members";
@@ -41,7 +45,13 @@ export default function App() {
         {!hideNavbar && <Navbar />}
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/attendee-dashboard" element={<AttendeeDashboard />} />
+          <Route path="/attendee-dashboard" element={<AttendeeDashboard />} >
+             <Route index element={<MyBookings />} />
+             <Route path="my-bookings" element={<MyBookings />} />
+             <Route path="payment-details" element={<PaymentDetails />} />
+             <Route path="my-reservations" element={<MyReservations />} />
+             <Route path="profile" element={<AttendeeProfile />} />
+          </Route>
           <Route path="/about" element={<AboutPage />} />
           <Route path="/events" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
