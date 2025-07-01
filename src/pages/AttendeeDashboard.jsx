@@ -9,6 +9,8 @@ export default function AttendeeDashboard() {
 
   const handleLogout = () => {
     localStorage.removeItem("user");
+    // Dispatch custom event to notify navbar of user state change
+    window.dispatchEvent(new Event('userStateChange'));
     navigate("/login");
   };
 

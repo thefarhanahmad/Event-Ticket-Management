@@ -31,6 +31,9 @@ export default function LoginPage() {
     e.preventDefault();
     console.log("handle submit cliekc : ");
     localStorage.setItem("user", JSON.stringify(credentials));
+    
+    // Dispatch custom event to notify navbar of user state change
+    window.dispatchEvent(new Event('userStateChange'));
 
     if (credentials.role === "organizer") {
       navigate("/organizer");

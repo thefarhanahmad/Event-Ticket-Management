@@ -34,7 +34,15 @@ export default function Signup() {
       alert("Please accept the Terms and Privacy Policy.");
       return;
     }
-    console.log("Signup Data:", { role, ...formData });
+    
+    // Store user data and trigger state change
+    const userData = { role, ...formData };
+    localStorage.setItem("user", JSON.stringify(userData));
+    
+    // Dispatch custom event to notify navbar of user state change
+    window.dispatchEvent(new Event('userStateChange'));
+    
+    console.log("Signup Data:", userData);
   };
 
   // ✅ EyeToggle inner component for reuse

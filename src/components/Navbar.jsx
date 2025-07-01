@@ -10,14 +10,42 @@ export default function Navbar() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    // Check for user in localStorage
-    const userData = localStorage.getItem('user')
-    if (userData) {
-      try {
-        setUser(JSON.parse(userData))
-      } catch (error) {
-        console.error('Error parsing user data:', error)
+    // Check for user in localStorage on mount
+    const checkUser = () => {
+      const userData = localStorage.getItem('user')
+      if (userData) {
+        try {
+          setUser(JSON.parse(userData))
+        } catch (error) {
+          console.error('Error parsing user data:', error)
+          setUser(null)
+        }
+      } else {
+        setUser(null)
       }
+    }
+
+    // Initial check
+    checkUser()
+
+    // Listen for storage changes (for cross-tab updates)
+    const handleStorageChange = (e) => {
+      if (e.key === 'user') {
+        checkUser()
+      }
+    }
+
+    // Listen for custom user state changes within the same tab
+    const handleUserChange = () => {
+      checkUser()
+    }
+
+    window.addEventListener('storage', handleStorageChange)
+    window.addEventListener('userStateChange', handleUserChange)
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange)
+      window.removeEventListener('userStateChange', handleUserChange)
     }
   }, [])
 
@@ -25,6 +53,8 @@ export default function Navbar() {
     localStorage.removeItem('user')
     setUser(null)
     setIsUserMenuOpen(false)
+    // Dispatch custom event to notify other components
+    window.dispatchEvent(new Event('userStateChange'))
     navigate('/')
   }
 
