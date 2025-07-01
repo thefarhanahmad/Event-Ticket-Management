@@ -8,7 +8,7 @@ export default function AttendeeDashboard() {
     navigate("/login");
   };
   return (
-    <div className="flex flex-col min-h-screen bg-gray-900 text-white p-8">
+    <div className="flex flex-col min-h-screen bg-gray-900 text-white p-8 pt-24">
       {/* Header */}
       <header className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">WELCOME BACK, FARHAN</h1>

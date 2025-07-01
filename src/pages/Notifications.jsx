@@ -61,7 +61,7 @@ export default function Notifications() {
   const unreadCount = notifications.filter(n => !n.read).length;
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-black text-white pt-16">
       {/* Header */}
       <header className="border-b border-gray-800 px-8 py-6">
         <div className="flex items-center justify-between">
