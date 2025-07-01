@@ -17,7 +17,7 @@ import {
   FiSearch,
   FiMessageSquare,
   FiMail,
-  FiBarChart,
+  FiBarChart3,
   FiTarget,
   FiGift,
   FiTrendingDown,
@@ -90,7 +90,7 @@ export default function OrganizerHome() {
 
   const popularFeatures = [
     {
-      icon: <FiBarChart className="w-5 h-5 text-blue-400" />,
+      icon: <FiBarChart3 className="w-5 h-5 text-blue-400" />,
       title: "Analytics Dashboard",
       description: "Get insights into your event performance",
       action: "View Analytics",
