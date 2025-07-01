@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -11,7 +10,7 @@ export default function Audience() {
   const navigate = useNavigate();
 
   const handleCreateEvent = () => {
-    navigate("/organizer/create-event");
+    navigate("/organizer/createEvent");
   };
 
   const handleUploadClick = () => {
@@ -62,12 +61,13 @@ export default function Audience() {
 
           <div className="text-center py-12">
             <h3 className="text-white text-lg font-medium mb-4">
-              You have no attendees yet, as you sell tickets your attendees will appear.
+              You have no attendees yet, as you sell tickets your attendees will
+              appear.
             </h3>
             <p className="text-gray-400 mb-6">
               Get started with just a few clicks.
             </p>
-            <button 
+            <button
               onClick={handleCreateEvent}
               className="bg-white text-black px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors mb-6"
             >
@@ -75,9 +75,10 @@ export default function Audience() {
             </button>
             <div className="mt-6">
               <p className="text-white text-sm mb-4">
-                If you want to upload a contact list, click here and upload a csv and send blasts.
+                If you want to upload a contact list, click here and upload a
+                csv and send blasts.
               </p>
-              <button 
+              <button
                 onClick={handleUploadClick}
                 className="bg-gray-700 hover:bg-gray-600 text-white px-8 py-3 rounded-lg font-medium transition-colors"
               >
@@ -125,7 +126,9 @@ export default function Audience() {
             </div>
 
             <div className="flex items-center justify-between mt-6">
-              <span className="text-white font-medium">Custom Audience Size:</span>
+              <span className="text-white font-medium">
+                Custom Audience Size:
+              </span>
               <span className="text-white font-bold">0 Attendees</span>
             </div>
 
@@ -151,7 +154,7 @@ export default function Audience() {
               <span className="text-white font-medium">Total:</span>
               <span className="text-white font-bold">0 Contacts</span>
             </div>
-            <button 
+            <button
               onClick={handleUploadContacts}
               className="bg-white text-black px-6 py-2 rounded-lg font-medium hover:bg-gray-100 transition-colors"
             >
@@ -169,9 +172,10 @@ export default function Audience() {
 
           <div className="text-center py-12">
             <h3 className="text-white text-lg font-medium mb-4">
-              You have no attendees yet, as you sell tickets your attendees will appear.
+              You have no attendees yet, as you sell tickets your attendees will
+              appear.
             </h3>
-            <button 
+            <button
               onClick={handleCreateEvent}
               className="bg-white text-black px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors"
             >
@@ -218,7 +222,9 @@ export default function Audience() {
             </div>
 
             <div className="flex items-center justify-between mt-6">
-              <span className="text-white font-medium">Custom Audience Size:</span>
+              <span className="text-white font-medium">
+                Custom Audience Size:
+              </span>
               <span className="text-white font-bold">0 Attendees</span>
             </div>
 
@@ -245,7 +251,7 @@ export default function Audience() {
       <div className="px-8 py-6">
         {/* Tabs */}
         <div className="flex items-center space-x-6 mb-8">
-          <button 
+          <button
             onClick={() => setActiveTab("attendees")}
             className={`px-4 py-2 font-medium transition-colors ${
               activeTab === "attendees"
@@ -255,7 +261,7 @@ export default function Audience() {
           >
             Attendees
           </button>
-          <button 
+          <button
             onClick={() => setActiveTab("uploaded")}
             className={`px-4 py-2 font-medium transition-colors ${
               activeTab === "uploaded"
@@ -276,8 +282,10 @@ export default function Audience() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-gray-900 border border-gray-700 rounded-lg p-8 w-96 max-w-md mx-4">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-white text-xl font-semibold">Import Contacts</h2>
-              <button 
+              <h2 className="text-white text-xl font-semibold">
+                Import Contacts
+              </h2>
+              <button
                 onClick={() => setShowImportModal(false)}
                 className="text-gray-400 hover:text-white text-xl"
               >
@@ -309,7 +317,7 @@ export default function Audience() {
             </div>
 
             <div className="mb-6">
-              <select 
+              <select
                 value={selectedCity}
                 onChange={(e) => setSelectedCity(e.target.value)}
                 className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-orange-500"
@@ -337,7 +345,7 @@ export default function Audience() {
               </label>
             </div>
 
-            <button 
+            <button
               onClick={handleUploadCSV}
               disabled={!selectedFile || !consentChecked || !selectedCity}
               className={`w-full py-3 rounded-lg font-medium transition-colors ${
