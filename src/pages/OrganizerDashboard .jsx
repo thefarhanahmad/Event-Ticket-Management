@@ -514,7 +514,7 @@ const OrganizerDashboard = () => {
                     <button
                       onClick={() => {
                         setUserProfileOpen(false);
-                        navigate("/organizer/edit-profile");
+                        navigate("/edit-profile");
                       }}
                       className="w-full flex items-center space-x-3 px-4 py-3 hover:bg-gray-800 transition-colors duration-200 text-left"
                     >
@@ -525,7 +525,7 @@ const OrganizerDashboard = () => {
                     <button
                       onClick={() => {
                         setUserProfileOpen(false);
-                        navigate("/organizer/notifications");
+                        navigate("/notifications");
                       }}
                       className="w-full flex items-center space-x-3 px-4 py-3 hover:bg-gray-800 transition-colors duration-200 text-left"
                     >
