@@ -59,12 +59,12 @@ export default function AttendeeDashboard() {
                 {tab.label}
               </Link>
             ))}
-            <button
-              onClick={handleLogout}
+            <Link
+              to="/attendee-dashboard/profile"
               className="flex items-center space-x-2 px-4 py-2 text-gray-300 hover:text-white transition-colors"
             >
               <FiUser className="w-4 h-4" />
-            </button>
+            </Link>
             <button
               onClick={handleLogout}
               className="flex items-center space-x-2 px-4 py-2 text-gray-300 hover:text-white transition-colors"

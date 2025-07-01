@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { FiCamera } from "react-icons/fi";
+import { FiCamera, FiX } from "react-icons/fi";
 
 export default function AttendeeProfile() {
   const [profile, setProfile] = useState({
@@ -21,6 +21,13 @@ export default function AttendeeProfile() {
     weeklySales: { email: false, push: false }
   });
 
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
+  const [passwordForm, setPasswordForm] = useState({
+    currentPassword: "",
+    newPassword: "",
+    confirmPassword: ""
+  });
+
   const handleProfileChange = (field, value) => {
     setProfile(prev => ({ ...prev, [field]: value }));
   };
@@ -35,6 +42,22 @@ export default function AttendeeProfile() {
     }));
   };
 
+  const handlePasswordInputChange = (e) => {
+    const { name, value } = e.target;
+    setPasswordForm(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handlePasswordUpdate = () => {
+    if (passwordForm.newPassword !== passwordForm.confirmPassword) {
+      alert("New passwords don't match!");
+      return;
+    }
+    // Password update logic here
+    console.log("Password updated");
+    setShowPasswordModal(false);
+    setPasswordForm({ currentPassword: "", newPassword: "", confirmPassword: "" });
+  };
+
   return (
     <div className="max-w-2xl mx-auto">
       {/* Profile Picture Section */}
@@ -46,7 +69,10 @@ export default function AttendeeProfile() {
         </div>
         <div>
           <h2 className="text-2xl font-bold text-white mb-2">Farhan Attendee</h2>
-          <button className="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded text-sm transition-colors">
+          <button 
+            onClick={() => setShowPasswordModal(true)}
+            className="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded text-sm transition-colors"
+          >
             Change Password
           </button>
         </div>
@@ -192,6 +218,85 @@ export default function AttendeeProfile() {
           Update
         </button>
       </div>
+
+      {/* Password Change Modal */}
+      {showPasswordModal && (
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-gray-900 border border-gray-700 rounded-xl w-full max-w-md p-6 relative">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-xl font-bold text-white">
+                Change Your Password
+              </h2>
+              <button
+                onClick={() => setShowPasswordModal(false)}
+                className="text-gray-400 hover:text-white transition-colors p-1"
+              >
+                <FiX className="w-6 h-6" />
+              </button>
+            </div>
+
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                handlePasswordUpdate();
+              }}
+              className="space-y-4"
+            >
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  Current Password
+                </label>
+                <input
+                  type="password"
+                  name="currentPassword"
+                  value={passwordForm.currentPassword}
+                  onChange={handlePasswordInputChange}
+                  placeholder="Current Password"
+                  required
+                  className="w-full bg-gray-800 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  New Password
+                </label>
+                <input
+                  type="password"
+                  name="newPassword"
+                  value={passwordForm.newPassword}
+                  onChange={handlePasswordInputChange}
+                  placeholder="New Password"
+                  required
+                  className="w-full bg-gray-800 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  Confirm Password
+                </label>
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  value={passwordForm.confirmPassword}
+                  onChange={handlePasswordInputChange}
+                  placeholder="Confirm Password"
+                  required
+                  className="w-full bg-gray-800 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="w-full bg-gray-600 hover:bg-gray-500 text-white px-4 py-3 rounded-lg font-medium transition-colors duration-200 mt-6"
+              >
+                UPDATE PASSWORD
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
