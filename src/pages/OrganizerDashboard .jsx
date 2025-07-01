@@ -1,4 +1,5 @@
 import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import {
   FiHome,
   FiCalendar,
@@ -8,6 +9,7 @@ import {
   FiLayers,
   FiLogOut,
   FiChevronRight,
+  FiChevronDown,
 } from "react-icons/fi";
 
 const navItems = [
@@ -23,9 +25,24 @@ const navItems = [
     icon: <FiCalendar />,
   },
   {
-    to: "/organizer/users",
     label: "Marketing",
     icon: <FiUsers />,
+    hasDropdown: true,
+    subItems: [
+      {
+        to: "/organizer/marketing",
+        label: "Marketing",
+      },
+      {
+        to: "/organizer/audience",
+        label: "Audience",
+      },
+      {
+        to: "/organizer/launch-ad",
+        label: "Launch Ad",
+        badge: "NEW",
+      },
+    ],
   },
   {
     to: "/organizer/finances",
@@ -48,6 +65,7 @@ const OrganizerDashboard = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
+  const [marketingDropdownOpen, setMarketingDropdownOpen] = useState(false);
 
   const handleLogout = () => {
     localStorage.removeItem("user");
@@ -87,7 +105,64 @@ const OrganizerDashboard = () => {
           {/* Navigation - Scrollable */}
           <nav className="flex-1 px-4 py-6 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800">
             <ul className="space-y-2">
-              {navItems.map(({ to, label, icon, exact }) => {
+              {navItems.map((item, index) => {
+                if (item.hasDropdown) {
+                  const isMarketingActive = location.pathname.startsWith("/organizer/marketing") || 
+                                           location.pathname.startsWith("/organizer/audience") || 
+                                           location.pathname.startsWith("/organizer/launch-ad");
+                  
+                  return (
+                    <li key={item.label}>
+                      <button
+                        onClick={() => setMarketingDropdownOpen(!marketingDropdownOpen)}
+                        className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm transition-all duration-200 group ${
+                          isMarketingActive
+                            ? "bg-gray-800 text-white shadow-sm"
+                            : "text-gray-400 hover:bg-gray-800 hover:text-white"
+                        }`}
+                      >
+                        <div className="flex items-center space-x-3">
+                          <span className="text-lg">{item.icon}</span>
+                          <span className="font-medium">{item.label}</span>
+                        </div>
+                        {marketingDropdownOpen ? (
+                          <FiChevronDown className="w-4 h-4 transition-transform duration-200 text-gray-400" />
+                        ) : (
+                          <FiChevronRight className="w-4 h-4 transition-transform duration-200 text-gray-600 group-hover:text-gray-400" />
+                        )}
+                      </button>
+                      
+                      {marketingDropdownOpen && (
+                        <ul className="ml-6 mt-2 space-y-1 border-l border-gray-700 pl-4">
+                          {item.subItems.map((subItem) => {
+                            const isSubActive = location.pathname === subItem.to;
+                            return (
+                              <li key={subItem.to}>
+                                <Link
+                                  to={subItem.to}
+                                  className={`flex items-center justify-between px-3 py-2 rounded-lg text-sm transition-all duration-200 group ${
+                                    isSubActive
+                                      ? "bg-gray-800 text-white shadow-sm"
+                                      : "text-gray-400 hover:bg-gray-800 hover:text-white"
+                                  }`}
+                                >
+                                  <span className="font-medium">{subItem.label}</span>
+                                  {subItem.badge && (
+                                    <span className="bg-purple-600 text-white text-xs px-2 py-0.5 rounded-full">
+                                      {subItem.badge}
+                                    </span>
+                                  )}
+                                </Link>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      )}
+                    </li>
+                  );
+                }
+
+                const { to, label, icon, exact } = item;
                 const isActive = exact
                   ? location.pathname === to
                   : location.pathname.startsWith(to);

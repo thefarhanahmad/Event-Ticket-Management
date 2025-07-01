@@ -1,3 +1,7 @@
+The code updates the App.jsx file to include new routes and components for Marketing, Audience, and LaunchAd, while also adjusting the import statements to include these new components.
+```
+
+```replit_final_file
 import "./App.css";
 
 // Components
@@ -14,9 +18,11 @@ import ManageOrganization from "./pages/ManageOrganization";
 import Finances from "./pages/Finances";
 import Management from "./pages/Management";
 import OrganizerHome from "./pages/OrganizerHome";
-import ManageMarketing from "./pages/ManageUser";
-import AttendeeDashboard from "./pages/AttendeeDashboard";
+import ManageUser from "./pages/ManageUser";
 import CreateEvent from "./pages/CreateEvent";
+import Marketing from "./pages/Marketing";
+import Audience from "./pages/Audience";
+import LaunchAd from "./pages/LaunchAd";
 
 export default function App() {
   const location = useLocation();
@@ -39,11 +45,14 @@ export default function App() {
           <Route path="/organizer" element={<OrganizerDashboard />}>
             <Route index element={<OrganizerHome />} />
             <Route path="events" element={<ManageEvents />} />
-            <Route path="users" element={<ManageMarketing />} />
+            <Route path="users" element={<ManageUser />} />
+            <Route path="marketing" element={<Marketing />} />
+            <Route path="audience" element={<Audience />} />
+            <Route path="launch-ad" element={<LaunchAd />} />
             <Route path="finances" element={<Finances />} />
             <Route path="organization" element={<ManageOrganization />} />
-            <Route path="createEvent" element={<CreateEvent />} />
             <Route path="management" element={<Management />} />
+            <Route path="createEvent" element={<CreateEvent />} />
           </Route>
         </Routes>
       </>
