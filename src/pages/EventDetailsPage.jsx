@@ -1,7 +1,14 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { FiMapPin, FiCalendar, FiClock, FiX, FiPlus, FiMinus } from "react-icons/fi";
+import {
+  FiMapPin,
+  FiCalendar,
+  FiClock,
+  FiX,
+  FiPlus,
+  FiMinus,
+} from "react-icons/fi";
 
 const events = [
   {
@@ -11,15 +18,17 @@ const events = [
     organizer: "XYZ PARTY ❤️‍🔥",
     date: "Thu, Jun 19 at 10:00 PM",
     venue: "CLUB LAMDA, 1031 GRAND ST, BROOKLYN, NY 11211, USA",
-    image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&h=800&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&h=800&fit=crop",
     description: "Biggest 18+ Juneteenth Party in NYC",
     details: [
       "🔞 18+ to enter, 21+ to drink",
       "⏰ Time: 10:00 PM – 4AM",
       "👗 Dress Code: No sweats or shorts",
-      "🏙 Biggest 18+ Juneteenth Party in NYC"
+      "🏙 Biggest 18+ Juneteenth Party in NYC",
     ],
-    fullDescription: "Join us for an unforgettable night celebrating Juneteenth in the heart of Brooklyn!",
+    fullDescription:
+      "Join us for an unforgettable night celebrating Juneteenth in the heart of Brooklyn!",
     tickets: [
       {
         id: 1,
@@ -27,7 +36,7 @@ const events = [
         description: "Entry to the event",
         price: 18,
         currency: "$",
-        available: true
+        available: true,
       },
       {
         id: 2,
@@ -35,9 +44,9 @@ const events = [
         description: "VIP access with perks",
         price: 35,
         currency: "$",
-        available: true
-      }
-    ]
+        available: true,
+      },
+    ],
   },
   {
     id: 2,
@@ -46,15 +55,17 @@ const events = [
     organizer: "WING MASTERS",
     date: "Sun, Jun 22 at 9:00 PM",
     venue: "SPORTS BAR & GRILL, 456 WING ST, WASHINGTON, DC 20001, USA",
-    image: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&h=800&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&h=800&fit=crop",
     description: "Amazing $1 wings and drinks special every Sunday night",
     details: [
       "🍗 $1 Wings all night long",
       "🍺 Happy hour drinks until midnight",
       "📺 Live sports on big screens",
-      "🎵 DJ playing the hottest tracks"
+      "🎵 DJ playing the hottest tracks",
     ],
-    fullDescription: "Come hungry and leave happy! Our Sunday wing special is the talk of the town.",
+    fullDescription:
+      "Come hungry and leave happy! Our Sunday wing special is the talk of the town.",
     tickets: [
       {
         id: 1,
@@ -62,9 +73,9 @@ const events = [
         description: "General admission to the event",
         price: 5,
         currency: "$",
-        available: true
-      }
-    ]
+        available: true,
+      },
+    ],
   },
   {
     id: 3,
@@ -73,15 +84,17 @@ const events = [
     organizer: "ELITE DINING",
     date: "Thu, Jun 26 at 5:00 PM",
     venue: "ROOFTOP RESTAURANT, 789 FINE DINING AVE, NEW YORK, NY 10001, USA",
-    image: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=600&h=800&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=600&h=800&fit=crop",
     description: "Exclusive fine dining experience with live entertainment",
     details: [
       "🍽️ 5-course gourmet meal",
       "🍷 Wine pairing available",
       "🎭 Live jazz performance",
-      "👔 Smart casual dress code"
+      "👔 Smart casual dress code",
     ],
-    fullDescription: "An unforgettable evening of culinary excellence and sophisticated entertainment.",
+    fullDescription:
+      "An unforgettable evening of culinary excellence and sophisticated entertainment.",
     tickets: [
       {
         id: 1,
@@ -89,7 +102,7 @@ const events = [
         description: "5-course meal included",
         price: 85,
         currency: "$",
-        available: true
+        available: true,
       },
       {
         id: 2,
@@ -97,9 +110,9 @@ const events = [
         description: "Meal + wine pairing",
         price: 125,
         currency: "$",
-        available: true
-      }
-    ]
+        available: true,
+      },
+    ],
   },
   {
     id: 4,
@@ -108,15 +121,17 @@ const events = [
     organizer: "HARBOR EVENTS",
     date: "Thu, Jun 26 at 8:00 PM",
     venue: "HARBOR PIER, 123 WATERFRONT DR, NEW YORK, NY 10002, USA",
-    image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&h=800&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&h=800&fit=crop",
     description: "Ultimate harbor party with stunning waterfront views",
     details: [
       "🌊 Waterfront location",
       "🎵 Top DJs and live music",
       "🍹 Premium bar service",
-      "💃 Dance floor with harbor views"
+      "💃 Dance floor with harbor views",
     ],
-    fullDescription: "Dance the night away with breathtaking harbor views and incredible music.",
+    fullDescription:
+      "Dance the night away with breathtaking harbor views and incredible music.",
     tickets: [
       {
         id: 1,
@@ -124,7 +139,7 @@ const events = [
         description: "Entry to the party",
         price: 25,
         currency: "$",
-        available: true
+        available: true,
       },
       {
         id: 2,
@@ -132,9 +147,9 @@ const events = [
         description: "Premium location + drinks",
         price: 65,
         currency: "$",
-        available: true
-      }
-    ]
+        available: true,
+      },
+    ],
   },
   {
     id: 5,
@@ -143,15 +158,17 @@ const events = [
     organizer: "SKYLINE EVENTS",
     date: "Sat, Jun 28 at 6:00 PM",
     venue: "SKY LOUNGE, 456 HIGH RISE BLVD, TAMPA, FL 33601, USA",
-    image: "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=600&h=800&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=600&h=800&fit=crop",
     description: "Summer rooftop party with panoramic city views",
     details: [
       "🏢 Stunning city skyline views",
       "☀️ Perfect summer atmosphere",
       "🍸 Craft cocktails and beverages",
-      "🎶 Chill house music vibes"
+      "🎶 Chill house music vibes",
     ],
-    fullDescription: "Experience Tampa's best rooftop party with amazing views and summer vibes.",
+    fullDescription:
+      "Experience Tampa's best rooftop party with amazing views and summer vibes.",
     tickets: [
       {
         id: 1,
@@ -159,7 +176,7 @@ const events = [
         description: "General admission",
         price: 30,
         currency: "$",
-        available: true
+        available: true,
       },
       {
         id: 2,
@@ -167,9 +184,9 @@ const events = [
         description: "Best views + welcome drink",
         price: 55,
         currency: "$",
-        available: true
-      }
-    ]
+        available: true,
+      },
+    ],
   },
   {
     id: 6,
@@ -178,15 +195,17 @@ const events = [
     organizer: "NAUTICAL ADVENTURES",
     date: "Sat, Jul 5 at 6:00 PM",
     venue: "PIER 17, 123 MARINA WAY, NEW YORK, NY 10003, USA",
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&h=800&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&h=800&fit=crop",
     description: "Luxurious sunset cruise around New York Harbor",
     details: [
       "🚢 3-hour luxury cruise",
       "🌅 Perfect sunset viewing",
       "🍾 Open bar included",
-      "📸 Statue of Liberty photo ops"
+      "📸 Statue of Liberty photo ops",
     ],
-    fullDescription: "Sail into the sunset on this unforgettable cruise experience around NYC.",
+    fullDescription:
+      "Sail into the sunset on this unforgettable cruise experience around NYC.",
     tickets: [
       {
         id: 1,
@@ -194,7 +213,7 @@ const events = [
         description: "3-hour cruise + open bar",
         price: 75,
         currency: "$",
-        available: true
+        available: true,
       },
       {
         id: 2,
@@ -202,9 +221,9 @@ const events = [
         description: "Premium deck + dinner",
         price: 120,
         currency: "$",
-        available: true
-      }
-    ]
+        available: true,
+      },
+    ],
   },
   {
     id: 7,
@@ -213,15 +232,17 @@ const events = [
     organizer: "WELLNESS COLLECTIVE",
     date: "Sun, Jun 29 at 10:00 AM",
     venue: "YOGA STUDIO PLUS, 789 WELLNESS ST, TAMPA, FL 33602, USA",
-    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=800&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=800&fit=crop",
     description: "Relaxing pilates session followed by prosecco social hour",
     details: [
       "🧘‍♀️ 1-hour pilates class",
       "🥂 Prosecco and healthy snacks",
       "🌿 Peaceful studio environment",
-      "👥 Meet like-minded wellness enthusiasts"
+      "👥 Meet like-minded wellness enthusiasts",
     ],
-    fullDescription: "Start your Sunday with mindful movement and bubbly celebration.",
+    fullDescription:
+      "Start your Sunday with mindful movement and bubbly celebration.",
     tickets: [
       {
         id: 1,
@@ -229,9 +250,9 @@ const events = [
         description: "Full experience included",
         price: 45,
         currency: "$",
-        available: true
-      }
-    ]
+        available: true,
+      },
+    ],
   },
   {
     id: 8,
@@ -240,15 +261,18 @@ const events = [
     organizer: "BROOKLYN ARTS",
     date: "Fri, Jun 27 at 11:00 PM",
     venue: "THE UNDERGROUND, 456 ARTIST ST, BROOKLYN, NY 11201, USA",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=800&fit=crop",
-    description: "Raw, authentic poetry performances in Brooklyn's underground scene",
+    image:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=800&fit=crop",
+    description:
+      "Raw, authentic poetry performances in Brooklyn's underground scene",
     details: [
       "🎤 Open mic for all skill levels",
       "🌙 Late night creative energy",
       "☕ Coffee and light refreshments",
-      "📚 Spoken word and poetry focus"
+      "📚 Spoken word and poetry focus",
     ],
-    fullDescription: "Express yourself or witness powerful spoken word in Brooklyn's most authentic venue.",
+    fullDescription:
+      "Express yourself or witness powerful spoken word in Brooklyn's most authentic venue.",
     tickets: [
       {
         id: 1,
@@ -256,7 +280,7 @@ const events = [
         description: "Access to all performances",
         price: 15,
         currency: "$",
-        available: true
+        available: true,
       },
       {
         id: 2,
@@ -264,9 +288,9 @@ const events = [
         description: "Entry + open mic slot",
         price: 20,
         currency: "$",
-        available: true
-      }
-    ]
+        available: true,
+      },
+    ],
   },
   {
     id: 9,
@@ -275,15 +299,17 @@ const events = [
     organizer: "SF TECH COMMUNITY",
     date: "Sat, Jul 12 at 7:00 PM",
     venue: "INNOVATION HUB, 123 STARTUP WAY, SAN FRANCISCO, CA 94105, USA",
-    image: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=600&h=800&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=600&h=800&fit=crop",
     description: "Connect with fellow entrepreneurs and tech innovators",
     details: [
       "💼 Networking with industry leaders",
       "🚀 Startup pitch sessions",
       "🍷 Premium networking reception",
-      "💡 Innovation showcase displays"
+      "💡 Innovation showcase displays",
     ],
-    fullDescription: "Build meaningful connections in San Francisco's thriving tech ecosystem.",
+    fullDescription:
+      "Build meaningful connections in San Francisco's thriving tech ecosystem.",
     tickets: [
       {
         id: 1,
@@ -291,7 +317,7 @@ const events = [
         description: "Networking + reception",
         price: 35,
         currency: "$",
-        available: true
+        available: true,
       },
       {
         id: 2,
@@ -299,9 +325,9 @@ const events = [
         description: "Entry + pitch opportunity",
         price: 75,
         currency: "$",
-        available: true
-      }
-    ]
+        available: true,
+      },
+    ],
   },
   {
     id: 10,
@@ -310,15 +336,17 @@ const events = [
     organizer: "LA CINEMA COLLECTIVE",
     date: "Fri, Jul 11 at 8:30 PM",
     venue: "GRIFFITH PARK, 4730 CRYSTAL SPRINGS DR, LOS ANGELES, CA 90027, USA",
-    image: "https://images.unsplash.com/photo-1489599328109-4f4556e04b17?w=600&h=800&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1489599328109-4f4556e04b17?w=600&h=800&fit=crop",
     description: "Classic movies under the stars in beautiful Griffith Park",
     details: [
       "🎬 Classic and modern film selections",
       "⭐ Under the beautiful LA night sky",
       "🍿 Popcorn and concessions available",
-      "🧺 Bring your own blankets and chairs"
+      "🧺 Bring your own blankets and chairs",
     ],
-    fullDescription: "Experience cinema magic under the stars in one of LA's most iconic locations.",
+    fullDescription:
+      "Experience cinema magic under the stars in one of LA's most iconic locations.",
     tickets: [
       {
         id: 1,
@@ -326,7 +354,7 @@ const events = [
         description: "Entry to outdoor screening",
         price: 12,
         currency: "$",
-        available: true
+        available: true,
       },
       {
         id: 2,
@@ -334,9 +362,9 @@ const events = [
         description: "Reserved seating area",
         price: 25,
         currency: "$",
-        available: true
-      }
-    ]
+        available: true,
+      },
+    ],
   },
   {
     id: 11,
@@ -345,15 +373,17 @@ const events = [
     organizer: "SEATTLE COFFEE ROASTERS",
     date: "Sun, Jul 13 at 11:00 AM",
     venue: "ROASTERY CAFÉ, 789 BEAN ST, SEATTLE, WA 98101, USA",
-    image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&h=800&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&h=800&fit=crop",
     description: "Professional coffee tasting experience with expert roasters",
     details: [
       "☕ Taste 8 different coffee varieties",
       "👨‍🍳 Learn from master roasters",
       "📚 Coffee education and brewing tips",
-      "🥐 Light pastries included"
+      "🥐 Light pastries included",
     ],
-    fullDescription: "Discover the art and science of coffee with Seattle's finest roasters.",
+    fullDescription:
+      "Discover the art and science of coffee with Seattle's finest roasters.",
     tickets: [
       {
         id: 1,
@@ -361,7 +391,7 @@ const events = [
         description: "Full tasting + education",
         price: 28,
         currency: "$",
-        available: true
+        available: true,
       },
       {
         id: 2,
@@ -369,9 +399,9 @@ const events = [
         description: "Extended session + take-home beans",
         price: 55,
         currency: "$",
-        available: true
-      }
-    ]
+        available: true,
+      },
+    ],
   },
   {
     id: 12,
@@ -380,15 +410,17 @@ const events = [
     organizer: "AUSTIN RECORD COLLECTORS",
     date: "Sat, Jul 19 at 10:00 AM",
     venue: "CONVENTION CENTER SOUTH, 456 MUSIC ROW, AUSTIN, TX 78701, USA",
-    image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&h=800&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&h=800&fit=crop",
     description: "Rare vinyl records and music memorabilia marketplace",
     details: [
       "🎵 Thousands of vintage vinyl records",
       "💿 Rare and collectible albums",
       "🎸 Music memorabilia and equipment",
-      "🎧 DJ sets throughout the day"
+      "🎧 DJ sets throughout the day",
     ],
-    fullDescription: "Dig through crates of musical treasures in Austin's premier vinyl market.",
+    fullDescription:
+      "Dig through crates of musical treasures in Austin's premier vinyl market.",
     tickets: [
       {
         id: 1,
@@ -396,7 +428,7 @@ const events = [
         description: "Browse all vendor booths",
         price: 8,
         currency: "$",
-        available: true
+        available: true,
       },
       {
         id: 2,
@@ -404,9 +436,9 @@ const events = [
         description: "1 hour early entry",
         price: 20,
         currency: "$",
-        available: true
-      }
-    ]
+        available: true,
+      },
+    ],
   },
   {
     id: 13,
@@ -415,15 +447,17 @@ const events = [
     organizer: "NEW ORLEANS JAZZ SOCIETY",
     date: "Sat, May 15 at 6:00 PM",
     venue: "FRENCH QUARTER SQUARE, 123 JAZZ ST, NEW ORLEANS, LA 70116, USA",
-    image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&h=800&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&h=800&fit=crop",
     description: "Celebrate jazz heritage with world-class musicians",
     details: [
       "🎺 Live performances by jazz legends",
       "🎷 Multiple stages and venues",
       "🍹 New Orleans cuisine and cocktails",
-      "🎪 Family-friendly atmosphere"
+      "🎪 Family-friendly atmosphere",
     ],
-    fullDescription: "Experience the soul of New Orleans through its legendary jazz tradition.",
+    fullDescription:
+      "Experience the soul of New Orleans through its legendary jazz tradition.",
     tickets: [
       {
         id: 1,
@@ -431,7 +465,7 @@ const events = [
         description: "All-day access to performances",
         price: 45,
         currency: "$",
-        available: false
+        available: false,
       },
       {
         id: 2,
@@ -439,9 +473,9 @@ const events = [
         description: "Premium seating + meet & greet",
         price: 95,
         currency: "$",
-        available: false
-      }
-    ]
+        available: false,
+      },
+    ],
   },
   {
     id: 14,
@@ -450,15 +484,17 @@ const events = [
     organizer: "MIAMI ART DISTRICT",
     date: "Thu, May 8 at 7:00 PM",
     venue: "CONTEMPORARY GALLERY, 789 ART AVE, MIAMI, FL 33137, USA",
-    image: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=600&h=800&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=600&h=800&fit=crop",
     description: "Exclusive opening of contemporary art exhibition",
     details: [
       "🎨 Contemporary artists showcase",
       "🥂 Wine and cheese reception",
       "👥 Meet the featured artists",
-      "🖼️ Limited edition prints available"
+      "🖼️ Limited edition prints available",
     ],
-    fullDescription: "Discover emerging and established artists in Miami's vibrant art scene.",
+    fullDescription:
+      "Discover emerging and established artists in Miami's vibrant art scene.",
     tickets: [
       {
         id: 1,
@@ -466,7 +502,7 @@ const events = [
         description: "Reception + exhibition access",
         price: 25,
         currency: "$",
-        available: false
+        available: false,
       },
       {
         id: 2,
@@ -474,10 +510,10 @@ const events = [
         description: "Private viewing + artist meet",
         price: 65,
         currency: "$",
-        available: false
-      }
-    ]
-  }
+        available: false,
+      },
+    ],
+  },
 ];
 
 const EventDetailsPage = () => {
@@ -489,12 +525,12 @@ const EventDetailsPage = () => {
   const [showMore, setShowMore] = useState(false);
   const [showContactModal, setShowContactModal] = useState(false);
   const [contactForm, setContactForm] = useState({
-    name: '',
-    email: '',
-    instagram: '',
-    phone: '',
-    subject: '',
-    message: ''
+    name: "",
+    email: "",
+    instagram: "",
+    phone: "",
+    subject: "",
+    message: "",
   });
 
   if (!event) {
@@ -502,14 +538,16 @@ const EventDetailsPage = () => {
       <div className="min-h-screen bg-gradient-to-br from-red-900 via-red-800 to-red-900 flex items-center justify-center">
         <div className="text-white text-center">
           <h2 className="text-2xl font-bold mb-2">Event not found</h2>
-          <p className="text-red-200">The event you're looking for doesn't exist.</p>
+          <p className="text-red-200">
+            The event you're looking for doesn't exist.
+          </p>
         </div>
       </div>
     );
   }
 
   const handleQuantityChange = (ticketId, change) => {
-    setSelectedTickets(prev => {
+    setSelectedTickets((prev) => {
       const current = prev[ticketId] || 0;
       const newQuantity = Math.max(0, current + change);
       if (newQuantity === 0) {
@@ -521,14 +559,20 @@ const EventDetailsPage = () => {
   };
 
   const getTotalAmount = () => {
-    return Object.entries(selectedTickets).reduce((total, [ticketId, quantity]) => {
-      const ticket = event.tickets.find(t => t.id === parseInt(ticketId));
-      return total + (ticket ? ticket.price * quantity : 0);
-    }, 0);
+    return Object.entries(selectedTickets).reduce(
+      (total, [ticketId, quantity]) => {
+        const ticket = event.tickets.find((t) => t.id === parseInt(ticketId));
+        return total + (ticket ? ticket.price * quantity : 0);
+      },
+      0,
+    );
   };
 
   const getTotalQuantity = () => {
-    return Object.values(selectedTickets).reduce((total, quantity) => total + quantity, 0);
+    return Object.values(selectedTickets).reduce(
+      (total, quantity) => total + quantity,
+      0,
+    );
   };
 
   const handleCheckout = () => {
@@ -543,9 +587,9 @@ const EventDetailsPage = () => {
 
   const handleContactFormChange = (e) => {
     const { name, value } = e.target;
-    setContactForm(prev => ({
+    setContactForm((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -556,12 +600,12 @@ const EventDetailsPage = () => {
     setShowContactModal(false);
     // Reset form
     setContactForm({
-      name: '',
-      email: '',
-      instagram: '',
-      phone: '',
-      subject: '',
-      message: ''
+      name: "",
+      email: "",
+      instagram: "",
+      phone: "",
+      subject: "",
+      message: "",
     });
   };
 
@@ -659,8 +703,9 @@ const EventDetailsPage = () => {
                     className="mt-4 pt-4 border-t border-gray-600"
                   >
                     <p className="text-gray-300 text-sm">
-                      Additional event information would go here. This could include venue details, 
-                      parking information, age restrictions, dress code specifics, and more.
+                      Additional event information would go here. This could
+                      include venue details, parking information, age
+                      restrictions, dress code specifics, and more.
                     </p>
                   </motion.div>
                 )}
@@ -689,7 +734,9 @@ const EventDetailsPage = () => {
                           </p>
                           <div className="flex items-center space-x-2">
                             <button
-                              onClick={() => handleQuantityChange(ticket.id, -1)}
+                              onClick={() =>
+                                handleQuantityChange(ticket.id, -1)
+                              }
                               className="w-8 h-8 rounded-full bg-gray-700 hover:bg-gray-600 text-white flex items-center justify-center transition-colors"
                               disabled={!selectedTickets[ticket.id]}
                             >
@@ -750,7 +797,9 @@ const EventDetailsPage = () => {
             >
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-white text-xl font-bold">
-                  Checkout - {event.tickets.find(t => selectedTickets[t.id])?.currency} {getTotalAmount().toFixed(2)}
+                  Checkout -{" "}
+                  {event.tickets.find((t) => selectedTickets[t.id])?.currency}{" "}
+                  {getTotalAmount().toFixed(2)}
                 </h2>
                 <button
                   onClick={() => setShowCheckout(false)}
@@ -762,14 +811,21 @@ const EventDetailsPage = () => {
 
               <div className="space-y-4 mb-6">
                 {Object.entries(selectedTickets).map(([ticketId, quantity]) => {
-                  const ticket = event.tickets.find(t => t.id === parseInt(ticketId));
+                  const ticket = event.tickets.find(
+                    (t) => t.id === parseInt(ticketId),
+                  );
                   if (!ticket) return null;
 
                   return (
-                    <div key={ticketId} className="flex justify-between items-center text-white">
+                    <div
+                      key={ticketId}
+                      className="flex justify-between items-center text-white"
+                    >
                       <div>
                         <p className="font-medium">{ticket.name}</p>
-                        <p className="text-sm text-gray-400">Quantity: {quantity}</p>
+                        <p className="text-sm text-gray-400">
+                          Quantity: {quantity}
+                        </p>
                       </div>
                       <p className="font-bold">
                         {ticket.currency} {(ticket.price * quantity).toFixed(2)}
@@ -963,7 +1019,10 @@ const EventDetailsPage = () => {
             onClick={handleCheckout}
             className="bg-black/80 backdrop-blur-sm text-white font-bold py-3 px-8 rounded-full border border-gray-600 hover:bg-black transition-colors flex items-center space-x-2"
           >
-            <span>Checkout - {event.tickets[0]?.currency} {getTotalAmount().toFixed(2)}</span>
+            <span>
+              Checkout - {event.tickets[0]?.currency}{" "}
+              {getTotalAmount().toFixed(2)}
+            </span>
             <FiX className="w-5 h-5 rotate-45" />
           </button>
         </motion.div>
