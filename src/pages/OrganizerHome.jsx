@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import {
@@ -127,33 +126,29 @@ export default function OrganizerHome() {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
           {/* Main CTA Card */}
-          <div className="lg:col-span-2">
-            <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 border border-gray-700 rounded-2xl p-8 relative overflow-hidden">
-              {/* Background decoration */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-blue-500/10 to-transparent rounded-full blur-2xl"></div>
-              <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-purple-500/10 to-transparent rounded-full blur-2xl"></div>
+          <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 border border-gray-700 rounded-2xl p-8 relative overflow-hidden">
+            {/* Background decoration */}
 
-              <div className="relative z-10">
-                <div className="mb-6">
-                  <h2 className="text-3xl font-bold text-white mb-3">
-                    Bring Your Event Dreams to Life
-                  </h2>
-                  <p className="text-gray-300 text-lg leading-relaxed">
-                    With Flite, set up, sell out, and fly high. Your perfect
-                    event is just a few clicks away.
-                  </p>
-                </div>
-
-                <Link
-                  to="/organizer/createEvent"
-                  className="inline-flex items-center space-x-3 bg-white hover:bg-gray-100 text-black font-semibold px-6 py-3 rounded-xl transition-all duration-200 hover:scale-105 shadow-lg"
-                >
-                  <span>Start Creating</span>
-                  <FiArrowRight className="w-5 h-5" />
-                </Link>
+            <div className="relative">
+              <div className="mb-6">
+                <h2 className="text-3xl font-bold text-white mb-3">
+                  Bring Your Event Dreams to Life
+                </h2>
+                <p className="text-gray-300 text-lg leading-relaxed">
+                  With Flite, set up, sell out, and fly high. Your perfect event
+                  is just a few clicks away.
+                </p>
               </div>
+
+              <Link
+                to="/organizer/createEvent"
+                className="inline-flex items-center space-x-3 bg-white hover:bg-gray-100 text-black font-semibold px-6 py-3 rounded-xl transition-all duration-200 hover:scale-105 shadow-lg"
+              >
+                <span>Start Creating</span>
+                <FiArrowRight className="w-5 h-5" />
+              </Link>
             </div>
           </div>
 
@@ -223,7 +218,7 @@ export default function OrganizerHome() {
         </div>
 
         {/* Events Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-1 gap-8 mb-8">
           <div className="bg-gray-900 border border-gray-800 rounded-xl p-6">
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-xl font-bold text-white">Events</h3>
