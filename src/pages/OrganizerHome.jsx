@@ -17,15 +17,6 @@ import {
   FiSearch,
   FiMessageSquare,
   FiMail,
-  FiBarChart3,
-  FiTarget,
-  FiGift,
-  FiTrendingDown,
-  FiActivity,
-  FiClock,
-  FiMapPin,
-  FiHeart,
-  FiAward,
 } from "react-icons/fi";
 
 export default function OrganizerHome() {
@@ -85,72 +76,6 @@ export default function OrganizerHome() {
       icon: <FiDollarSign className="w-5 h-5 text-green-400" />,
       title: "Vendor Payments",
       description: "Manage and process vendor payments seamlessly.",
-    },
-  ];
-
-  const popularFeatures = [
-    {
-      icon: <FiBarChart3 className="w-5 h-5 text-blue-400" />,
-      title: "Analytics Dashboard",
-      description: "Get insights into your event performance",
-      action: "View Analytics",
-      link: "/organizer/analytics"
-    },
-    {
-      icon: <FiTarget className="w-5 h-5 text-purple-400" />,
-      title: "Marketing Campaigns",
-      description: "Create targeted marketing campaigns",
-      action: "Start Campaign",
-      link: "/organizer/marketing"
-    },
-    {
-      icon: <FiGift className="w-5 h-5 text-pink-400" />,
-      title: "Promotional Tools",
-      description: "Set up discounts and promotional codes",
-      action: "Create Promo",
-      link: "/organizer/marketing"
-    },
-  ];
-
-  const recentActivity = [
-    {
-      type: "sale",
-      message: "New ticket sale for Summer Festival",
-      time: "2 hours ago",
-      icon: <FiDollarSign className="w-4 h-4 text-green-400" />
-    },
-    {
-      type: "visitor",
-      message: "50 new page visits this hour",
-      time: "1 hour ago",
-      icon: <FiEye className="w-4 h-4 text-blue-400" />
-    },
-    {
-      type: "support",
-      message: "New support ticket received",
-      time: "3 hours ago",
-      icon: <FiMessageSquare className="w-4 h-4 text-orange-400" />
-    },
-  ];
-
-  const upcomingTasks = [
-    {
-      task: "Review marketing campaign performance",
-      due: "Today",
-      priority: "high",
-      icon: <FiTrendingUp className="w-4 h-4" />
-    },
-    {
-      task: "Process vendor payments",
-      due: "Tomorrow",
-      priority: "medium",
-      icon: <FiCreditCard className="w-4 h-4" />
-    },
-    {
-      task: "Update event descriptions",
-      due: "This week",
-      priority: "low",
-      icon: <FiCalendar className="w-4 h-4" />
     },
   ];
 
@@ -297,96 +222,6 @@ export default function OrganizerHome() {
           </div>
         </div>
 
-        {/* Popular Features Section */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between mb-6">
-            <h3 className="text-2xl font-bold text-white">Popular Features</h3>
-            <Link 
-              to="/organizer/features" 
-              className="text-gray-400 hover:text-white text-sm transition-colors duration-200"
-            >
-              View All
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {popularFeatures.map((feature, index) => (
-              <div
-                key={index}
-                className="bg-gray-900 border border-gray-800 rounded-xl p-6 hover:bg-gray-800/50 transition-colors duration-200"
-              >
-                <div className="flex items-start justify-between mb-4">
-                  <div className="p-2 bg-gray-800 rounded-lg">
-                    {feature.icon}
-                  </div>
-                  <FiArrowRight className="w-4 h-4 text-gray-500" />
-                </div>
-                <h4 className="text-white font-semibold mb-2">{feature.title}</h4>
-                <p className="text-gray-400 text-sm mb-4">{feature.description}</p>
-                <Link
-                  to={feature.link}
-                  className="text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors duration-200"
-                >
-                  {feature.action}
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Activity & Tasks Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-          {/* Recent Activity */}
-          <div className="bg-gray-900 border border-gray-800 rounded-xl p-6">
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="text-xl font-bold text-white">Recent Activity</h3>
-              <FiActivity className="w-5 h-5 text-gray-400" />
-            </div>
-            <div className="space-y-4">
-              {recentActivity.map((activity, index) => (
-                <div key={index} className="flex items-start space-x-3 p-3 rounded-lg hover:bg-gray-800/50 transition-colors duration-200">
-                  <div className="p-1.5 bg-gray-800 rounded-lg flex-shrink-0">
-                    {activity.icon}
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-white text-sm">{activity.message}</p>
-                    <p className="text-gray-400 text-xs mt-1">{activity.time}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Upcoming Tasks */}
-          <div className="bg-gray-900 border border-gray-800 rounded-xl p-6">
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="text-xl font-bold text-white">Upcoming Tasks</h3>
-              <FiClock className="w-5 h-5 text-gray-400" />
-            </div>
-            <div className="space-y-4">
-              {upcomingTasks.map((task, index) => (
-                <div key={index} className="flex items-start space-x-3 p-3 rounded-lg hover:bg-gray-800/50 transition-colors duration-200">
-                  <div className="p-1.5 bg-gray-800 rounded-lg flex-shrink-0">
-                    {task.icon}
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-white text-sm">{task.task}</p>
-                    <div className="flex items-center space-x-2 mt-1">
-                      <p className="text-gray-400 text-xs">{task.due}</p>
-                      <span className={`text-xs px-2 py-1 rounded-full ${
-                        task.priority === 'high' ? 'bg-red-500/20 text-red-400' :
-                        task.priority === 'medium' ? 'bg-yellow-500/20 text-yellow-400' :
-                        'bg-green-500/20 text-green-400'
-                      }`}>
-                        {task.priority}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
         {/* Events Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
           <div className="bg-gray-900 border border-gray-800 rounded-xl p-6">
@@ -425,22 +260,17 @@ export default function OrganizerHome() {
             <div className="text-center py-12">
               <FiCalendar className="w-16 h-16 text-gray-600 mx-auto mb-4" />
               <h4 className="text-white text-lg font-medium mb-2">
-                No {activeTab} events
+                No upcoming events
               </h4>
               <p className="text-gray-400 text-sm mb-6">
-                {activeTab === "upcoming" 
-                  ? "Get started by creating your first event"
-                  : "Your past events will appear here"
-                }
+                Get started by creating your first event
               </p>
-              {activeTab === "upcoming" && (
-                <Link
-                  to="/organizer/createEvent"
-                  className="bg-white hover:bg-gray-100 text-black px-6 py-2 rounded-lg font-medium transition-colors duration-200"
-                >
-                  Create Event
-                </Link>
-              )}
+              <Link
+                to="/organizer/createEvent"
+                className="bg-white hover:bg-gray-100 text-black px-6 py-2 rounded-lg font-medium transition-colors duration-200"
+              >
+                Create Event
+              </Link>
             </div>
           </div>
 
