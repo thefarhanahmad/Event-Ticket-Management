@@ -32,6 +32,7 @@ import SupportCenter from "./pages/SupportCenter";
 import EditOrg from "./pages/EditOrg";
 import EditProfile from "./pages/EditProfile";
 import Notifications from "./pages/Notifications";
+import ResetPasswordPage from "./pages/ResetPasswordPage"; //Import the new Page
 
 export default function App() {
   const location = useLocation();
@@ -56,6 +57,7 @@ export default function App() {
           <Route path="/events" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
           <Route path="/event/:eventId" element={<EventDetailsPage />} />
           <Route path="/organizer" element={<OrganizerDashboard />}>
             <Route index element={<OrganizerHome />} />
