@@ -487,6 +487,15 @@ const EventDetailsPage = () => {
   const [showCheckout, setShowCheckout] = useState(false);
   const [selectedTickets, setSelectedTickets] = useState({});
   const [showMore, setShowMore] = useState(false);
+  const [showContactModal, setShowContactModal] = useState(false);
+  const [contactForm, setContactForm] = useState({
+    name: '',
+    email: '',
+    instagram: '',
+    phone: '',
+    subject: '',
+    message: ''
+  });
 
   if (!event) {
     return (
@@ -529,8 +538,31 @@ const EventDetailsPage = () => {
   };
 
   const handleContactOrganizer = () => {
-    // Handle contact organizer logic
-    console.log("Contact organizer clicked");
+    setShowContactModal(true);
+  };
+
+  const handleContactFormChange = (e) => {
+    const { name, value } = e.target;
+    setContactForm(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleContactSubmit = (e) => {
+    e.preventDefault();
+    console.log("Contact form submitted:", contactForm);
+    // Handle form submission logic here
+    setShowContactModal(false);
+    // Reset form
+    setContactForm({
+      name: '',
+      email: '',
+      instagram: '',
+      phone: '',
+      subject: '',
+      message: ''
+    });
   };
 
   return (
@@ -775,6 +807,146 @@ const EventDetailsPage = () => {
                   Continue Shopping
                 </button>
               </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Contact Host Modal */}
+      <AnimatePresence>
+        {showContactModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-gray-800 rounded-2xl p-8 max-w-md w-full border border-gray-600 max-h-[90vh] overflow-y-auto"
+            >
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-white text-2xl font-bold">
+                  Contact Your Host
+                </h2>
+                <button
+                  onClick={() => setShowContactModal(false)}
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  <FiX className="w-6 h-6" />
+                </button>
+              </div>
+
+              <form onSubmit={handleContactSubmit} className="space-y-6">
+                {/* Name */}
+                <div>
+                  <label className="block text-white text-sm font-medium mb-2">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={contactForm.name}
+                    onChange={handleContactFormChange}
+                    placeholder="Your Name"
+                    className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-gray-500"
+                    required
+                  />
+                </div>
+
+                {/* Email */}
+                <div>
+                  <label className="block text-white text-sm font-medium mb-2">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={contactForm.email}
+                    onChange={handleContactFormChange}
+                    placeholder="Your Email"
+                    className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-gray-500"
+                    required
+                  />
+                </div>
+
+                {/* Instagram */}
+                <div>
+                  <label className="block text-white text-sm font-medium mb-2">
+                    Instagram
+                  </label>
+                  <div className="relative">
+                    <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+                      @
+                    </span>
+                    <input
+                      type="text"
+                      name="instagram"
+                      value={contactForm.instagram}
+                      onChange={handleContactFormChange}
+                      placeholder="username"
+                      className="w-full bg-gray-700 border border-gray-600 rounded-lg pl-8 pr-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-gray-500"
+                    />
+                  </div>
+                </div>
+
+                {/* Phone */}
+                <div>
+                  <label className="block text-white text-sm font-medium mb-2">
+                    Phone
+                  </label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={contactForm.phone}
+                    onChange={handleContactFormChange}
+                    placeholder="Your Phone"
+                    className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-gray-500"
+                  />
+                </div>
+
+                {/* Subject */}
+                <div>
+                  <label className="block text-white text-sm font-medium mb-2">
+                    Subject
+                  </label>
+                  <input
+                    type="text"
+                    name="subject"
+                    value={contactForm.subject}
+                    onChange={handleContactFormChange}
+                    placeholder="Subject"
+                    className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-gray-500"
+                    required
+                  />
+                </div>
+
+                {/* Message */}
+                <div>
+                  <label className="block text-white text-sm font-medium mb-2">
+                    Message
+                  </label>
+                  <textarea
+                    name="message"
+                    value={contactForm.message}
+                    onChange={handleContactFormChange}
+                    placeholder="Your Message"
+                    rows="4"
+                    className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-gray-500 resize-none"
+                    required
+                  />
+                </div>
+
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  className="w-full bg-white hover:bg-gray-100 text-black font-bold py-3 px-6 rounded-lg transition-colors"
+                >
+                  Send Message
+                </button>
+              </form>
             </motion.div>
           </motion.div>
         )}
