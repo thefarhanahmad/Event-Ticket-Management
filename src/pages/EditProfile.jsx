@@ -1,5 +1,5 @@
-
-<FiCamera, FiUpload, FiSave, FiArrowLeft, FiX } from "react-icons/fi";
+import { useState } from "react";
+import { FiCamera, FiUpload, FiSave, FiArrowLeft, FiX } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 export default function EditProfile() {
@@ -11,29 +11,29 @@ export default function EditProfile() {
     organizationName: "Farhan's Organization",
     email: "akhtarfarhan281@gmail.com",
     instagramUsername: "",
-    profileColor: "#3B82F6"
+    profileColor: "#3B82F6",
   });
 
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [passwordForm, setPasswordForm] = useState({
     currentPassword: "",
     newPassword: "",
-    confirmPassword: ""
+    confirmPassword: "",
   });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setProfileForm(prev => ({
+    setProfileForm((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handlePasswordInputChange = (e) => {
     const { name, value } = e.target;
-    setPasswordForm(prev => ({
+    setPasswordForm((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -47,7 +47,7 @@ export default function EditProfile() {
     setPasswordForm({
       currentPassword: "",
       newPassword: "",
-      confirmPassword: ""
+      confirmPassword: "",
     });
   };
 
@@ -88,7 +88,7 @@ export default function EditProfile() {
             {/* Profile Picture Section */}
             <div className="flex-shrink-0">
               <div className="relative group">
-                <div 
+                <div
                   className="w-32 h-32 rounded-full flex items-center justify-center text-4xl font-bold text-white cursor-pointer"
                   style={{ backgroundColor: profileForm.profileColor }}
                 >
@@ -108,14 +108,14 @@ export default function EditProfile() {
             {/* Profile Information */}
             <div className="flex-1">
               <div className="mb-8">
-                <h2 className="text-2xl font-bold text-white mb-2">Farhan Akhtar</h2>
+                <h2 className="text-2xl font-bold text-white mb-2">
+                  Farhan Akhtar
+                </h2>
                 <div className="flex space-x-8">
                   <button className="text-white border-b-2 border-white pb-1 text-sm">
                     Change Password
                   </button>
-                  <button className="text-gray-400 pb-1 text-sm">
-                    Delete
-                  </button>
+                  <button className="text-gray-400 pb-1 text-sm">Delete</button>
                 </div>
               </div>
 
@@ -244,7 +244,9 @@ export default function EditProfile() {
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-gray-900 border border-gray-700 rounded-lg w-full max-w-md p-6">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-bold text-white">Change Your Password</h2>
+              <h2 className="text-xl font-bold text-white">
+                Change Your Password
+              </h2>
               <button
                 onClick={() => setShowPasswordModal(false)}
                 className="text-gray-400 hover:text-white transition-colors"
@@ -252,8 +254,14 @@ export default function EditProfile() {
                 <FiX className="w-6 h-6" />
               </button>
             </div>
-            
-            <form onSubmit={(e) => { e.preventDefault(); handlePasswordUpdate(); }} className="space-y-4">
+
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                handlePasswordUpdate();
+              }}
+              className="space-y-4"
+            >
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">
                   Current Password
@@ -268,7 +276,7 @@ export default function EditProfile() {
                   className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-gray-500"
                 />
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">
                   New Password
@@ -283,7 +291,7 @@ export default function EditProfile() {
                   className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-gray-500"
                 />
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">
                   Confirm New Password
@@ -298,7 +306,7 @@ export default function EditProfile() {
                   className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-gray-500"
                 />
               </div>
-              
+
               <button
                 type="submit"
                 className="w-full bg-gray-600 hover:bg-gray-500 text-white px-4 py-2 rounded font-medium transition-colors duration-200 mt-6"
