@@ -6,46 +6,11 @@ import { FiMapPin, FiCalendar, FiClock, FiX, FiPlus, FiMinus } from "react-icons
 const events = [
   {
     id: 1,
-    title: "CANADA DAY IN OTTAWA",
-    subtitle: "THE SHOW",
-    organizer: "SENDSZN",
-    date: "TUE, JUL 1 AT 10:00 PM",
-    venue: "104 CLARENCE ST, OTTAWA, ON K1N 5P5, CANADA",
-    image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&h=800&fit=crop",
-    description: "Get ready for one of the biggest CANADA DAY PARTIES IN OTTAWA WITH SENDSZN CA",
-    details: [
-      "🗓️ When: July 1st | 10:00 PM - 2AM",
-      "📍 $5.50 Drinks till 11pm",
-      "🎫 $5 Early bird",
-      "🎧 DJ SENDSZN"
-    ],
-    fullDescription: "Don't miss this one. Grab your friends, grab your tickets, and wear red and white CA",
-    tickets: [
-      {
-        id: 1,
-        name: "EARLY BIRD",
-        description: "MUST BE IN BEFORE 10:30PM",
-        price: 5.00,
-        currency: "C$",
-        available: true
-      },
-      {
-        id: 2,
-        name: "TIER 1",
-        description: "ENTRY ALL NIGHT CA",
-        price: 10.00,
-        currency: "C$",
-        available: true
-      }
-    ]
-  },
-  {
-    id: 2,
-    title: "JUNETEENTH MADNESS ✨ (18+)",
+    title: "JUNETEENTH MADNESS",
     subtitle: "PARTY",
     organizer: "XYZ PARTY ❤️‍🔥",
     date: "Thu, Jun 19 at 10:00 PM",
-    venue: "CLUB LAMDA 📍, 1031 GRAND ST, BROOKLYN, NY 11211, USA",
+    venue: "CLUB LAMDA, 1031 GRAND ST, BROOKLYN, NY 11211, USA",
     image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&h=800&fit=crop",
     description: "Biggest 18+ Juneteenth Party in NYC",
     details: [
@@ -71,6 +36,445 @@ const events = [
         price: 35,
         currency: "$",
         available: true
+      }
+    ]
+  },
+  {
+    id: 2,
+    title: "$1 WINGS HAPPY HOUR",
+    subtitle: "FOOD & DRINK",
+    organizer: "WING MASTERS",
+    date: "Sun, Jun 22 at 9:00 PM",
+    venue: "SPORTS BAR & GRILL, 456 WING ST, WASHINGTON, DC 20001, USA",
+    image: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&h=800&fit=crop",
+    description: "Amazing $1 wings and drinks special every Sunday night",
+    details: [
+      "🍗 $1 Wings all night long",
+      "🍺 Happy hour drinks until midnight",
+      "📺 Live sports on big screens",
+      "🎵 DJ playing the hottest tracks"
+    ],
+    fullDescription: "Come hungry and leave happy! Our Sunday wing special is the talk of the town.",
+    tickets: [
+      {
+        id: 1,
+        name: "Entry",
+        description: "General admission to the event",
+        price: 5,
+        currency: "$",
+        available: true
+      }
+    ]
+  },
+  {
+    id: 3,
+    title: "THURSDAY DINNER PARTY",
+    subtitle: "DINING",
+    organizer: "ELITE DINING",
+    date: "Thu, Jun 26 at 5:00 PM",
+    venue: "ROOFTOP RESTAURANT, 789 FINE DINING AVE, NEW YORK, NY 10001, USA",
+    image: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=600&h=800&fit=crop",
+    description: "Exclusive fine dining experience with live entertainment",
+    details: [
+      "🍽️ 5-course gourmet meal",
+      "🍷 Wine pairing available",
+      "🎭 Live jazz performance",
+      "👔 Smart casual dress code"
+    ],
+    fullDescription: "An unforgettable evening of culinary excellence and sophisticated entertainment.",
+    tickets: [
+      {
+        id: 1,
+        name: "Standard Dinner",
+        description: "5-course meal included",
+        price: 85,
+        currency: "$",
+        available: true
+      },
+      {
+        id: 2,
+        name: "Premium with Wine",
+        description: "Meal + wine pairing",
+        price: 125,
+        currency: "$",
+        available: true
+      }
+    ]
+  },
+  {
+    id: 4,
+    title: "QUEEN MOOD HARBOR PARTY",
+    subtitle: "PARTY",
+    organizer: "HARBOR EVENTS",
+    date: "Thu, Jun 26 at 8:00 PM",
+    venue: "HARBOR PIER, 123 WATERFRONT DR, NEW YORK, NY 10002, USA",
+    image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&h=800&fit=crop",
+    description: "Ultimate harbor party with stunning waterfront views",
+    details: [
+      "🌊 Waterfront location",
+      "🎵 Top DJs and live music",
+      "🍹 Premium bar service",
+      "💃 Dance floor with harbor views"
+    ],
+    fullDescription: "Dance the night away with breathtaking harbor views and incredible music.",
+    tickets: [
+      {
+        id: 1,
+        name: "General Admission",
+        description: "Entry to the party",
+        price: 25,
+        currency: "$",
+        available: true
+      },
+      {
+        id: 2,
+        name: "VIP Harbor View",
+        description: "Premium location + drinks",
+        price: 65,
+        currency: "$",
+        available: true
+      }
+    ]
+  },
+  {
+    id: 5,
+    title: "ROOFTOP SUMMER VIBES",
+    subtitle: "PARTY",
+    organizer: "SKYLINE EVENTS",
+    date: "Sat, Jun 28 at 6:00 PM",
+    venue: "SKY LOUNGE, 456 HIGH RISE BLVD, TAMPA, FL 33601, USA",
+    image: "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=600&h=800&fit=crop",
+    description: "Summer rooftop party with panoramic city views",
+    details: [
+      "🏢 Stunning city skyline views",
+      "☀️ Perfect summer atmosphere",
+      "🍸 Craft cocktails and beverages",
+      "🎶 Chill house music vibes"
+    ],
+    fullDescription: "Experience Tampa's best rooftop party with amazing views and summer vibes.",
+    tickets: [
+      {
+        id: 1,
+        name: "Rooftop Access",
+        description: "General admission",
+        price: 30,
+        currency: "$",
+        available: true
+      },
+      {
+        id: 2,
+        name: "Premium Skyline",
+        description: "Best views + welcome drink",
+        price: 55,
+        currency: "$",
+        available: true
+      }
+    ]
+  },
+  {
+    id: 6,
+    title: "SUNSET SERIES BOAT CRUISE",
+    subtitle: "CRUISE",
+    organizer: "NAUTICAL ADVENTURES",
+    date: "Sat, Jul 5 at 6:00 PM",
+    venue: "PIER 17, 123 MARINA WAY, NEW YORK, NY 10003, USA",
+    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&h=800&fit=crop",
+    description: "Luxurious sunset cruise around New York Harbor",
+    details: [
+      "🚢 3-hour luxury cruise",
+      "🌅 Perfect sunset viewing",
+      "🍾 Open bar included",
+      "📸 Statue of Liberty photo ops"
+    ],
+    fullDescription: "Sail into the sunset on this unforgettable cruise experience around NYC.",
+    tickets: [
+      {
+        id: 1,
+        name: "Sunset Cruise",
+        description: "3-hour cruise + open bar",
+        price: 75,
+        currency: "$",
+        available: true
+      },
+      {
+        id: 2,
+        name: "VIP Deck Access",
+        description: "Premium deck + dinner",
+        price: 120,
+        currency: "$",
+        available: true
+      }
+    ]
+  },
+  {
+    id: 7,
+    title: "PILATES & PROSECCO",
+    subtitle: "FITNESS",
+    organizer: "WELLNESS COLLECTIVE",
+    date: "Sun, Jun 29 at 10:00 AM",
+    venue: "YOGA STUDIO PLUS, 789 WELLNESS ST, TAMPA, FL 33602, USA",
+    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=800&fit=crop",
+    description: "Relaxing pilates session followed by prosecco social hour",
+    details: [
+      "🧘‍♀️ 1-hour pilates class",
+      "🥂 Prosecco and healthy snacks",
+      "🌿 Peaceful studio environment",
+      "👥 Meet like-minded wellness enthusiasts"
+    ],
+    fullDescription: "Start your Sunday with mindful movement and bubbly celebration.",
+    tickets: [
+      {
+        id: 1,
+        name: "Pilates + Prosecco",
+        description: "Full experience included",
+        price: 45,
+        currency: "$",
+        available: true
+      }
+    ]
+  },
+  {
+    id: 8,
+    title: "MIDNIGHT POETRY SLAM",
+    subtitle: "CULTURE",
+    organizer: "BROOKLYN ARTS",
+    date: "Fri, Jun 27 at 11:00 PM",
+    venue: "THE UNDERGROUND, 456 ARTIST ST, BROOKLYN, NY 11201, USA",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=800&fit=crop",
+    description: "Raw, authentic poetry performances in Brooklyn's underground scene",
+    details: [
+      "🎤 Open mic for all skill levels",
+      "🌙 Late night creative energy",
+      "☕ Coffee and light refreshments",
+      "📚 Spoken word and poetry focus"
+    ],
+    fullDescription: "Express yourself or witness powerful spoken word in Brooklyn's most authentic venue.",
+    tickets: [
+      {
+        id: 1,
+        name: "Poetry Night Entry",
+        description: "Access to all performances",
+        price: 15,
+        currency: "$",
+        available: true
+      },
+      {
+        id: 2,
+        name: "Performer Pass",
+        description: "Entry + open mic slot",
+        price: 20,
+        currency: "$",
+        available: true
+      }
+    ]
+  },
+  {
+    id: 9,
+    title: "TECH STARTUP MIXER",
+    subtitle: "NETWORKING",
+    organizer: "SF TECH COMMUNITY",
+    date: "Sat, Jul 12 at 7:00 PM",
+    venue: "INNOVATION HUB, 123 STARTUP WAY, SAN FRANCISCO, CA 94105, USA",
+    image: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=600&h=800&fit=crop",
+    description: "Connect with fellow entrepreneurs and tech innovators",
+    details: [
+      "💼 Networking with industry leaders",
+      "🚀 Startup pitch sessions",
+      "🍷 Premium networking reception",
+      "💡 Innovation showcase displays"
+    ],
+    fullDescription: "Build meaningful connections in San Francisco's thriving tech ecosystem.",
+    tickets: [
+      {
+        id: 1,
+        name: "Mixer Entry",
+        description: "Networking + reception",
+        price: 35,
+        currency: "$",
+        available: true
+      },
+      {
+        id: 2,
+        name: "Entrepreneur Pass",
+        description: "Entry + pitch opportunity",
+        price: 75,
+        currency: "$",
+        available: true
+      }
+    ]
+  },
+  {
+    id: 10,
+    title: "OUTDOOR MOVIE NIGHT",
+    subtitle: "ENTERTAINMENT",
+    organizer: "LA CINEMA COLLECTIVE",
+    date: "Fri, Jul 11 at 8:30 PM",
+    venue: "GRIFFITH PARK, 4730 CRYSTAL SPRINGS DR, LOS ANGELES, CA 90027, USA",
+    image: "https://images.unsplash.com/photo-1489599328109-4f4556e04b17?w=600&h=800&fit=crop",
+    description: "Classic movies under the stars in beautiful Griffith Park",
+    details: [
+      "🎬 Classic and modern film selections",
+      "⭐ Under the beautiful LA night sky",
+      "🍿 Popcorn and concessions available",
+      "🧺 Bring your own blankets and chairs"
+    ],
+    fullDescription: "Experience cinema magic under the stars in one of LA's most iconic locations.",
+    tickets: [
+      {
+        id: 1,
+        name: "Movie Night",
+        description: "Entry to outdoor screening",
+        price: 12,
+        currency: "$",
+        available: true
+      },
+      {
+        id: 2,
+        name: "Premium Spot",
+        description: "Reserved seating area",
+        price: 25,
+        currency: "$",
+        available: true
+      }
+    ]
+  },
+  {
+    id: 11,
+    title: "COFFEE CUPPING SESSION",
+    subtitle: "FOOD & DRINK",
+    organizer: "SEATTLE COFFEE ROASTERS",
+    date: "Sun, Jul 13 at 11:00 AM",
+    venue: "ROASTERY CAFÉ, 789 BEAN ST, SEATTLE, WA 98101, USA",
+    image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&h=800&fit=crop",
+    description: "Professional coffee tasting experience with expert roasters",
+    details: [
+      "☕ Taste 8 different coffee varieties",
+      "👨‍🍳 Learn from master roasters",
+      "📚 Coffee education and brewing tips",
+      "🥐 Light pastries included"
+    ],
+    fullDescription: "Discover the art and science of coffee with Seattle's finest roasters.",
+    tickets: [
+      {
+        id: 1,
+        name: "Cupping Experience",
+        description: "Full tasting + education",
+        price: 28,
+        currency: "$",
+        available: true
+      },
+      {
+        id: 2,
+        name: "Roaster Masterclass",
+        description: "Extended session + take-home beans",
+        price: 55,
+        currency: "$",
+        available: true
+      }
+    ]
+  },
+  {
+    id: 12,
+    title: "VINTAGE VINYL MARKET",
+    subtitle: "SHOPPING",
+    organizer: "AUSTIN RECORD COLLECTORS",
+    date: "Sat, Jul 19 at 10:00 AM",
+    venue: "CONVENTION CENTER SOUTH, 456 MUSIC ROW, AUSTIN, TX 78701, USA",
+    image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&h=800&fit=crop",
+    description: "Rare vinyl records and music memorabilia marketplace",
+    details: [
+      "🎵 Thousands of vintage vinyl records",
+      "💿 Rare and collectible albums",
+      "🎸 Music memorabilia and equipment",
+      "🎧 DJ sets throughout the day"
+    ],
+    fullDescription: "Dig through crates of musical treasures in Austin's premier vinyl market.",
+    tickets: [
+      {
+        id: 1,
+        name: "Market Entry",
+        description: "Browse all vendor booths",
+        price: 8,
+        currency: "$",
+        available: true
+      },
+      {
+        id: 2,
+        name: "Early Bird Access",
+        description: "1 hour early entry",
+        price: 20,
+        currency: "$",
+        available: true
+      }
+    ]
+  },
+  {
+    id: 13,
+    title: "SPRING JAZZ FESTIVAL",
+    subtitle: "MUSIC",
+    organizer: "NEW ORLEANS JAZZ SOCIETY",
+    date: "Sat, May 15 at 6:00 PM",
+    venue: "FRENCH QUARTER SQUARE, 123 JAZZ ST, NEW ORLEANS, LA 70116, USA",
+    image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&h=800&fit=crop",
+    description: "Celebrate jazz heritage with world-class musicians",
+    details: [
+      "🎺 Live performances by jazz legends",
+      "🎷 Multiple stages and venues",
+      "🍹 New Orleans cuisine and cocktails",
+      "🎪 Family-friendly atmosphere"
+    ],
+    fullDescription: "Experience the soul of New Orleans through its legendary jazz tradition.",
+    tickets: [
+      {
+        id: 1,
+        name: "Festival Pass",
+        description: "All-day access to performances",
+        price: 45,
+        currency: "$",
+        available: false
+      },
+      {
+        id: 2,
+        name: "VIP Experience",
+        description: "Premium seating + meet & greet",
+        price: 95,
+        currency: "$",
+        available: false
+      }
+    ]
+  },
+  {
+    id: 14,
+    title: "ART GALLERY OPENING",
+    subtitle: "CULTURE",
+    organizer: "MIAMI ART DISTRICT",
+    date: "Thu, May 8 at 7:00 PM",
+    venue: "CONTEMPORARY GALLERY, 789 ART AVE, MIAMI, FL 33137, USA",
+    image: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=600&h=800&fit=crop",
+    description: "Exclusive opening of contemporary art exhibition",
+    details: [
+      "🎨 Contemporary artists showcase",
+      "🥂 Wine and cheese reception",
+      "👥 Meet the featured artists",
+      "🖼️ Limited edition prints available"
+    ],
+    fullDescription: "Discover emerging and established artists in Miami's vibrant art scene.",
+    tickets: [
+      {
+        id: 1,
+        name: "Gallery Opening",
+        description: "Reception + exhibition access",
+        price: 25,
+        currency: "$",
+        available: false
+      },
+      {
+        id: 2,
+        name: "Collector's Preview",
+        description: "Private viewing + artist meet",
+        price: 65,
+        currency: "$",
+        available: false
       }
     ]
   }
