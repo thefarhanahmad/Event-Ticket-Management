@@ -74,7 +74,7 @@ const navItems = [
         label: "Members",
       },
       {
-        to: "/organizer/organization",
+        to: "/organizer/edit-org",
         label: "Edit Org",
       },
     ],

@@ -60,10 +60,8 @@ export default function App() {
             <Route path="disputes" element={<Disputes />} />
             <Route path="members" element={<Members />} />
             <Route path="analytics" element={<Analytics />} />
-            <Route path="/support-center" element={<SupportCenter />} />
-            <Route path="/analytics" element={<Analytics />} />
-            <Route path="/members" element={<Members />} />
-            <Route path="/edit-org" element={<EditOrg />} />
+            <Route path="support-center" element={<SupportCenter />} />
+            <Route path="edit-org" element={<EditOrg />} />
           </Route>
         </Routes>
       </>
