@@ -133,9 +133,57 @@ export default function Marketing() {
                   </div>
                 </div>
 
-                <div className="text-center text-gray-500 text-sm py-8">
-                  No past campaigns to show
-                </div>
+                {[
+                  {
+                    id: 1,
+                    title: "Summer Festival Early Bird Campaign",
+                    date: "Dec 20, 2024",
+                    type: "Email",
+                    status: "Sent",
+                    opens: "1,234",
+                    clicks: "456"
+                  },
+                  {
+                    id: 2,
+                    title: "Tech Conference Reminder",
+                    date: "Dec 18, 2024",
+                    type: "Push",
+                    status: "Delivered",
+                    opens: "2,567",
+                    clicks: "789"
+                  },
+                  {
+                    id: 3,
+                    title: "Food Expo Last Chance",
+                    date: "Dec 15, 2024",
+                    type: "SMS",
+                    status: "Sent",
+                    opens: "987",
+                    clicks: "234"
+                  }
+                ].map((campaign) => (
+                  <div key={campaign.id} className="flex items-center justify-between py-4 border-b border-gray-800 last:border-b-0">
+                    <div className="flex-1">
+                      <h4 className="text-white font-medium">{campaign.title}</h4>
+                      <p className="text-gray-400 text-sm">{campaign.date} • {campaign.type}</p>
+                    </div>
+                    <div className="flex items-center space-x-6 text-sm">
+                      <div>
+                        <span className="text-gray-400">Opens: </span>
+                        <span className="text-white">{campaign.opens}</span>
+                      </div>
+                      <div>
+                        <span className="text-gray-400">Clicks: </span>
+                        <span className="text-white">{campaign.clicks}</span>
+                      </div>
+                      <span className={`px-2 py-1 rounded text-xs ${
+                        campaign.status === 'Sent' ? 'bg-green-900 text-green-300' : 'bg-blue-900 text-blue-300'
+                      }`}>
+                        {campaign.status}
+                      </span>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -267,9 +315,43 @@ export default function Marketing() {
                   </div>
                 </div>
 
-                <div className="text-center text-gray-500 text-sm py-8">
-                  No past campaigns to show
-                </div>
+                {[
+                  {
+                    id: 1,
+                    title: "Summer Festival Early Bird Campaign",
+                    date: "Dec 20, 2024",
+                    type: "Email",
+                    status: "Sent",
+                    opens: "1,234",
+                    clicks: "456"
+                  },
+                  {
+                    id: 2,
+                    title: "Tech Conference Reminder",
+                    date: "Dec 18, 2024",
+                    type: "Push",
+                    status: "Delivered",
+                    opens: "2,567",
+                    clicks: "789"
+                  },
+                  {
+                    id: 3,
+                    title: "Food Expo Last Chance",
+                    date: "Dec 15, 2024",
+                    type: "SMS",
+                    status: "Sent",
+                    opens: "987",
+                    clicks: "234"
+                  }
+                ].map((campaign) => (
+                  <div key={campaign.id} className="flex items-center justify-between py-4 border-b border-gray-800 last:border-b-0">
+                    <div className="flex-1">
+                      <h4 className="text-white font-medium">{campaign.title}</h4>
+                      <p className="text-gray-400 text-sm">{campaign.date} • {campaign.type}</p>
+                    </div>
+                    
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -332,9 +414,43 @@ export default function Marketing() {
                   </div>
                 </div>
 
-                <div className="text-center text-gray-500 text-sm py-8">
-                  No past campaigns to show
-                </div>
+                {[
+                  {
+                    id: 1,
+                    title: "Summer Festival Early Bird Campaign",
+                    date: "Dec 20, 2024",
+                    type: "Email",
+                    status: "Sent",
+                    opens: "1,234",
+                    clicks: "456"
+                  },
+                  {
+                    id: 2,
+                    title: "Tech Conference Reminder",
+                    date: "Dec 18, 2024",
+                    type: "Push",
+                    status: "Delivered",
+                    opens: "2,567",
+                    clicks: "789"
+                  },
+                  {
+                    id: 3,
+                    title: "Food Expo Last Chance",
+                    date: "Dec 15, 2024",
+                    type: "SMS",
+                    status: "Sent",
+                    opens: "987",
+                    clicks: "234"
+                  }
+                ].map((campaign) => (
+                  <div key={campaign.id} className="flex items-center justify-between py-4 border-b border-gray-800 last:border-b-0">
+                    <div className="flex-1">
+                      <h4 className="text-white font-medium">{campaign.title}</h4>
+                      <p className="text-gray-400 text-sm">{campaign.date} • {campaign.type}</p>
+                    </div>
+                    
+                  </div>
+                ))}
               </div>
             </div>
           </div>

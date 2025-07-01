@@ -59,6 +59,34 @@ export default function Audience() {
             />
           </div>
 
+          {/* Contacts List */}
+          <div className="space-y-3">
+            {[
+              { name: "John Smith", email: "john.smith@email.com", events: 3, lastActivity: "2 days ago" },
+              { name: "Sarah Johnson", email: "sarah.j@email.com", events: 7, lastActivity: "1 day ago" },
+              { name: "Mike Davis", email: "mike.davis@email.com", events: 2, lastActivity: "5 days ago" },
+              { name: "Emily Brown", email: "emily.b@email.com", events: 12, lastActivity: "3 hours ago" },
+              { name: "Alex Wilson", email: "alex.wilson@email.com", events: 5, lastActivity: "1 week ago" },
+              { name: "Lisa Garcia", email: "lisa.garcia@email.com", events: 8, lastActivity: "4 days ago" }
+            ].map((contact, index) => (
+              <div key={index} className="bg-gray-900 border border-gray-800 rounded-lg p-4 flex items-center justify-between hover:bg-gray-800 transition-colors">
+                <div className="flex items-center space-x-4">
+                  <div className="w-10 h-10 bg-gradient-to-r from-orange-500 to-pink-500 rounded-full flex items-center justify-center text-white font-semibold">
+                    {contact.name.split(' ').map(n => n[0]).join('')}
+                  </div>
+                  <div>
+                    <h4 className="text-white font-medium">{contact.name}</h4>
+                    <p className="text-gray-400 text-sm">{contact.email}</p>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <p className="text-white text-sm">{contact.events} events attended</p>
+                  <p className="text-gray-400 text-xs">Active {contact.lastActivity}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
           <div className="text-center py-12">
             <h3 className="text-white text-lg font-medium mb-4">
               You have no attendees yet, as you sell tickets your attendees will

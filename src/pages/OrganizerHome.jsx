@@ -251,20 +251,68 @@ export default function OrganizerHome() {
               </button>
             </div>
 
-            {/* No Events State */}
-            <div className="text-center py-12">
-              <FiCalendar className="w-16 h-16 text-gray-600 mx-auto mb-4" />
-              <h4 className="text-white text-lg font-medium mb-2">
-                No upcoming events
-              </h4>
-              <p className="text-gray-400 text-sm mb-6">
-                Get started by creating your first event
-              </p>
+            {/* Upcoming Events */}
+            <div className="space-y-4">
+              {[
+                {
+                  id: 1,
+                  title: "Summer Music Festival 2024",
+                  date: "Jan 15, 2025",
+                  time: "6:00 PM",
+                  location: "Central Park Amphitheater",
+                  attendees: 1250,
+                  status: "Active"
+                },
+                {
+                  id: 2,
+                  title: "Tech Innovation Conference",
+                  date: "Jan 22, 2025",
+                  time: "9:00 AM",
+                  location: "Convention Center Hall A",
+                  attendees: 850,
+                  status: "Active"
+                },
+                {
+                  id: 3,
+                  title: "Food & Wine Expo",
+                  date: "Feb 05, 2025",
+                  time: "4:00 PM",
+                  location: "Downtown Exhibition Center",
+                  attendees: 520,
+                  status: "Draft"
+                }
+              ].map((event) => (
+                <div key={event.id} className="bg-gray-800 border border-gray-700 rounded-lg p-4 hover:bg-gray-750 transition-colors">
+                  <div className="flex items-center justify-between mb-2">
+                    <h4 className="text-white font-semibold">{event.title}</h4>
+                    <span className={`px-2 py-1 rounded text-xs font-medium ${
+                      event.status === 'Active' ? 'bg-green-900 text-green-300' : 'bg-gray-700 text-gray-300'
+                    }`}>
+                      {event.status}
+                    </span>
+                  </div>
+                  <div className="flex items-center space-x-4 text-sm text-gray-400 mb-2">
+                    <span>{event.date} at {event.time}</span>
+                    <span>•</span>
+                    <span>{event.location}</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-gray-300 text-sm">{event.attendees} registered</span>
+                    <div className="flex space-x-2">
+                      <button className="text-blue-400 hover:text-blue-300 text-sm">Edit</button>
+                      <button className="text-gray-400 hover:text-gray-300 text-sm">View</button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            <div className="text-center mt-6">
               <Link
                 to="/organizer/createEvent"
                 className="bg-white hover:bg-gray-100 text-black px-6 py-2 rounded-lg font-medium transition-colors duration-200"
               >
-                Create Event
+                Create New Event
               </Link>
             </div>
           </div>
@@ -277,6 +325,51 @@ export default function OrganizerHome() {
             <p className="text-gray-400 text-sm mb-6">
               View your latest ticket sales
             </p>
+            
+            <div className="space-y-3">
+              {[
+                {
+                  id: "#ORD-2024-1234",
+                  customer: "John Smith",
+                  event: "Summer Music Festival",
+                  amount: "$150.00",
+                  date: "Dec 25, 2024",
+                  status: "Completed"
+                },
+                {
+                  id: "#ORD-2024-1235",
+                  customer: "Sarah Johnson",
+                  event: "Tech Conference",
+                  amount: "$299.99",
+                  date: "Dec 24, 2024",
+                  status: "Completed"
+                },
+                {
+                  id: "#ORD-2024-1236",
+                  customer: "Mike Davis",
+                  event: "Food & Wine Expo",
+                  amount: "$85.50",
+                  date: "Dec 23, 2024",
+                  status: "Pending"
+                }
+              ].map((order) => (
+                <div key={order.id} className="bg-gray-800 border border-gray-700 rounded-lg p-4 flex items-center justify-between">
+                  <div>
+                    <h4 className="text-white font-medium">{order.id}</h4>
+                    <p className="text-gray-400 text-sm">{order.customer} • {order.event}</p>
+                    <p className="text-gray-500 text-xs">{order.date}</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-white font-semibold">{order.amount}</p>
+                    <span className={`px-2 py-1 rounded text-xs font-medium ${
+                      order.status === 'Completed' ? 'bg-green-900 text-green-300' : 'bg-yellow-900 text-yellow-300'
+                    }`}>
+                      {order.status}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
 
             {/* Search Bar */}
             <div className="relative mb-6">

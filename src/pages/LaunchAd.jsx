@@ -309,13 +309,81 @@ export default function LaunchAd() {
       </header>
 
       <div className="px-8 py-6">
-        <div className="text-center py-20">
-          <h2 className="text-white text-xl font-medium mb-4">
-            No ads found.
-          </h2>
-          <p className="text-gray-400 mb-6">
-            Create your first ad campaign to reach more people.
-          </p>
+        {/* Ad Campaigns List */}
+        <div className="space-y-4">
+          {[
+            {
+              id: 1,
+              name: "Summer Music Festival Promotion",
+              status: "Active",
+              budget: "$500",
+              spent: "$287.50",
+              reach: "12,500",
+              clicks: "1,234",
+              startDate: "Dec 15, 2024",
+              endDate: "Jan 15, 2025"
+            },
+            {
+              id: 2,
+              name: "Tech Conference Early Bird",
+              status: "Completed",
+              budget: "$750",
+              spent: "$750.00",
+              reach: "18,900",
+              clicks: "2,156",
+              startDate: "Nov 20, 2024",
+              endDate: "Dec 20, 2024"
+            },
+            {
+              id: 3,
+              name: "Food & Wine Expo Launch",
+              status: "Draft",
+              budget: "$300",
+              spent: "$0.00",
+              reach: "0",
+              clicks: "0",
+              startDate: "Jan 05, 2025",
+              endDate: "Feb 05, 2025"
+            }
+          ].map((ad) => (
+            <div key={ad.id} className="bg-gray-900 border border-gray-800 rounded-lg p-6">
+              <div className="flex items-center justify-between mb-4">
+                <div>
+                  <h3 className="text-white font-semibold text-lg">{ad.name}</h3>
+                  <p className="text-gray-400 text-sm">{ad.startDate} - {ad.endDate}</p>
+                </div>
+                <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                  ad.status === 'Active' ? 'bg-green-900 text-green-300' :
+                  ad.status === 'Completed' ? 'bg-blue-900 text-blue-300' :
+                  'bg-gray-700 text-gray-300'
+                }`}>
+                  {ad.status}
+                </span>
+              </div>
+              
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div>
+                  <p className="text-gray-400 text-sm">Budget</p>
+                  <p className="text-white font-medium">{ad.budget}</p>
+                </div>
+                <div>
+                  <p className="text-gray-400 text-sm">Spent</p>
+                  <p className="text-white font-medium">{ad.spent}</p>
+                </div>
+                <div>
+                  <p className="text-gray-400 text-sm">Reach</p>
+                  <p className="text-white font-medium">{ad.reach}</p>
+                </div>
+                <div>
+                  <p className="text-gray-400 text-sm">Clicks</p>
+                  <p className="text-white font-medium">{ad.clicks}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        
+        <div className="text-center mt-8">
           <button
             onClick={() => setShowForm(true)}
             className="bg-white text-black px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors"

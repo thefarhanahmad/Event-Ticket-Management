@@ -86,11 +86,52 @@ export default function Disputes() {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td colSpan="6" className="text-center text-gray-500 py-12">
-                    No disputes found
-                  </td>
-                </tr>
+                {[
+                  {
+                    id: 1,
+                    customer: "John Smith",
+                    orderName: "Tech Conference 2024",
+                    amount: "$150.00",
+                    disputeDate: "Dec 20, 2024",
+                    evidenceDate: "Jan 05, 2025",
+                    status: "Under Review"
+                  },
+                  {
+                    id: 2,
+                    customer: "Sarah Johnson",
+                    orderName: "Music Festival VIP",
+                    amount: "$299.99",
+                    disputeDate: "Dec 18, 2024",
+                    evidenceDate: "Jan 03, 2025",
+                    status: "Resolved"
+                  },
+                  {
+                    id: 3,
+                    customer: "Mike Davis",
+                    orderName: "Food & Wine Expo",
+                    amount: "$85.50",
+                    disputeDate: "Dec 15, 2024",
+                    evidenceDate: "Dec 30, 2024",
+                    status: "Pending"
+                  }
+                ].map((dispute) => (
+                  <tr key={dispute.id} className="border-b border-gray-800 hover:bg-gray-800/50">
+                    <td className="py-4 px-4 text-white">{dispute.customer}</td>
+                    <td className="py-4 px-4 text-white">{dispute.orderName}</td>
+                    <td className="py-4 px-4 text-white font-medium">{dispute.amount}</td>
+                    <td className="py-4 px-4 text-gray-300">{dispute.disputeDate}</td>
+                    <td className="py-4 px-4 text-gray-300">{dispute.evidenceDate}</td>
+                    <td className="py-4 px-4">
+                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                        dispute.status === 'Resolved' ? 'bg-green-900 text-green-300' :
+                        dispute.status === 'Under Review' ? 'bg-yellow-900 text-yellow-300' :
+                        'bg-orange-900 text-orange-300'
+                      }`}>
+                        {dispute.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
