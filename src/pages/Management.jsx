@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FiX } from "react-icons/fi";
@@ -8,21 +7,21 @@ export default function Management() {
   const [rehireFormData, setRehireFormData] = useState({
     selectedEvent: "",
     commissionPercentage: "",
-    message: ""
+    message: "",
   });
 
   // Sample events data (you can replace this with real data)
   const events = [
     { id: 1, title: "JUNETEENTH MADNESS 18+" },
     { id: 2, title: "Summer Music Festival" },
-    { id: 3, title: "Tech Conference 2024" }
+    { id: 3, title: "Tech Conference 2024" },
   ];
 
   const handleRehireInputChange = (e) => {
     const { name, value } = e.target;
-    setRehireFormData(prev => ({
+    setRehireFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -33,7 +32,7 @@ export default function Management() {
     setRehireFormData({
       selectedEvent: "",
       commissionPercentage: "",
-      message: ""
+      message: "",
     });
   };
 
@@ -75,7 +74,7 @@ export default function Management() {
       {/* Rehire All Modal */}
       {showRehireModal && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-gray-900 border border-gray-700 rounded-xl w-full max-w-md">
+          <div className="bg-gray-900 relative border border-gray-700 rounded-xl w-full max-w-md">
             <div className="p-6">
               {/* Modal Header */}
               <div className="flex items-center justify-between mb-6">

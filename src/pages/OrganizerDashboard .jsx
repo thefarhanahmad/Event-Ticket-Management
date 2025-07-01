@@ -107,7 +107,8 @@ const OrganizerDashboard = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const [marketingDropdownOpen, setMarketingDropdownOpen] = useState(false);
   const [financesDropdownOpen, setFinancesDropdownOpen] = useState(false);
-  const [organizationDropdownOpen, setOrganizationDropdownOpen] = useState(false);
+  const [organizationDropdownOpen, setOrganizationDropdownOpen] =
+    useState(false);
   const [managementDropdownOpen, setManagementDropdownOpen] = useState(false);
 
   const handleLogout = () => {
@@ -155,30 +156,34 @@ const OrganizerDashboard = () => {
                   let setDropdownOpen = null;
 
                   if (item.label === "Marketing") {
-                    isActive = location.pathname.startsWith("/organizer/marketing") || 
-                              location.pathname.startsWith("/organizer/audience") || 
-                              location.pathname.startsWith("/organizer/launch-ad");
+                    isActive =
+                      location.pathname.startsWith("/organizer/marketing") ||
+                      location.pathname.startsWith("/organizer/audience") ||
+                      location.pathname.startsWith("/organizer/launch-ad");
                     dropdownOpen = marketingDropdownOpen;
                     setDropdownOpen = setMarketingDropdownOpen;
                   } else if (item.label === "Finances") {
-                    isActive = location.pathname.startsWith("/organizer/payouts") || 
-                              location.pathname.startsWith("/organizer/disputes") || 
-                              location.pathname === "/organizer/finances";
+                    isActive =
+                      location.pathname.startsWith("/organizer/payouts") ||
+                      location.pathname.startsWith("/organizer/disputes") ||
+                      location.pathname === "/organizer/finances";
                     dropdownOpen = financesDropdownOpen;
                     setDropdownOpen = setFinancesDropdownOpen;
                   } else if (item.label === "Manage Organization") {
-                    isActive = location.pathname.startsWith("/organizer/members") || 
-                              location.pathname.startsWith("/organizer/organization");
+                    isActive =
+                      location.pathname.startsWith("/organizer/members") ||
+                      location.pathname.startsWith("/organizer/organization");
                     dropdownOpen = organizationDropdownOpen;
                     setDropdownOpen = setOrganizationDropdownOpen;
                   } else if (item.label === "Management") {
-                    isActive = location.pathname.startsWith("/organizer/management") || 
-                              location.pathname.startsWith("/organizer/analytics") || 
-                              location.pathname.startsWith("/organizer/support-center");
+                    isActive =
+                      location.pathname.startsWith("/organizer/management") ||
+                      location.pathname.startsWith("/organizer/analytics") ||
+                      location.pathname.startsWith("/organizer/support-center");
                     dropdownOpen = managementDropdownOpen;
                     setDropdownOpen = setManagementDropdownOpen;
                   }
-                  
+
                   return (
                     <li key={item.label}>
                       <button
@@ -199,11 +204,12 @@ const OrganizerDashboard = () => {
                           <FiChevronRight className="w-4 h-4 transition-transform duration-200 text-gray-600 group-hover:text-gray-400" />
                         )}
                       </button>
-                      
+
                       {dropdownOpen && (
                         <ul className="ml-6 mt-2 space-y-1 border-l border-gray-700 pl-4">
                           {item.subItems.map((subItem) => {
-                            const isSubActive = location.pathname === subItem.to;
+                            const isSubActive =
+                              location.pathname === subItem.to;
                             return (
                               <li key={subItem.to}>
                                 <Link
@@ -214,7 +220,9 @@ const OrganizerDashboard = () => {
                                       : "text-gray-400 hover:bg-gray-800 hover:text-white"
                                   }`}
                                 >
-                                  <span className="font-medium">{subItem.label}</span>
+                                  <span className="font-medium">
+                                    {subItem.label}
+                                  </span>
                                   {subItem.badge && (
                                     <span className="bg-purple-600 text-white text-xs px-2 py-0.5 rounded-full">
                                       {subItem.badge}
@@ -249,9 +257,13 @@ const OrganizerDashboard = () => {
                         <span className="text-lg">{icon}</span>
                         <span className="font-medium">{label}</span>
                       </div>
-                      <FiChevronRight className={`w-4 h-4 transition-transform duration-200 ${
-                        isActive ? "text-gray-400" : "text-gray-600 group-hover:text-gray-400"
-                      }`} />
+                      <FiChevronRight
+                        className={`w-4 h-4 transition-transform duration-200 ${
+                          isActive
+                            ? "text-gray-400"
+                            : "text-gray-600 group-hover:text-gray-400"
+                        }`}
+                      />
                     </Link>
                   </li>
                 );
@@ -260,7 +272,7 @@ const OrganizerDashboard = () => {
           </nav>
 
           {/* Flite AI Section - Fixed */}
-          <div className="flex-shrink-0 p-4 border-t border-gray-800">
+          {/* <div className="flex-shrink-0 p-4 border-t border-gray-800">
             <div className="bg-gradient-to-r from-purple-900/50 to-pink-900/50 rounded-lg p-4 border border-purple-700/30">
               <div className="flex items-center space-x-2 mb-2">
                 <div className="w-6 h-6 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
@@ -276,7 +288,7 @@ const OrganizerDashboard = () => {
                 Try Now
               </button>
             </div>
-          </div>
+          </div> */}
 
           {/* User Section - Fixed */}
           <div className="flex-shrink-0 p-4 border-t border-gray-800">

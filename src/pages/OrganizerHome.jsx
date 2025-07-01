@@ -1,9 +1,8 @@
-
 import { Link } from "react-router-dom";
-import { 
-  FiTrendingUp, 
-  FiUsers, 
-  FiEye, 
+import {
+  FiTrendingUp,
+  FiUsers,
+  FiEye,
   FiCreditCard,
   FiPlus,
   FiArrowRight,
@@ -11,7 +10,7 @@ import {
   FiLifeBuoy,
   FiZap,
   FiVideo,
-  FiDollarSign
+  FiDollarSign,
 } from "react-icons/fi";
 
 export default function OrganizerHome() {
@@ -21,52 +20,54 @@ export default function OrganizerHome() {
       value: "₹ 0.00",
       label: "Total Sales Today",
       subtitle: "Sales since last 24hrs so far",
-      trend: null
+      trend: null,
     },
     {
       icon: <FiUsers className="w-5 h-5" />,
       value: "0",
       label: "Tickets Sold Today",
       subtitle: "Tickets sold since last 24hrs so far",
-      trend: null
+      trend: null,
     },
     {
       icon: <FiEye className="w-5 h-5" />,
       value: "0",
       label: "Page Visits Today",
       subtitle: "Page visits since last 24hrs so far",
-      trend: null
+      trend: null,
     },
     {
       icon: <FiCreditCard className="w-5 h-5" />,
       value: "₹ 0.00",
       label: "Tap To Pay (24 Hrs)",
       subtitle: "Tap To Pay sales last 24 hours",
-      trend: null
-    }
+      trend: null,
+    },
   ];
 
   const features = [
     {
       icon: <FiLifeBuoy className="w-5 h-5 text-orange-400" />,
       title: "Support Center",
-      description: "View and respond to support tickets directly in Flite."
+      description: "View and respond to support tickets directly in Flite.",
     },
     {
       icon: <FiZap className="w-5 h-5 text-blue-400" />,
       title: "Launch Ads with Flite",
-      description: "Create and submit ad campaigns with Flite's dedicated ads manager."
+      description:
+        "Create and submit ad campaigns with Flite's dedicated ads manager.",
     },
     {
       icon: <FiVideo className="w-5 h-5 text-purple-400" />,
       title: "Flite Moments",
-      description: "Upload short videos to give attendees a preview of your events."
+      description:
+        "Upload short videos to give attendees a preview of your events.",
     },
     {
       icon: <FiDollarSign className="w-5 h-5 text-green-400" />,
       title: "Vendor Payments",
-      description: "Manage and process vendor payments seamlessly."
-    }
+      description: "Manage and process vendor payments seamlessly.",
+    },
   ];
 
   return (
@@ -83,9 +84,6 @@ export default function OrganizerHome() {
             </p>
           </div>
           <div className="flex items-center space-x-3">
-            <button className="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-lg transition-colors duration-200 border border-gray-700">
-              Export Data
-            </button>
             <Link
               to="/organizer/createEvent"
               className="px-4 py-2 bg-white hover:bg-gray-100 text-black rounded-lg transition-colors duration-200 flex items-center space-x-2 font-medium"
@@ -101,11 +99,12 @@ export default function OrganizerHome() {
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {stats.map((stat, index) => (
-            <div key={index} className="bg-gray-900 border border-gray-800 rounded-xl p-6 hover:bg-gray-800/50 transition-colors duration-200">
+            <div
+              key={index}
+              className="bg-gray-900 border border-gray-800 rounded-xl p-6 hover:bg-gray-800/50 transition-colors duration-200"
+            >
               <div className="flex items-center justify-between mb-4">
-                <div className="p-2 bg-gray-800 rounded-lg">
-                  {stat.icon}
-                </div>
+                <div className="p-2 bg-gray-800 rounded-lg">{stat.icon}</div>
                 {stat.trend && (
                   <FiTrendingUp className="w-4 h-4 text-green-400" />
                 )}
@@ -126,14 +125,15 @@ export default function OrganizerHome() {
               {/* Background decoration */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-blue-500/10 to-transparent rounded-full blur-2xl"></div>
               <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-purple-500/10 to-transparent rounded-full blur-2xl"></div>
-              
+
               <div className="relative z-10">
                 <div className="mb-6">
                   <h2 className="text-3xl font-bold text-white mb-3">
                     Bring Your Event Dreams to Life
                   </h2>
                   <p className="text-gray-300 text-lg leading-relaxed">
-                    With Flite, set up, sell out, and fly high. Your perfect event is just a few clicks away.
+                    With Flite, set up, sell out, and fly high. Your perfect
+                    event is just a few clicks away.
                   </p>
                 </div>
 
@@ -161,7 +161,10 @@ export default function OrganizerHome() {
 
               <div className="space-y-4">
                 {features.map((feature, index) => (
-                  <div key={index} className="flex items-start space-x-3 p-3 rounded-lg hover:bg-gray-800/50 transition-colors duration-200 cursor-pointer">
+                  <div
+                    key={index}
+                    className="flex items-start space-x-3 p-3 rounded-lg hover:bg-gray-800/50 transition-colors duration-200 cursor-pointer"
+                  >
                     <div className="p-1.5 bg-gray-800 rounded-lg flex-shrink-0">
                       {feature.icon}
                     </div>
@@ -180,7 +183,9 @@ export default function OrganizerHome() {
 
             {/* Quick Actions */}
             <div className="bg-gray-900 border border-gray-800 rounded-xl p-6">
-              <h3 className="text-lg font-bold text-white mb-4">Quick Actions</h3>
+              <h3 className="text-lg font-bold text-white mb-4">
+                Quick Actions
+              </h3>
               <div className="space-y-3">
                 <Link
                   to="/organizer/events"
