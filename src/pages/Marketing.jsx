@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 
 export default function Marketing() {
@@ -14,11 +13,11 @@ export default function Marketing() {
 
   const insertFirstName = () => {
     if (activeTab === "message") {
-      setMessageText(prev => prev + "{firstName}");
+      setMessageText((prev) => prev + "{firstName}");
     } else if (activeTab === "email") {
-      setEmailContent(prev => prev + "{firstName}");
+      setEmailContent((prev) => prev + "{firstName}");
     } else if (activeTab === "notifications") {
-      setNotificationMessage(prev => prev + "{firstName}");
+      setNotificationMessage((prev) => prev + "{firstName}");
     }
   };
 
@@ -36,11 +35,14 @@ export default function Marketing() {
                 </p>
 
                 <div className="mb-6">
-                  <h3 className="text-white font-medium mb-2">Farhans Organization:</h3>
+                  <h3 className="text-white font-medium mb-2">
+                    Farhans Organization:
+                  </h3>
                   <p className="text-gray-400 text-sm mb-4">
-                    Type your Message here. Use {"{firstName}"} to address the recipient by their first name.
+                    Type your Message here. Use {"{firstName}"} to address the
+                    recipient by their first name.
                   </p>
-                  
+
                   <div className="relative">
                     <textarea
                       value={messageText}
@@ -57,7 +59,7 @@ export default function Marketing() {
 
                 <div className="grid grid-cols-2 gap-4 mb-6">
                   <div>
-                    <select 
+                    <select
                       value={selectedAudience}
                       onChange={(e) => setSelectedAudience(e.target.value)}
                       className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-gray-600"
@@ -69,7 +71,7 @@ export default function Marketing() {
                     </select>
                   </div>
                   <div>
-                    <select 
+                    <select
                       value={selectedCity}
                       onChange={(e) => setSelectedCity(e.target.value)}
                       className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-gray-600"
@@ -83,7 +85,7 @@ export default function Marketing() {
                 </div>
 
                 <div className="mb-6">
-                  <select 
+                  <select
                     value={selectedLink}
                     onChange={(e) => setSelectedLink(e.target.value)}
                     className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-gray-600"
@@ -109,7 +111,7 @@ export default function Marketing() {
             {/* Right Section */}
             <div className="w-80">
               <div className="mb-6">
-                <button 
+                <button
                   onClick={insertFirstName}
                   className="w-full bg-white hover:bg-gray-100 text-black px-4 py-3 rounded-lg font-medium transition-colors"
                 >
@@ -119,8 +121,10 @@ export default function Marketing() {
 
               <div className="bg-gray-900 border border-gray-800 rounded-lg p-6">
                 <h3 className="text-white font-medium mb-2">Past Campaigns</h3>
-                <p className="text-gray-400 text-sm mb-4">Check deliverability reports.</p>
-                
+                <p className="text-gray-400 text-sm mb-4">
+                  Check deliverability reports.
+                </p>
+
                 <div className="flex items-center justify-between text-gray-400 text-sm mb-4 border-b border-gray-700 pb-2">
                   <span>Title & Date</span>
                   <div className="flex space-x-8">
@@ -156,7 +160,7 @@ export default function Marketing() {
                     placeholder="Enter subject here"
                     className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-gray-600 mb-4"
                   />
-                  
+
                   {/* Rich Text Editor Toolbar */}
                   <div className="bg-gray-800 border border-gray-700 rounded-t-lg px-4 py-2 flex items-center space-x-2">
                     <select className="bg-gray-700 text-white text-sm px-2 py-1 rounded border-none">
@@ -177,13 +181,21 @@ export default function Marketing() {
                       <button className="text-white hover:bg-gray-600 p-1 rounded">
                         <s>S</s>
                       </button>
-                      <button className="text-white hover:bg-gray-600 p-1 rounded">A</button>
-                      <button className="text-white hover:bg-gray-600 p-1 rounded">A</button>
-                      <button className="text-white hover:bg-gray-600 p-1 rounded">≡</button>
-                      <button className="text-white hover:bg-gray-600 p-1 rounded">≡</button>
+                      <button className="text-white hover:bg-gray-600 p-1 rounded">
+                        A
+                      </button>
+                      <button className="text-white hover:bg-gray-600 p-1 rounded">
+                        A
+                      </button>
+                      <button className="text-white hover:bg-gray-600 p-1 rounded">
+                        ≡
+                      </button>
+                      <button className="text-white hover:bg-gray-600 p-1 rounded">
+                        ≡
+                      </button>
                     </div>
                   </div>
-                  
+
                   <textarea
                     value={emailContent}
                     onChange={(e) => setEmailContent(e.target.value)}
@@ -194,7 +206,7 @@ export default function Marketing() {
 
                 <div className="grid grid-cols-2 gap-4 mb-6">
                   <div>
-                    <select 
+                    <select
                       value={selectedAudience}
                       onChange={(e) => setSelectedAudience(e.target.value)}
                       className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-gray-600"
@@ -206,7 +218,7 @@ export default function Marketing() {
                     </select>
                   </div>
                   <div>
-                    <select 
+                    <select
                       value={selectedCity}
                       onChange={(e) => setSelectedCity(e.target.value)}
                       className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-gray-600"
@@ -220,7 +232,7 @@ export default function Marketing() {
                 </div>
 
                 <div className="mb-6">
-                  <select 
+                  <select
                     value={selectedLink}
                     onChange={(e) => setSelectedLink(e.target.value)}
                     className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-gray-600"
@@ -232,7 +244,7 @@ export default function Marketing() {
                   </select>
                 </div>
 
-                <div className="flex justify-center">
+                <div className="flex justify-end">
                   <button className="px-8 py-2 bg-white hover:bg-gray-100 text-black rounded-lg font-medium transition-colors">
                     Send Email
                   </button>
@@ -244,8 +256,10 @@ export default function Marketing() {
             <div className="w-80">
               <div className="bg-gray-900 border border-gray-800 rounded-lg p-6">
                 <h3 className="text-white font-medium mb-2">Past Campaigns</h3>
-                <p className="text-gray-400 text-sm mb-4">Check deliverability reports.</p>
-                
+                <p className="text-gray-400 text-sm mb-4">
+                  Check deliverability reports.
+                </p>
+
                 <div className="flex items-center justify-between text-gray-400 text-sm mb-4 border-b border-gray-700 pb-2">
                   <span>Title & Date</span>
                   <div className="flex space-x-8">
@@ -280,7 +294,7 @@ export default function Marketing() {
                     placeholder="Enter title here"
                     className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-gray-600 mb-4"
                   />
-                  
+
                   <div className="relative">
                     <textarea
                       value={notificationMessage}
@@ -295,7 +309,7 @@ export default function Marketing() {
                   </div>
                 </div>
 
-                <div className="flex justify-center">
+                <div className="flex justify-end">
                   <button className="px-8 py-2 bg-white hover:bg-gray-100 text-black rounded-lg font-medium transition-colors">
                     Send Notifications
                   </button>
@@ -307,8 +321,10 @@ export default function Marketing() {
             <div className="w-80">
               <div className="bg-gray-900 border border-gray-800 rounded-lg p-6">
                 <h3 className="text-white font-medium mb-2">Past Campaigns</h3>
-                <p className="text-gray-400 text-sm mb-4">Check deliverability reports.</p>
-                
+                <p className="text-gray-400 text-sm mb-4">
+                  Check deliverability reports.
+                </p>
+
                 <div className="flex items-center justify-between text-gray-400 text-sm mb-4 border-b border-gray-700 pb-2">
                   <span>Title & Date</span>
                   <div className="flex space-x-8">
@@ -343,31 +359,31 @@ export default function Marketing() {
       <div className="px-8 py-6">
         {/* Tabs */}
         <div className="flex items-center space-x-6 mb-8">
-          <button 
+          <button
             onClick={() => setActiveTab("message")}
             className={`px-4 py-2 font-medium transition-colors ${
-              activeTab === "message" 
-                ? "text-white bg-gray-800 rounded-lg" 
+              activeTab === "message"
+                ? "text-white bg-gray-800 rounded-lg"
                 : "text-gray-400 hover:text-white"
             }`}
           >
             Message
           </button>
-          <button 
+          <button
             onClick={() => setActiveTab("email")}
             className={`px-4 py-2 font-medium transition-colors ${
-              activeTab === "email" 
-                ? "text-white bg-gray-800 rounded-lg" 
+              activeTab === "email"
+                ? "text-white bg-gray-800 rounded-lg"
                 : "text-gray-400 hover:text-white"
             }`}
           >
             Email
           </button>
-          <button 
+          <button
             onClick={() => setActiveTab("notifications")}
             className={`px-4 py-2 font-medium transition-colors ${
-              activeTab === "notifications" 
-                ? "text-white bg-gray-800 rounded-lg" 
+              activeTab === "notifications"
+                ? "text-white bg-gray-800 rounded-lg"
                 : "text-gray-400 hover:text-white"
             }`}
           >
