@@ -118,6 +118,10 @@ const OrganizerDashboard = () => {
   
   // Organization selector states
   const [orgSelectorOpen, setOrgSelectorOpen] = useState(false);
+  
+  // User profile popup states
+  const [userProfileOpen, setUserProfileOpen] = useState(false);
+  const userProfileRef = useRef(null);
   const [createOrgModalOpen, setCreateOrgModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const orgSelectorRef = useRef(null);
@@ -149,11 +153,14 @@ const OrganizerDashboard = () => {
     navigate("/login");
   };
 
-  // Handle clicking outside org selector to close it
+  // Handle clicking outside dropdowns to close them
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (orgSelectorRef.current && !orgSelectorRef.current.contains(event.target)) {
         setOrgSelectorOpen(false);
+      }
+      if (userProfileRef.current && !userProfileRef.current.contains(event.target)) {
+        setUserProfileOpen(false);
       }
     };
 
@@ -442,29 +449,88 @@ const OrganizerDashboard = () => {
 
           {/* User Section - Fixed */}
           <div className="flex-shrink-0 p-4 border-t border-gray-800">
-            <div className="flex items-center space-x-3 mb-3">
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
-                <span className="text-white text-sm font-bold">
-                  {user?.email?.charAt(0).toUpperCase() || "F"}
-                </span>
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-white text-sm font-medium truncate">
-                  Farhan Akhtar
-                </p>
-                <p className="text-gray-400 text-xs truncate">
-                  {user?.email || "akhtar@farhan51@gmail.com"}
-                </p>
-              </div>
-            </div>
+            <div className="relative" ref={userProfileRef}>
+              <button
+                onClick={() => setUserProfileOpen(!userProfileOpen)}
+                className="w-full flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-800 transition-colors duration-200"
+              >
+                <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+                  <span className="text-white text-sm font-bold">
+                    {user?.email?.charAt(0).toUpperCase() || "F"}
+                  </span>
+                </div>
+                <div className="flex-1 min-w-0 text-left">
+                  <p className="text-white text-sm font-medium truncate">
+                    Farhan Akhtar
+                  </p>
+                  <p className="text-gray-400 text-xs truncate">
+                    {user?.email || "akhtarfarhan281@gmail.com"}
+                  </p>
+                </div>
+              </button>
 
-            <button
-              onClick={handleLogout}
-              className="w-full flex items-center justify-center space-x-2 py-2 px-3 rounded-lg text-sm text-red-400 hover:bg-red-900/20 hover:text-red-300 transition-all duration-200 border border-gray-700 hover:border-red-700/50"
-            >
-              <FiLogOut className="w-4 h-4" />
-              <span>Logout</span>
-            </button>
+              {/* User Profile Popup */}
+              {userProfileOpen && (
+                <div className="absolute left-full bottom-0 ml-2 w-64 bg-gray-900 border border-gray-700 rounded-lg shadow-xl z-50">
+                  {/* User Info Header */}
+                  <div className="p-4 border-b border-gray-700">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+                        <span className="text-white font-bold">
+                          {user?.email?.charAt(0).toUpperCase() || "F"}
+                        </span>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-white text-sm font-semibold truncate">
+                          Farhan Akhtar
+                        </p>
+                        <p className="text-gray-400 text-xs truncate">
+                          {user?.email || "akhtarfarhan281@gmail.com"}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Menu Options */}
+                  <div className="py-2">
+                    <button
+                      onClick={() => {
+                        setUserProfileOpen(false);
+                        navigate('/organizer/edit-profile');
+                      }}
+                      className="w-full flex items-center space-x-3 px-4 py-3 hover:bg-gray-800 transition-colors duration-200 text-left"
+                    >
+                      <FiSettings className="w-5 h-5 text-gray-400" />
+                      <span className="text-white text-sm">Edit Profile</span>
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        setUserProfileOpen(false);
+                        navigate('/organizer/notifications');
+                      }}
+                      className="w-full flex items-center space-x-3 px-4 py-3 hover:bg-gray-800 transition-colors duration-200 text-left"
+                    >
+                      <FiUsers className="w-5 h-5 text-gray-400" />
+                      <span className="text-white text-sm">Notifications</span>
+                    </button>
+
+                    <div className="border-t border-gray-700 my-2"></div>
+
+                    <button
+                      onClick={() => {
+                        setUserProfileOpen(false);
+                        handleLogout();
+                      }}
+                      className="w-full flex items-center space-x-3 px-4 py-3 hover:bg-gray-800 transition-colors duration-200 text-left text-red-400 hover:text-red-300"
+                    >
+                      <FiLogOut className="w-5 h-5" />
+                      <span className="text-sm">Log Out</span>
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </aside>

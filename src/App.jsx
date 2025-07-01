@@ -26,6 +26,8 @@ import Members from './pages/Members';
 import Analytics from "./pages/Analytics";
 import SupportCenter from "./pages/SupportCenter";
 import EditOrg from "./pages/EditOrg";
+import EditProfile from "./pages/EditProfile";
+import Notifications from "./pages/Notifications";
 
 export default function App() {
   const location = useLocation();
@@ -63,6 +65,8 @@ export default function App() {
             <Route path="support-center" element={<SupportCenter />} />
             <Route path="edit-org" element={<EditOrg />} />
           </Route>
+          <Route path="/edit-profile" element={<EditProfile />} />
+          <Route path="/notifications" element={<Notifications />} />
         </Routes>
       </>
     </div>
