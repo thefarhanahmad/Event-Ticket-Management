@@ -1,5 +1,54 @@
 
+import { useState } from "react";
+
 export default function Payouts() {
+  const [isConnected, setIsConnected] = useState(false);
+
+  const handleConnectStripe = () => {
+    // Simulate Stripe connection
+    setIsConnected(true);
+  };
+
+  if (!isConnected) {
+    return (
+      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+        <div className="text-center max-w-md mx-auto px-6">
+          <h1 className="text-2xl font-bold text-white mb-6">MY PAYOUTS</h1>
+          
+          <div className="bg-gray-900 border border-gray-700 rounded-lg p-8 mb-6">
+            <h2 className="text-xl font-semibold text-white mb-4">Connect Payouts</h2>
+            <p className="text-gray-400 text-sm mb-6">
+              Flite integrates with Stripe for the fastest and most secure way to manage your funds.
+            </p>
+            
+            <button
+              onClick={handleConnectStripe}
+              className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-medium transition-colors mb-4"
+            >
+              Connect with Stripe
+            </button>
+            
+            <p className="text-gray-500 text-xs">
+              If you are being asked to connect a second time, Stripe requires more information. Simply follow the above link.
+            </p>
+          </div>
+          
+          <div className="text-left space-y-4">
+            <div className="bg-gray-800 rounded-lg p-4">
+              <h3 className="text-white font-medium mb-2">Instant Transfers</h3>
+              <p className="text-gray-400 text-sm">Get your money in minutes, not days.</p>
+            </div>
+            
+            <div className="bg-gray-800 rounded-lg p-4">
+              <h3 className="text-white font-medium mb-2">Bank-Level Security</h3>
+              <p className="text-gray-400 text-sm">Your financial data is protected with industry-leading security.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Header */}
