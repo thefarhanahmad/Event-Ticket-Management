@@ -1,15 +1,45 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Link, useNavigate } from 'react-router-dom'
+import { FiUser, FiLogOut, FiSettings } from 'react-icons/fi'
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false)
+  const [user, setUser] = useState(null)
   const navigate = useNavigate()
 
-  const navItems = [
+  useEffect(() => {
+    // Check for user in localStorage
+    const userData = localStorage.getItem('user')
+    if (userData) {
+      try {
+        setUser(JSON.parse(userData))
+      } catch (error) {
+        console.error('Error parsing user data:', error)
+      }
+    }
+  }, [])
+
+  const handleLogout = () => {
+    localStorage.removeItem('user')
+    setUser(null)
+    setIsUserMenuOpen(false)
+    navigate('/')
+  }
+
+  const getFirstLetter = (name) => {
+    if (name) return name.charAt(0).toUpperCase()
+    return 'U'
+  }
+
+  const baseNavItems = [
     { id: 'home', label: 'HOME', path: '/' },
     { id: 'about', label: 'ABOUT', path: '/about' },
-    { id: 'events', label: 'EVENTS', path: '/events' },
+    { id: 'events', label: 'EVENTS', path: '/events' }
+  ]
+
+  const authNavItems = [
     { id: 'login', label: 'LOGIN', path: '/login' },
     { id: 'signup', label: 'SIGNUP', path: '/signup' }
   ]
@@ -37,7 +67,8 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-center space-x-2">
-              {navItems.map((item, index) => (
+              {/* Base Navigation Items */}
+              {baseNavItems.map((item, index) => (
                 <motion.div
                   key={item.id}
                   whileHover={{ scale: 1.05, y: -2 }}
@@ -53,23 +84,13 @@ export default function Navbar() {
                 >
                   <Link
                     to={item.path}
-                    className={`
-                      relative px-4 py-2.5 text-sm font-semibold tracking-wide
-                      transition-all duration-300 cursor-pointer rounded-lg
-                      ${item.id === 'login' || item.id === 'signup' 
-                        ? 'bg-gradient-to-r from-slate-700 to-slate-600 text-white border border-slate-500 hover:from-slate-600 hover:to-slate-500 hover:border-slate-400 shadow-lg hover:shadow-xl'
-                        : 'text-slate-300 hover:text-white hover:bg-slate-800/60 backdrop-blur-sm border border-transparent hover:border-slate-600/50'
-                      }
-                      group overflow-hidden
-                    `}
+                    className="relative px-4 py-2.5 text-sm font-semibold tracking-wide transition-all duration-300 cursor-pointer rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 backdrop-blur-sm border border-transparent hover:border-slate-600/50 group overflow-hidden"
                   >
                     <span className="relative z-10">{item.label}</span>
-                    {/* Hover effect background */}
                     <motion.div
                       className="absolute inset-0 bg-gradient-to-r from-slate-600/20 to-slate-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                       layoutId="navbar-hover"
                     />
-                    {/* Active indicator */}
                     <motion.div
                       className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-slate-400 to-slate-300 opacity-0 group-hover:opacity-100 transition-all duration-300"
                       initial={{ width: 0 }}
@@ -78,6 +99,83 @@ export default function Navbar() {
                   </Link>
                 </motion.div>
               ))}
+
+              {/* User Authentication Section */}
+              {user ? (
+                <div className="relative ml-4">
+                  <motion.button
+                    onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                    className="flex items-center space-x-2 px-3 py-2 rounded-lg bg-gradient-to-r from-slate-700 to-slate-600 border border-slate-500 hover:from-slate-600 hover:to-slate-500 hover:border-slate-400 transition-all duration-300"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+                      <span className="text-white text-sm font-bold">
+                        {getFirstLetter(user.name || user.email)}
+                      </span>
+                    </div>
+                    <span className="text-white text-sm font-semibold">
+                      {user.name || user.email?.split('@')[0] || 'User'}
+                    </span>
+                  </motion.button>
+
+                  {/* User Dropdown Menu */}
+                  {isUserMenuOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="absolute right-0 mt-2 w-48 bg-slate-800 border border-slate-600 rounded-lg shadow-xl z-50"
+                    >
+                      <div className="py-2">
+                        <Link
+                          to="/edit-profile"
+                          onClick={() => setIsUserMenuOpen(false)}
+                          className="flex items-center space-x-2 px-4 py-2 text-slate-300 hover:text-white hover:bg-slate-700 transition-colors"
+                        >
+                          <FiSettings className="w-4 h-4" />
+                          <span>Settings</span>
+                        </Link>
+                        <button
+                          onClick={handleLogout}
+                          className="w-full flex items-center space-x-2 px-4 py-2 text-slate-300 hover:text-white hover:bg-slate-700 transition-colors text-left"
+                        >
+                          <FiLogOut className="w-4 h-4" />
+                          <span>Logout</span>
+                        </button>
+                      </div>
+                    </motion.div>
+                  )}
+                </div>
+              ) : (
+                /* Auth Buttons */
+                authNavItems.map((item, index) => (
+                  <motion.div
+                    key={item.id}
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ 
+                      duration: 0.3, 
+                      delay: (baseNavItems.length + index) * 0.1,
+                      type: "spring",
+                      stiffness: 300
+                    }}
+                  >
+                    <Link
+                      to={item.path}
+                      className="relative px-4 py-2.5 text-sm font-semibold tracking-wide transition-all duration-300 cursor-pointer rounded-lg bg-gradient-to-r from-slate-700 to-slate-600 text-white border border-slate-500 hover:from-slate-600 hover:to-slate-500 hover:border-slate-400 shadow-lg hover:shadow-xl group overflow-hidden"
+                    >
+                      <span className="relative z-10">{item.label}</span>
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-slate-600/20 to-slate-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        layoutId="navbar-hover"
+                      />
+                    </Link>
+                  </motion.div>
+                ))
+              )}
             </div>
           </div>
 
@@ -125,7 +223,32 @@ export default function Navbar() {
             transition={{ duration: 0.4, ease: "easeInOut" }}
           >
             <div className="px-4 pt-4 pb-6 space-y-3 sm:px-6">
-              {navItems.map((item, index) => (
+              {/* User Info Section (Mobile) */}
+              {user && (
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, type: "spring", stiffness: 300 }}
+                  className="flex items-center space-x-3 px-4 py-3 bg-gradient-to-r from-slate-800/80 to-slate-700/80 border border-slate-600 rounded-xl mb-4"
+                >
+                  <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+                    <span className="text-white font-bold">
+                      {getFirstLetter(user.name || user.email)}
+                    </span>
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-white font-semibold">
+                      {user.name || user.email?.split('@')[0] || 'User'}
+                    </p>
+                    <p className="text-slate-400 text-sm">
+                      {user.email || 'No email'}
+                    </p>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Base Navigation Items */}
+              {baseNavItems.map((item, index) => (
                 <motion.div
                   key={item.id}
                   initial={{ opacity: 0, x: -20 }}
@@ -142,16 +265,7 @@ export default function Navbar() {
                   <Link
                     to={item.path}
                     onClick={() => setIsMenuOpen(false)}
-                    className={`
-                      block px-4 py-3 text-base font-semibold w-full text-left 
-                      transition-all duration-300 tracking-wide rounded-xl cursor-pointer
-                      border-l-4 border-transparent hover:border-slate-400
-                      ${item.id === 'login' || item.id === 'signup' 
-                        ? 'bg-gradient-to-r from-slate-800/80 to-slate-700/80 text-white border border-slate-600 hover:from-slate-700/80 hover:to-slate-600/80 hover:border-slate-500 shadow-lg'
-                        : 'text-slate-300 hover:text-white hover:bg-slate-800/70 backdrop-blur-sm hover:shadow-lg'
-                      }
-                      group relative overflow-hidden
-                    `}
+                    className="block px-4 py-3 text-base font-semibold w-full text-left transition-all duration-300 tracking-wide rounded-xl cursor-pointer border-l-4 border-transparent hover:border-slate-400 text-slate-300 hover:text-white hover:bg-slate-800/70 backdrop-blur-sm hover:shadow-lg group relative overflow-hidden"
                   >
                     <span className="relative z-10 flex items-center">
                       {item.label}
@@ -163,7 +277,6 @@ export default function Navbar() {
                         →
                       </motion.span>
                     </span>
-                    {/* Hover effect */}
                     <motion.div
                       className="absolute inset-0 bg-gradient-to-r from-slate-600/10 to-slate-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                       layoutId="mobile-hover"
@@ -171,6 +284,81 @@ export default function Navbar() {
                   </Link>
                 </motion.div>
               ))}
+
+              {/* Auth or User Actions */}
+              {user ? (
+                <div className="space-y-2 pt-2 border-t border-slate-700">
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    whileHover={{ scale: 1.02, x: 4 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <Link
+                      to="/edit-profile"
+                      onClick={() => setIsMenuOpen(false)}
+                      className="flex items-center space-x-3 px-4 py-3 text-base font-semibold text-slate-300 hover:text-white hover:bg-slate-800/70 rounded-xl transition-all duration-300"
+                    >
+                      <FiSettings className="w-5 h-5" />
+                      <span>Settings</span>
+                    </Link>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    whileHover={{ scale: 1.02, x: 4 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <button
+                      onClick={() => {
+                        handleLogout();
+                        setIsMenuOpen(false);
+                      }}
+                      className="flex items-center space-x-3 px-4 py-3 text-base font-semibold text-slate-300 hover:text-white hover:bg-slate-800/70 rounded-xl transition-all duration-300 w-full text-left"
+                    >
+                      <FiLogOut className="w-5 h-5" />
+                      <span>Logout</span>
+                    </button>
+                  </motion.div>
+                </div>
+              ) : (
+                authNavItems.map((item, index) => (
+                  <motion.div
+                    key={item.id}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ 
+                      duration: 0.3, 
+                      delay: (baseNavItems.length + index) * 0.1,
+                      type: "spring",
+                      stiffness: 300
+                    }}
+                    whileHover={{ scale: 1.02, x: 4 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <Link
+                      to={item.path}
+                      onClick={() => setIsMenuOpen(false)}
+                      className="block px-4 py-3 text-base font-semibold w-full text-left transition-all duration-300 tracking-wide rounded-xl cursor-pointer border-l-4 border-transparent hover:border-slate-400 bg-gradient-to-r from-slate-800/80 to-slate-700/80 text-white border border-slate-600 hover:from-slate-700/80 hover:to-slate-600/80 hover:border-slate-500 shadow-lg group relative overflow-hidden"
+                    >
+                      <span className="relative z-10 flex items-center">
+                        {item.label}
+                        <motion.span
+                          className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                          initial={{ x: -10 }}
+                          whileHover={{ x: 0 }}
+                        >
+                          →
+                        </motion.span>
+                      </span>
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-slate-600/10 to-slate-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        layoutId="mobile-hover"
+                      />
+                    </Link>
+                  </motion.div>
+                ))
+              )}
             </div>
           </motion.div>
         )}
