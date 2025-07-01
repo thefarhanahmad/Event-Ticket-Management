@@ -1,7 +1,3 @@
-The code updates the App.jsx file to include new routes and components for Marketing, Audience, and LaunchAd, while also adjusting the import statements to include these new components.
-```
-
-```replit_final_file
 import "./App.css";
 
 // Components
@@ -23,6 +19,7 @@ import CreateEvent from "./pages/CreateEvent";
 import Marketing from "./pages/Marketing";
 import Audience from "./pages/Audience";
 import LaunchAd from "./pages/LaunchAd";
+import AttendeeDashboard from "./pages/AttendeeDashboard";
 
 export default function App() {
   const location = useLocation();
