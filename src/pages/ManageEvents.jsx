@@ -1,14 +1,10 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  FiSearch,
-  FiX
-} from "react-icons/fi";
+import { FiSearch, FiX } from "react-icons/fi";
 
 export default function ManageEvents() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [activeFilter, setActiveFilter] = useState("Live");
+  const [activeFilter, setActiveFilter] = useState("All");
   const [showDuplicateForm, setShowDuplicateForm] = useState(false);
   const [duplicateFormData, setDuplicateFormData] = useState({
     selectEvent: "",
@@ -16,7 +12,7 @@ export default function ManageEvents() {
     venueName: "",
     venueAddress: "",
     startTime: "Jul 1st, 2025 10:56:49 AM",
-    endTime: "Jul 1st, 2025 10:56:49 AM"
+    endTime: "Jul 1st, 2025 10:56:49 AM",
   });
 
   // Sample events data with different statuses
@@ -31,7 +27,8 @@ export default function ManageEvents() {
       status: "live",
       attendees: 150,
       revenue: 2850,
-      image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=100&h=100&fit=crop"
+      image:
+        "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=100&h=100&fit=crop",
     },
     {
       id: 2,
@@ -43,7 +40,8 @@ export default function ManageEvents() {
       status: "pending",
       attendees: 85,
       revenue: 850,
-      image: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=100&h=100&fit=crop"
+      image:
+        "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=100&h=100&fit=crop",
     },
     {
       id: 3,
@@ -55,7 +53,8 @@ export default function ManageEvents() {
       status: "past",
       attendees: 200,
       revenue: 6000,
-      image: "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=100&h=100&fit=crop"
+      image:
+        "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=100&h=100&fit=crop",
     },
     {
       id: 4,
@@ -67,28 +66,30 @@ export default function ManageEvents() {
       status: "affiliated",
       attendees: 125,
       revenue: 1875,
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop"
-    }
+      image:
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop",
+    },
   ];
 
-  const filters = ["Live", "All", "Pending", "Past", "Affiliated"];
+  const filters = ["All", "Live", "Pending", "Past", "Affiliated"];
 
   const filteredEvents = events.filter((event) => {
     const matchesSearch = event.title
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
-    
-    const matchesFilter = activeFilter === "All" || 
+
+    const matchesFilter =
+      activeFilter === "All" ||
       event.status.toLowerCase() === activeFilter.toLowerCase();
-    
+
     return matchesSearch && matchesFilter;
   });
 
   const handleDuplicateInputChange = (e) => {
     const { name, value } = e.target;
-    setDuplicateFormData(prev => ({
+    setDuplicateFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -160,7 +161,9 @@ export default function ManageEvents() {
             <h2 className="text-white text-xl font-medium mb-2">
               You have no live or affiliated upcoming events.
             </h2>
-            <p className="text-gray-400 mb-6">Get started with just a few clicks!</p>
+            <p className="text-gray-400 mb-6">
+              Get started with just a few clicks!
+            </p>
             <Link
               to="/organizer/createEvent"
               className="inline-block bg-white text-black px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors duration-200"
@@ -171,7 +174,10 @@ export default function ManageEvents() {
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
             {filteredEvents.map((event) => (
-              <div key={event.id} className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden hover:border-gray-700 transition-all duration-200">
+              <div
+                key={event.id}
+                className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden hover:border-gray-700 transition-all duration-200"
+              >
                 <div className="relative h-48 bg-gray-800">
                   <img
                     src={event.image}
@@ -184,8 +190,13 @@ export default function ManageEvents() {
                     {event.title}
                   </h3>
                   <div className="text-gray-400 text-sm">
-                    <p>{new Date(event.date).toLocaleDateString()} at {event.time}</p>
-                    <p>{event.venue}, {event.location}</p>
+                    <p>
+                      {new Date(event.date).toLocaleDateString()} at{" "}
+                      {event.time}
+                    </p>
+                    <p>
+                      {event.venue}, {event.location}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -202,8 +213,12 @@ export default function ManageEvents() {
               {/* Header */}
               <div className="flex items-center justify-between mb-6">
                 <div>
-                  <h2 className="text-2xl font-bold text-white mb-1">Duplicate Event</h2>
-                  <p className="text-gray-400">Running it back? Create a similar event quickly.</p>
+                  <h2 className="text-2xl font-bold text-white mb-1">
+                    Duplicate Event
+                  </h2>
+                  <p className="text-gray-400">
+                    Running it back? Create a similar event quickly.
+                  </p>
                 </div>
                 <button
                   onClick={() => setShowDuplicateForm(false)}
@@ -218,7 +233,9 @@ export default function ManageEvents() {
                 <div className="flex-1 space-y-6">
                   {/* Select Event */}
                   <div>
-                    <label className="text-white font-medium mb-2 block">Select Event</label>
+                    <label className="text-white font-medium mb-2 block">
+                      Select Event
+                    </label>
                     <select
                       name="selectEvent"
                       value={duplicateFormData.selectEvent}
@@ -236,7 +253,9 @@ export default function ManageEvents() {
 
                   {/* Event Name */}
                   <div>
-                    <label className="text-white font-medium mb-2 block">Event Name</label>
+                    <label className="text-white font-medium mb-2 block">
+                      Event Name
+                    </label>
                     <input
                       type="text"
                       name="eventName"
@@ -249,7 +268,9 @@ export default function ManageEvents() {
 
                   {/* Venue Info */}
                   <div>
-                    <label className="text-white font-medium mb-2 block">Venue Info</label>
+                    <label className="text-white font-medium mb-2 block">
+                      Venue Info
+                    </label>
                     <div className="space-y-3">
                       <input
                         type="text"
@@ -272,7 +293,9 @@ export default function ManageEvents() {
 
                   {/* Start Time */}
                   <div>
-                    <label className="text-white font-medium mb-2 block">Start Time</label>
+                    <label className="text-white font-medium mb-2 block">
+                      Start Time
+                    </label>
                     <div className="relative">
                       <input
                         type="text"
@@ -286,7 +309,9 @@ export default function ManageEvents() {
 
                   {/* End Time */}
                   <div>
-                    <label className="text-white font-medium mb-2 block">End Time</label>
+                    <label className="text-white font-medium mb-2 block">
+                      End Time
+                    </label>
                     <div className="relative">
                       <input
                         type="text"
@@ -302,7 +327,9 @@ export default function ManageEvents() {
                 {/* Right Side - Add Flyer */}
                 <div className="w-80">
                   <div className="bg-gray-900 border-2 border-dashed border-gray-600 rounded-lg h-80 flex flex-col items-center justify-center text-center">
-                    <h3 className="text-white text-xl font-bold mb-2">Add Flyer</h3>
+                    <h3 className="text-white text-xl font-bold mb-2">
+                      Add Flyer
+                    </h3>
                   </div>
                 </div>
               </div>
