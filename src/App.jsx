@@ -23,8 +23,9 @@ import AttendeeDashboard from "./pages/AttendeeDashboard";
 import Payouts from './pages/Payouts';
 import Disputes from './pages/Disputes';
 import Members from './pages/Members';
-import Analytics from './pages/Analytics';
-import SupportCenter from './pages/SupportCenter';
+import Analytics from "./pages/Analytics";
+import SupportCenter from "./pages/SupportCenter";
+import EditOrg from "./pages/EditOrg";
 
 export default function App() {
   const location = useLocation();
@@ -59,7 +60,10 @@ export default function App() {
             <Route path="disputes" element={<Disputes />} />
             <Route path="members" element={<Members />} />
             <Route path="analytics" element={<Analytics />} />
-            <Route path="support-center" element={<SupportCenter />} />
+            <Route path="/support-center" element={<SupportCenter />} />
+            <Route path="/analytics" element={<Analytics />} />
+            <Route path="/members" element={<Members />} />
+            <Route path="/edit-org" element={<EditOrg />} />
           </Route>
         </Routes>
       </>
