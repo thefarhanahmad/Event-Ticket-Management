@@ -18,6 +18,7 @@ import {
   FiChevronUp,
 } from "react-icons/fi";
 import { logoutUser } from "../store/slices/authSlice";
+import toast from "react-hot-toast";
 
 const navItems = [
   {
@@ -137,6 +138,7 @@ const OrganizerDashboard = () => {
   // Handle logout
   const handleLogout = () => {
     dispatch(logoutUser());
+    toast.success("Logged out successfully!");
     navigate("/login");
   };
 
