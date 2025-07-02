@@ -221,10 +221,11 @@ const OrganizerDashboard = () => {
         {/* Logo Section - Fixed */}
         <div className="flex-shrink-0 p-6 border-b border-gray-800">
           <div className="flex items-center space-x-3 mb-4">
-            <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-              <span className="text-black font-bold text-sm">F</span>
-            </div>
-            <span className="text-white font-bold text-xl">FLITE</span>
+            <img 
+              src="/logo.png" 
+              alt="Event Tribe" 
+              className="h-8 w-auto object-contain"
+            />
           </div>
 
           <div className="relative" ref={orgSelectorRef}>
@@ -233,8 +234,12 @@ const OrganizerDashboard = () => {
               className="w-full flex items-center justify-between space-x-3 p-2 rounded-lg hover:bg-gray-800 transition-colors duration-200"
             >
               <div className="flex items-center space-x-3 flex-1 min-w-0">
-                <div className="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center">
-                  <span className="text-white text-xs">F</span>
+                <div className="w-8 h-8 bg-gray-700 rounded-lg flex items-center justify-center p-1">
+                  <img 
+                    src="/logo.png" 
+                    alt="Event Tribe" 
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-white text-sm font-medium truncate">

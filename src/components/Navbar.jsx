@@ -50,9 +50,11 @@ export default function Navbar() {
             whileHover={{ scale: 1.05 }}
             onClick={() => navigate("/")}
           >
-            <h1 className="text-2xl font-extrabold text-white tracking-tight hover:text-slate-200 transition-colors duration-200">
-              FLITE
-            </h1>
+            <img 
+              src="/logo.png" 
+              alt="Event Tribe" 
+              className="h-8 w-auto sm:h-10 md:h-12 object-contain hover:opacity-90 transition-opacity duration-200"
+            />
           </motion.div>
 
           {/* Desktop Navigation */}
