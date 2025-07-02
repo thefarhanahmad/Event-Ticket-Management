@@ -225,7 +225,17 @@ const OrganizerDashboard = () => {
               src="/logo.png" 
               alt="Event Tribe" 
               className="h-8 w-auto object-contain"
+              onError={(e) => {
+                e.target.style.display = 'none';
+                e.target.nextSibling.style.display = 'block';
+              }}
             />
+            <div 
+              className="h-8 flex items-center text-white font-bold text-lg hidden"
+              style={{ display: 'none' }}
+            >
+              Event Tribe
+            </div>
           </div>
 
           <div className="relative" ref={orgSelectorRef}>
