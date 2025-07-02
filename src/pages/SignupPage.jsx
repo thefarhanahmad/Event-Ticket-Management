@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { loginUser } from "../store/slices/authSlice";
@@ -10,6 +11,7 @@ export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -49,6 +51,13 @@ export default function Signup() {
 
     toast.success("Account created successfully!");
     console.log("Signup Data:", userData);
+    
+    // Redirect based on role
+    if (role === "organizer") {
+      navigate("/organizer");
+    } else {
+      navigate("/attendee-dashboard");
+    }
   };
 
   // ✅ EyeToggle inner component for reuse
