@@ -1,25 +1,25 @@
-import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export default function EventCarousel({ events }) {
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   // Auto-play functionality
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % events.length)
-    }, 4000) // Change every 4 seconds
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % events.length);
+    }, 4000); // Change every 4 seconds
 
-    return () => clearInterval(interval)
-  }, [events.length])
+    return () => clearInterval(interval);
+  }, [events.length]);
 
   const goToSlide = (index) => {
-    setCurrentIndex(index)
-  }
+    setCurrentIndex(index);
+  };
 
   return (
-    <div className="relative w-full max-w-md mx-auto">
+    <div className="relative w-full mx-auto">
       {/* Main Carousel */}
       <div className="relative h-96 overflow-hidden rounded-2xl">
         <AnimatePresence mode="wait">
@@ -31,7 +31,10 @@ export default function EventCarousel({ events }) {
             transition={{ duration: 0.5, ease: "easeInOut" }}
             className="relative h-96 rounded-2xl overflow-hidden bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700/50"
           >
-            <Link to={`/event/${events[currentIndex].id}`} className="block h-full">
+            <Link
+              to={`/event/${events[currentIndex].id}`}
+              className="block h-full"
+            >
               <div className="absolute inset-0">
                 <img
                   src={events[currentIndex].image}
@@ -54,14 +57,30 @@ export default function EventCarousel({ events }) {
 
                 <div className="space-y-1 text-sm text-slate-300">
                   <div className="flex items-center space-x-1">
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
+                    <svg
+                      className="w-4 h-4"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                        clipRule="evenodd"
+                      />
                     </svg>
                     <span>{events[currentIndex].date}</span>
                   </div>
                   <div className="flex items-center space-x-1">
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                    <svg
+                      className="w-4 h-4"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                        clipRule="evenodd"
+                      />
                     </svg>
                     <span>{events[currentIndex].location}</span>
                   </div>
@@ -79,13 +98,13 @@ export default function EventCarousel({ events }) {
             key={index}
             onClick={() => goToSlide(index)}
             className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              index === currentIndex 
-                ? 'bg-white' 
-                : 'bg-slate-600 hover:bg-slate-500'
+              index === currentIndex
+                ? "bg-white"
+                : "bg-slate-600 hover:bg-slate-500"
             }`}
           />
         ))}
       </div>
     </div>
-  )
+  );
 }

@@ -207,7 +207,7 @@ export default function HomePage({ setCurrentPage }) {
       {
         threshold: 0.3,
         rootMargin: "-100px 0px 0px 0px",
-      },
+      }
     );
 
     if (heroRef.current) {
@@ -251,7 +251,7 @@ export default function HomePage({ setCurrentPage }) {
       {/* Hero Section */}
       <section ref={heroRef} className="relative py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 lg:px-4 lg:pt-6 gap-12 items-center">
             {/* Left Content */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -270,7 +270,7 @@ export default function HomePage({ setCurrentPage }) {
                 </motion.h2>
 
                 <motion.h1
-                  className="text-5xl lg:text-6xl font-extrabold text-white leading-tight"
+                  className="text-5xl lg:text-5xl font-extrabold text-white leading-tight"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.3 }}
