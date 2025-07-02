@@ -1,7 +1,14 @@
 import { useState } from "react";
-import { FiCalendar, FiMapPin, FiClock, FiUser, FiDownload, FiX } from "react-icons/fi";
+import {
+  FiCalendar,
+  FiMapPin,
+  FiClock,
+  FiUser,
+  FiDownload,
+  FiEye,
+  FiX,
+} from "react-icons/fi";
 import { useAuth } from "../hooks/useAuth";
-import toast from "react-hot-toast";
 
 export default function MyBookings() {
   const bookings = [
@@ -46,19 +53,19 @@ export default function MyBookings() {
     }
   ];
 
-  const handleViewTicket = (booking) => {
-    toast.success(`Opening ticket for ${booking.eventTitle}`);
+  const handleViewTicket = (bookingId) => {
+    alert(`View ticket for booking ID: ${bookingId}`);
+    // Implement view ticket logic here
   };
 
-  const handleDownloadTicket = (booking) => {
-    toast.success(`Downloading ticket for ${booking.eventTitle}`);
+  const handleDownloadTicket = (bookingId) => {
+    alert(`Download ticket for booking ID: ${bookingId}`);
+    // Implement download ticket logic here
   };
 
   const handleCancelBooking = (bookingId) => {
-    if (window.confirm("Are you sure you want to cancel this booking?")) {
-      setBookings(bookings.filter(booking => booking.id !== bookingId));
-      toast.success("Booking cancelled successfully");
-    }
+    alert(`Cancel booking for booking ID: ${bookingId}`);
+    // Implement cancel booking logic here
   };
 
   return (
@@ -111,20 +118,20 @@ export default function MyBookings() {
               {/* Action Buttons */}
               <div className="flex space-x-3">
                 <button
-                  onClick={() => handleViewTicket(booking)}
+                  onClick={() => handleViewTicket(booking.bookingId)}
                   className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
                 >
                   View Ticket
                 </button>
                 <button
-                  onClick={() => handleDownloadTicket(booking)}
+                  onClick={() => handleDownloadTicket(booking.bookingId)}
                   className="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
                 >
                   Download PDF
                 </button>
                 {booking.status === 'Confirmed' && (
                   <button
-                    onClick={() => handleCancelBooking(booking.id)}
+                    onClick={() => handleCancelBooking(booking.bookingId)}
                     className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
                   >
                     Cancel Booking

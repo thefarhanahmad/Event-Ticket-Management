@@ -1,11 +1,9 @@
 import "./App.css";
 import { Provider } from 'react-redux';
 import { store } from './store/store';
-import { Toaster } from 'react-hot-toast';
 
 // Components
 import Navbar from "./components/Navbar";
-import ProtectedRoute from "./components/ProtectedRoute";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
@@ -48,34 +46,9 @@ function AppContent() {
     <div className="min-h-screen bg-slate-900">
       <>
         {!hideNavbar && <Navbar />}
-        <Toaster
-          position="top-right"
-          toastOptions={{
-            duration: 4000,
-            style: {
-              background: '#1e293b',
-              color: '#fff',
-              border: '1px solid #475569',
-            },
-            success: {
-              style: {
-                background: '#059669',
-              },
-            },
-            error: {
-              style: {
-                background: '#dc2626',
-              },
-            },
-          }}
-        />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/attendee-dashboard" element={
-            <ProtectedRoute allowedRoles={['attendee', 'organizer']}>
-              <AttendeeDashboard />
-            </ProtectedRoute>
-          }>
+          <Route path="/attendee-dashboard" element={<AttendeeDashboard />} >
              <Route index element={<MyBookings />} />
              <Route path="my-bookings" element={<MyBookings />} />
              <Route path="payment-details" element={<PaymentDetails />} />
@@ -88,11 +61,7 @@ function AppContent() {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/reset-password" element={<ResetPasswordPage />} />
           <Route path="/event/:eventId" element={<EventDetailsPage />} />
-          <Route path="/organizer" element={
-            <ProtectedRoute requiredRole="organizer">
-              <OrganizerDashboard />
-            </ProtectedRoute>
-          }>
+          <Route path="/organizer" element={<OrganizerDashboard />}>
             <Route index element={<OrganizerHome />} />
             <Route path="events" element={<ManageEvents />} />
             <Route path="users" element={<ManageUser />} />
@@ -110,16 +79,8 @@ function AppContent() {
             <Route path="support-center" element={<SupportCenter />} />
             <Route path="edit-org" element={<EditOrg />} />
           </Route>
-          <Route path="/edit-profile" element={
-            <ProtectedRoute>
-              <EditProfile />
-            </ProtectedRoute>
-          } />
-          <Route path="/notifications" element={
-            <ProtectedRoute>
-              <Notifications />
-            </ProtectedRoute>
-          } />
+          <Route path="/edit-profile" element={<EditProfile />} />
+          <Route path="/notifications" element={<Notifications />} />
         </Routes>
       </>
     </div>

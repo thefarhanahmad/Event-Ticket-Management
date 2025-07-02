@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { FiCamera, FiX } from "react-icons/fi";
-import toast from 'react-hot-toast';
 
 export default function AttendeeProfile() {
   const user = JSON.parse(localStorage.getItem("user") || "{}");
@@ -48,29 +47,15 @@ export default function AttendeeProfile() {
     setPasswordForm(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSaveProfile = () => {
-    // Save profile logic here
-    toast.success("Profile updated successfully!");
-  };
-
-  const handleChangePassword = () => {
+  const handlePasswordUpdate = () => {
     if (passwordForm.newPassword !== passwordForm.confirmPassword) {
-      toast.error("New passwords don't match!");
+      alert("New passwords don't match!");
       return;
     }
-    if (passwordForm.newPassword.length < 6) {
-      toast.error("Password must be at least 6 characters long!");
-      return;
-    }
-
-    // Change password logic here
-    toast.success("Password changed successfully!");
+    // Password update logic here
+    console.log("Password updated");
     setShowPasswordModal(false);
-    setPasswordForm({
-      currentPassword: "",
-      newPassword: "",
-      confirmPassword: ""
-    });
+    setPasswordForm({ currentPassword: "", newPassword: "", confirmPassword: "" });
   };
 
   const handleSubmit = (e) => {
@@ -260,7 +245,7 @@ export default function AttendeeProfile() {
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                handleChangePassword();
+                handlePasswordUpdate();
               }}
               className="space-y-4"
             >

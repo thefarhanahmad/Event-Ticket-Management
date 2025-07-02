@@ -1,10 +1,7 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { Link, useNavigate } from "react-router-dom";
-import { FiEye, FiEyeOff } from "react-icons/fi";
 import { useDispatch } from "react-redux";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { loginUser } from "../store/slices/authSlice";
-import toast from "react-hot-toast";
 
 export default function Signup() {
   const [role, setRole] = useState("attendee");
@@ -36,43 +33,19 @@ export default function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (!formData.name || !formData.email || !formData.password || !formData.confirmPassword) {
-      toast.error("Please fill in all fields");
+    if (!formData.acceptTerms) {
+      alert("Please accept the Terms and Privacy Policy.");
       return;
     }
-
-    if (formData.password !== formData.confirmPassword) {
-      toast.error("Passwords do not match");
-      return;
-    }
-
-    if (formData.password.length < 6) {
-      toast.error("Password must be at least 6 characters long");
-      return;
-    }
-
-    // Simulate registration (replace with actual API call)
-    const userData = {
-      id: Date.now(),
-      name: formData.name,
-      email: formData.email,
-      role: formData.role
-    };
-
+    
+    // Store user data using Redux
+    const userData = { role, ...formData };
     dispatch(loginUser({ 
       user: userData, 
-      token: "mock-jwt-token" 
+      token: `token_${Date.now()}` // Generate a mock token
     }));
-
-    toast.success(`Welcome to FLITE, ${formData.name}!`);
-
-    // Navigate based on role
-    if (formData.role === "organizer") {
-      navigate("/organizer");
-    } else {
-      navigate("/attendee-dashboard");
-    }
+    
+    console.log("Signup Data:", userData);
   };
 
   // ✅ EyeToggle inner component for reuse

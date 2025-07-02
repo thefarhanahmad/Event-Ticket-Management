@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { FiPlus, FiX, FiEye, FiEyeOff, FiCalendar, FiClock, FiMapPin, FiDollarSign, FiUsers, FiType, FiFileText, FiImage, FiStar } from "react-icons/fi";
-import toast from "react-hot-toast";
+
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { FiCheck, FiFileText, FiCalendar, FiMapPin, FiUsers, FiImage, FiEye, FiEyeOff } from 'react-icons/fi';
 
 export default function CreateEvent() {
   const [eventType, setEventType] = useState(null);
@@ -98,11 +99,11 @@ export default function CreateEvent() {
               <h3 className="text-white text-xl font-bold mb-2">Add Flyer</h3>
               <p className="text-gray-400 text-sm mb-1">OPTIMAL SIZE: 1500 X 1500 PIXELS</p>
               <p className="text-gray-400 text-sm mb-4">PLEASE UPLOAD A FLYER UNIQUE URL</p>
-
+              
               <button className="bg-white text-black font-semibold px-6 py-2 rounded-lg hover:bg-gray-200 transition-colors mb-4">
                 Create an AI Flyer (Beta) ✨
               </button>
-
+              
               <div className="flex items-center text-gray-400 text-sm">
                 <input type="checkbox" className="mr-2" />
                 <span>Show on Explore</span>
@@ -277,7 +278,7 @@ export default function CreateEvent() {
                         </button>
                       </div>
                     </div>
-
+                    
                     <div className="border border-gray-600 rounded-lg p-4">
                       <p className="text-gray-400 text-sm text-center">
                         Recent Ticket Sales for %A%! Add More Event Info ↗
