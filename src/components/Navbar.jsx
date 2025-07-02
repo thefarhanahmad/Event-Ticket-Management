@@ -56,17 +56,7 @@ export default function Navbar() {
               src="/logo.png" 
               alt="Event Tribe" 
               className="h-8 w-auto sm:h-10 md:h-12 object-contain hover:opacity-90 transition-opacity duration-200"
-              onError={(e) => {
-                e.target.style.display = 'none';
-                e.target.nextSibling.style.display = 'block';
-              }}
             />
-            <div 
-              className="h-8 w-auto sm:h-10 md:h-12 flex items-center text-white font-bold text-xl hidden"
-              style={{ display: 'none' }}
-            >
-              Event Tribe
-            </div>
           </motion.div>
 
           {/* Desktop Navigation */}
