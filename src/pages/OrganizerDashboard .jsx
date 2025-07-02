@@ -18,6 +18,7 @@ import {
   FiChevronUp,
 } from "react-icons/fi";
 import { logoutUser } from "../store/slices/authSlice";
+import toast from "react-hot-toast";
 
 const navItems = [
   {
@@ -156,6 +157,7 @@ const OrganizerDashboard = () => {
   // Handle logout
   const handleLogout = () => {
     dispatch(logoutUser());
+    toast.success("Logged out successfully!");
     navigate("/login");
   };
 
@@ -184,7 +186,7 @@ const OrganizerDashboard = () => {
 
   // Filter organizations based on search term
   const filteredOrganizations = organizations.filter((org) =>
-    org.name.toLowerCase().includes(searchTerm.toLowerCase()),
+    org.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   // Handle new organization form change
@@ -221,9 +223,9 @@ const OrganizerDashboard = () => {
         {/* Logo Section - Fixed */}
         <div className="flex-shrink-0 p-6 border-b border-gray-800">
           <div className="flex items-center space-x-3 mb-4">
-            <img 
-              src="/logo.png" 
-              alt="Event Tribe" 
+            <img
+              src="/logo.png"
+              alt="Event Tribe"
               className="h-8 w-auto object-contain"
             />
           </div>
@@ -235,9 +237,9 @@ const OrganizerDashboard = () => {
             >
               <div className="flex items-center space-x-3 flex-1 min-w-0">
                 <div className="w-8 h-8 bg-gray-700 rounded-lg flex items-center justify-center p-1">
-                  <img 
-                    src="/logo.png" 
-                    alt="Event Tribe" 
+                  <img
+                    src="/logo.png"
+                    alt="Event Tribe"
                     className="w-full h-full object-contain"
                   />
                 </div>
