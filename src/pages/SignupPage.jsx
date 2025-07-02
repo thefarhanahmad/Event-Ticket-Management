@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { motion } from "framer-motion";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { loginUser } from "../store/slices/authSlice";
 import toast from "react-hot-toast";
@@ -38,14 +39,14 @@ export default function Signup() {
       toast.error("Please accept the Terms and Privacy Policy.");
       return;
     }
-    
+
     // Store user data using Redux
     const userData = { role, ...formData };
     dispatch(loginUser({ 
       user: userData, 
       token: `token_${Date.now()}` // Generate a mock token
     }));
-    
+
     toast.success("Account created successfully!");
     console.log("Signup Data:", userData);
   };
