@@ -1,11 +1,9 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { HiOutlineMail } from "react-icons/hi";
-import { RiLockPasswordLine } from "react-icons/ri";
 import { loginUser } from "../store/slices/authSlice";
+import toast from "react-hot-toast";
 
 export default function LoginPage() {
   const [credentials, setCredentials] = useState({
@@ -33,7 +31,7 @@ export default function LoginPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("handle submit click: ");
-    
+
     // Dispatch login action to Redux store
     dispatch(loginUser({ 
       user: credentials, 

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FiUser, FiLogOut } from "react-icons/fi";
 import { logoutUser } from "../store/slices/authSlice";
+import toast from "react-hot-toast";
 
 export default function AttendeeDashboard() {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ export default function AttendeeDashboard() {
 
   const handleLogout = () => {
     dispatch(logoutUser());
+    toast.success("Logged out successfully!");
     navigate("/login");
   };
 

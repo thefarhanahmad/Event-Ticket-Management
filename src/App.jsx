@@ -117,7 +117,19 @@ export default function App() {
             background: '#1f2937',
             color: '#fff',
             border: '1px solid #374151'
-          }
+          },
+          success: {
+            style: {
+              background: '#065f46',
+              color: '#fff',
+            },
+          },
+          error: {
+            style: {
+              background: '#7f1d1d',
+              color: '#fff',
+            },
+          },
         }}
       />
     </Provider>

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { loginUser } from "../store/slices/authSlice";
+import toast from "react-hot-toast";
 
 export default function Signup() {
   const [role, setRole] = useState("attendee");
@@ -34,7 +35,7 @@ export default function Signup() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!formData.acceptTerms) {
-      alert("Please accept the Terms and Privacy Policy.");
+      toast.error("Please accept the Terms and Privacy Policy.");
       return;
     }
     
@@ -45,6 +46,7 @@ export default function Signup() {
       token: `token_${Date.now()}` // Generate a mock token
     }));
     
+    toast.success("Account created successfully!");
     console.log("Signup Data:", userData);
   };
 
