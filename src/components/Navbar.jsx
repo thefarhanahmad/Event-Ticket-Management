@@ -13,7 +13,6 @@ export default function Navbar() {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const navigate = useNavigate();
 
-  // Logout handler
   const handleLogout = () => {
     dispatch(logoutUser());
     setIsUserMenuOpen(false);
@@ -45,7 +44,7 @@ export default function Navbar() {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <motion.div
@@ -53,9 +52,9 @@ export default function Navbar() {
             whileHover={{ scale: 1.05 }}
             onClick={() => navigate("/")}
           >
-            <img
-              src="/logo.png"
-              alt="Event Tribe"
+            <img 
+              src="/logo.png" 
+              alt="Event Tribe" 
               className="h-8 w-auto sm:h-10 md:h-12 object-contain hover:opacity-90 transition-opacity duration-200"
             />
           </motion.div>

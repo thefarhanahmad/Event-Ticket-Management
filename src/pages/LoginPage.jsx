@@ -36,13 +36,11 @@ export default function LoginPage() {
     console.log("handle submit click: ");
 
     // Dispatch login action to Redux store
-    dispatch(
-      loginUser({
-        user: credentials,
-        token: `token_${Date.now()}`, // Generate a mock token
-      })
-    );
-    toast.success("Login successfully!");
+    dispatch(loginUser({ 
+      user: credentials, 
+      token: `token_${Date.now()}` // Generate a mock token
+    }));
+
     if (credentials.role === "organizer") {
       navigate("/organizer");
     } else {

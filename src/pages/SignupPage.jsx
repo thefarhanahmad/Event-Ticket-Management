@@ -44,16 +44,14 @@ export default function Signup() {
 
     // Store user data using Redux
     const userData = { role, ...formData };
-    dispatch(
-      loginUser({
-        user: userData,
-        token: `token_${Date.now()}`, // Generate a mock token
-      })
-    );
+    dispatch(loginUser({ 
+      user: userData, 
+      token: `token_${Date.now()}` // Generate a mock token
+    }));
 
     toast.success("Account created successfully!");
     console.log("Signup Data:", userData);
-
+    
     // Redirect based on role
     if (role === "organizer") {
       navigate("/organizer");

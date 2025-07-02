@@ -18,7 +18,6 @@ import {
   FiChevronUp,
 } from "react-icons/fi";
 import { logoutUser } from "../store/slices/authSlice";
-import toast from "react-hot-toast";
 
 const navItems = [
   {
@@ -45,11 +44,6 @@ const navItems = [
         to: "/organizer/audience",
         label: "Audience",
       },
-      {
-        to: "/organizer/launch-ad",
-        label: "Launch Ad",
-        badge: "NEW",
-      },
     ],
   },
   {
@@ -72,21 +66,7 @@ const navItems = [
       },
     ],
   },
-  {
-    label: "Manage Organization",
-    icon: <FiSettings />,
-    hasDropdown: true,
-    subItems: [
-      {
-        to: "/organizer/members",
-        label: "Members",
-      },
-      {
-        to: "/organizer/edit-org",
-        label: "Edit Org",
-      },
-    ],
-  },
+
   {
     label: "Management",
     icon: <FiLayers />,
@@ -157,7 +137,6 @@ const OrganizerDashboard = () => {
   // Handle logout
   const handleLogout = () => {
     dispatch(logoutUser());
-    toast.success("Logged out successfully!");
     navigate("/login");
   };
 
@@ -186,7 +165,7 @@ const OrganizerDashboard = () => {
 
   // Filter organizations based on search term
   const filteredOrganizations = organizations.filter((org) =>
-    org.name.toLowerCase().includes(searchTerm.toLowerCase())
+    org.name.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   // Handle new organization form change
