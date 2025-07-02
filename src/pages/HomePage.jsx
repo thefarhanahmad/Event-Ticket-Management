@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import EventCard from "../components/EventCard";
@@ -10,7 +9,7 @@ export default function HomePage({ setCurrentPage }) {
   const [showPreloader, setShowPreloader] = useState(false);
   const [showAdditionalContent, setShowAdditionalContent] = useState(false);
   const [hasTriggered, setHasTriggered] = useState(false);
-  
+
   const heroRef = useRef(null);
   const additionalContentRef = useRef(null);
 
@@ -107,7 +106,8 @@ export default function HomePage({ setCurrentPage }) {
       date: "Sat, Jul 12",
       time: "7:00 PM",
       location: "San Francisco",
-      image: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=400&h=300&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=400&h=300&fit=crop",
     },
     {
       id: 10,
@@ -116,7 +116,8 @@ export default function HomePage({ setCurrentPage }) {
       date: "Fri, Jul 11",
       time: "8:30 PM",
       location: "Los Angeles",
-      image: "https://images.unsplash.com/photo-1489599328109-4f4556e04b17?w=400&h=300&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1489599328109-4f4556e04b17?w=400&h=300&fit=crop",
     },
     {
       id: 11,
@@ -125,7 +126,8 @@ export default function HomePage({ setCurrentPage }) {
       date: "Sun, Jul 13",
       time: "11:00 AM",
       location: "Seattle",
-      image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&h=300&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&h=300&fit=crop",
     },
     {
       id: 12,
@@ -134,8 +136,9 @@ export default function HomePage({ setCurrentPage }) {
       date: "Sat, Jul 19",
       time: "10:00 AM",
       location: "Austin",
-      image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=300&fit=crop",
-    }
+      image:
+        "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=300&fit=crop",
+    },
   ];
 
   // Past events
@@ -147,7 +150,8 @@ export default function HomePage({ setCurrentPage }) {
       date: "Sat, May 15",
       time: "6:00 PM",
       location: "New Orleans",
-      image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=300&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=300&fit=crop",
     },
     {
       id: 14,
@@ -156,8 +160,9 @@ export default function HomePage({ setCurrentPage }) {
       date: "Thu, May 8",
       time: "7:00 PM",
       location: "Miami",
-      image: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=400&h=300&fit=crop",
-    }
+      image:
+        "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=400&h=300&fit=crop",
+    },
   ];
 
   const filteredEvents = events.filter((event) => {
@@ -171,7 +176,7 @@ export default function HomePage({ setCurrentPage }) {
   });
 
   // Check if user has bypassed preloader before
-  const hasBypassedPreloader = localStorage.getItem('flite-preloader-bypassed');
+  const hasBypassedPreloader = localStorage.getItem("flite-preloader-bypassed");
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -181,15 +186,19 @@ export default function HomePage({ setCurrentPage }) {
           if (!entry.isIntersecting && !hasTriggered && !hasBypassedPreloader) {
             setHasTriggered(true);
             setShowPreloader(true);
-            
+
             // Show preloader for 2.5 seconds
             setTimeout(() => {
               setShowPreloader(false);
               setShowAdditionalContent(true);
               // Set bypass flag for returning users
-              localStorage.setItem('flite-preloader-bypassed', 'true');
+              localStorage.setItem("flite-preloader-bypassed", "true");
             }, 2500);
-          } else if (!entry.isIntersecting && hasBypassedPreloader && !showAdditionalContent) {
+          } else if (
+            !entry.isIntersecting &&
+            hasBypassedPreloader &&
+            !showAdditionalContent
+          ) {
             // For returning users, show content immediately
             setShowAdditionalContent(true);
           }
@@ -197,8 +206,8 @@ export default function HomePage({ setCurrentPage }) {
       },
       {
         threshold: 0.3,
-        rootMargin: '-100px 0px 0px 0px'
-      }
+        rootMargin: "-100px 0px 0px 0px",
+      },
     );
 
     if (heroRef.current) {
@@ -311,7 +320,7 @@ export default function HomePage({ setCurrentPage }) {
       </section>
 
       {/* Search Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-slate-850/50">
+      <section className="py-4 px-4 sm:px-6 lg:px-8 bg-slate-850/50">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -367,10 +376,14 @@ export default function HomePage({ setCurrentPage }) {
             transition={{ duration: 0.6 }}
             className="mb-8"
           >
-            <h2 className="text-3xl font-bold text-white mb-2">Upcoming Events</h2>
-            <p className="text-slate-400 font-medium">Discover what's happening near you</p>
+            <h2 className="text-3xl font-bold text-white mb-2">
+              Upcoming Events
+            </h2>
+            <p className="text-slate-400 font-medium">
+              Discover what's happening near you
+            </p>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -396,13 +409,15 @@ export default function HomePage({ setCurrentPage }) {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <div className="max-w-7xl mx-auto">
-                <motion.div
-                  className="mb-8 fade-in-up"
-                >
-                  <h2 className="text-3xl font-bold text-white mb-2">Trending Now</h2>
-                  <p className="text-slate-400 font-medium">The hottest events everyone's talking about</p>
+                <motion.div className="mb-8 fade-in-up">
+                  <h2 className="text-3xl font-bold text-white mb-2">
+                    Trending Now
+                  </h2>
+                  <p className="text-slate-400 font-medium">
+                    The hottest events everyone's talking about
+                  </p>
                 </motion.div>
-                
+
                 <motion.div
                   className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
                   initial={{ opacity: 0 }}
@@ -431,20 +446,29 @@ export default function HomePage({ setCurrentPage }) {
               transition={{ duration: 0.8, delay: 0.6 }}
             >
               <div className="max-w-7xl mx-auto">
-                <motion.div
-                  className="mb-8 slide-in-left"
-                >
-                  <h2 className="text-3xl font-bold text-white mb-2">Explore by Category</h2>
-                  <p className="text-slate-400 font-medium">Find exactly what you're looking for</p>
+                <motion.div className="mb-8 slide-in-left">
+                  <h2 className="text-3xl font-bold text-white mb-2">
+                    Explore by Category
+                  </h2>
+                  <p className="text-slate-400 font-medium">
+                    Find exactly what you're looking for
+                  </p>
                 </motion.div>
-                
+
                 <motion.div
                   className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.8 }}
                 >
-                  {['PARTY', 'FOOD & DRINK', 'CULTURE', 'FITNESS', 'NETWORKING', 'ENTERTAINMENT'].map((category, index) => (
+                  {[
+                    "PARTY",
+                    "FOOD & DRINK",
+                    "CULTURE",
+                    "FITNESS",
+                    "NETWORKING",
+                    "ENTERTAINMENT",
+                  ].map((category, index) => (
                     <motion.div
                       key={category}
                       className="bg-slate-800/60 backdrop-blur-sm rounded-xl p-6 text-center hover:bg-slate-700/60 transition-all duration-300 cursor-pointer border border-slate-700/50 hover:border-slate-600/60"
@@ -454,7 +478,9 @@ export default function HomePage({ setCurrentPage }) {
                       whileHover={{ scale: 1.05, y: -5 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      <h3 className="text-white font-semibold text-sm">{category}</h3>
+                      <h3 className="text-white font-semibold text-sm">
+                        {category}
+                      </h3>
                     </motion.div>
                   ))}
                 </motion.div>
@@ -469,13 +495,15 @@ export default function HomePage({ setCurrentPage }) {
               transition={{ duration: 0.8, delay: 1.0 }}
             >
               <div className="max-w-7xl mx-auto">
-                <motion.div
-                  className="mb-8 fade-in-up"
-                >
-                  <h2 className="text-3xl font-bold text-white mb-2">Recently Concluded</h2>
-                  <p className="text-slate-400 font-medium">See what amazing events you missed</p>
+                <motion.div className="mb-8 fade-in-up">
+                  <h2 className="text-3xl font-bold text-white mb-2">
+                    Recently Concluded
+                  </h2>
+                  <p className="text-slate-400 font-medium">
+                    See what amazing events you missed
+                  </p>
                 </motion.div>
-                
+
                 <motion.div
                   className="grid grid-cols-1 md:grid-cols-2 gap-6"
                   initial={{ opacity: 0 }}
