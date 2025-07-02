@@ -13,6 +13,7 @@ export default function Navbar() {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const navigate = useNavigate();
 
+  // Logout handler
   const handleLogout = () => {
     dispatch(logoutUser());
     setIsUserMenuOpen(false);
@@ -52,9 +53,9 @@ export default function Navbar() {
             whileHover={{ scale: 1.05 }}
             onClick={() => navigate("/")}
           >
-            <img 
-              src="/logo.png" 
-              alt="Event Tribe" 
+            <img
+              src="/logo.png"
+              alt="Event Tribe"
               className="h-8 w-auto sm:h-10 md:h-12 object-contain hover:opacity-90 transition-opacity duration-200"
             />
           </motion.div>
