@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { FiLogOut } from "react-icons/fi";
+import { FiUser, FiLogOut, FiSettings } from "react-icons/fi";
 import { logoutUser } from "../store/slices/authSlice";
 
 export default function Navbar() {
