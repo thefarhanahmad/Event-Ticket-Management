@@ -1,30 +1,31 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiX, FiChevronDown, FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import toast from "react-hot-toast";
 
 export default function LaunchAd() {
   const user = JSON.parse(localStorage.getItem("user") || "{}");
 
   const handleViewCampaign = (campaignId) => {
-    alert(`Viewing campaign: ${campaignId}`);
+    toast.info(`Viewing campaign: ${campaignId}`);
   };
 
   const handleEditCampaign = (campaignId) => {
-    alert(`Editing campaign: ${campaignId}`);
+    toast.info(`Editing campaign: ${campaignId}`);
   };
 
   const handlePauseCampaign = (campaignId) => {
-    alert(`Pausing campaign: ${campaignId}`);
+    toast.info(`Pausing campaign: ${campaignId}`);
   };
 
   const handleDeleteCampaign = (campaignId) => {
     if (confirm(`Are you sure you want to delete campaign ${campaignId}?`)) {
-      alert(`Campaign ${campaignId} has been deleted`);
+      toast.success(`Campaign ${campaignId} has been deleted`);
     }
   };
 
   const handleCreateNewCampaign = () => {
-    alert("Opening new campaign creation form...");
+    toast.info("Opening new campaign creation form...");
   };
 
   const [showForm, setShowForm] = useState(false);

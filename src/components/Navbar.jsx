@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FiLogOut } from "react-icons/fi";
 import { logoutUser } from "../store/slices/authSlice";
+import toast from "react-hot-toast";
 
 export default function Navbar() {
   const { user, isAuthenticated } = useSelector((state) => state.auth);
@@ -16,6 +17,7 @@ export default function Navbar() {
     dispatch(logoutUser());
     setIsUserMenuOpen(false);
     setIsMenuOpen(false);
+    toast.success("Logged out successfully");
     navigate("/");
   };
 
