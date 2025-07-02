@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { loginUser } from "../store/slices/authSlice";
 
 export default function Signup() {
   const [role, setRole] = useState("attendee");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -35,12 +38,12 @@ export default function Signup() {
       return;
     }
     
-    // Store user data and trigger state change
+    // Store user data using Redux
     const userData = { role, ...formData };
-    localStorage.setItem("user", JSON.stringify(userData));
-    
-    // Dispatch custom event to notify navbar of user state change
-    window.dispatchEvent(new Event('userStateChange'));
+    dispatch(loginUser({ 
+      user: userData, 
+      token: `token_${Date.now()}` // Generate a mock token
+    }));
     
     console.log("Signup Data:", userData);
   };

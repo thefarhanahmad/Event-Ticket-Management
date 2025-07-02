@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { useAuth } from "../hooks/useAuth";
 
 export default function Disputes() {
-  const user = JSON.parse(localStorage.getItem("user") || "{}");
+  const { user, userName, userEmail } = useAuth();
 
   const handleViewDetails = (disputeId) => {
     alert(`Viewing details for dispute: ${disputeId}`);

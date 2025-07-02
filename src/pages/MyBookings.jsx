@@ -1,3 +1,15 @@
+import { useState } from "react";
+import {
+  FiCalendar,
+  FiMapPin,
+  FiClock,
+  FiUser,
+  FiDownload,
+  FiEye,
+  FiX,
+} from "react-icons/fi";
+import { useAuth } from "../hooks/useAuth";
+
 export default function MyBookings() {
   const bookings = [
     {

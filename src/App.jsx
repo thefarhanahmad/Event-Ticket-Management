@@ -1,4 +1,6 @@
 import "./App.css";
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 
 // Components
 import Navbar from "./components/Navbar";
@@ -34,7 +36,7 @@ import EditProfile from "./pages/EditProfile";
 import Notifications from "./pages/Notifications";
 import ResetPasswordPage from "./pages/ResetPasswordPage"; //Import the new Page
 
-export default function App() {
+function AppContent() {
   const location = useLocation();
 
   // Hide Navbar on all routes under /organizer
@@ -82,5 +84,13 @@ export default function App() {
         </Routes>
       </>
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <Provider store={store}>
+      <AppContent />
+    </Provider>
   );
 }

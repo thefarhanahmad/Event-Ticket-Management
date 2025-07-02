@@ -1,12 +1,13 @@
-import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
 import {
   FiHome,
   FiCalendar,
   FiUsers,
   FiDollarSign,
-  FiSettings,
   FiLayers,
+  FiSettings,
   FiLogOut,
   FiChevronRight,
   FiChevronDown,
@@ -16,6 +17,7 @@ import {
   FiUpload,
   FiChevronUp,
 } from "react-icons/fi";
+import { logoutUser } from "../store/slices/authSlice";
 
 const navItems = [
   {
@@ -109,7 +111,8 @@ const navItems = [
 const OrganizerDashboard = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("user"));
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.user);
   const [marketingDropdownOpen, setMarketingDropdownOpen] = useState(false);
   const [financesDropdownOpen, setFinancesDropdownOpen] = useState(false);
   const [organizationDropdownOpen, setOrganizationDropdownOpen] =
@@ -130,7 +133,9 @@ const OrganizerDashboard = () => {
   const [organizations] = useState([
     {
       id: 1,
-      name: `${user?.name || user?.email?.split("@")[0] || "User"}'s Organization`,
+      name: `${
+        user?.name || user?.email?.split("@")[0] || "User"
+      }'s Organization`,
       email: user?.email || "user@example.com",
       current: true,
     },
@@ -148,10 +153,9 @@ const OrganizerDashboard = () => {
     location: "",
   });
 
+  // Handle logout
   const handleLogout = () => {
-    localStorage.removeItem("user");
-    // Dispatch custom event to notify navbar of user state change
-    window.dispatchEvent(new Event('userStateChange'));
+    dispatch(logoutUser());
     navigate("/login");
   };
 
@@ -234,7 +238,10 @@ const OrganizerDashboard = () => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-white text-sm font-medium truncate">
-                    {user?.organizationName || `${user?.name || user?.email?.split("@")[0] || "User"}'s Organization`}
+                    {user?.organizationName ||
+                      `${
+                        user?.name || user?.email?.split("@")[0] || "User"
+                      }'s Organization`}
                   </p>
                   <p className="text-gray-400 text-xs truncate">
                     {user?.email || "user@example.com"}

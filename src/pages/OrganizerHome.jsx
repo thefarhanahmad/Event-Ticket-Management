@@ -17,9 +17,10 @@ import {
   FiMessageSquare,
   FiMail,
 } from "react-icons/fi";
+import { useAuth } from "../hooks/useAuth";
 
 export default function OrganizerHome() {
-  const user = JSON.parse(localStorage.getItem("user") || "{}");
+  const { user, userName, userEmail } = useAuth();
 
   const handleViewEvent = (eventId) => {
     alert(`Viewing event: ${eventId}`);

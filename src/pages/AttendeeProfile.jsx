@@ -58,6 +58,13 @@ export default function AttendeeProfile() {
     setPasswordForm({ currentPassword: "", newPassword: "", confirmPassword: "" });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Profile updated:", profile);
+    // Update user data in Redux store
+    // dispatch(updateUser(profile));  //Commented out due to lack of implementation
+  };
+
   return (
     <div className="max-w-2xl mx-auto">
       {/* Profile Picture Section */}
@@ -214,7 +221,7 @@ export default function AttendeeProfile() {
         <button className="bg-red-600 hover:bg-red-700 text-white py-3 rounded font-medium transition-colors">
           Delete Account
         </button>
-        <button className="bg-blue-600 hover:bg-blue-700 text-white py-3 rounded font-medium transition-colors">
+        <button className="bg-blue-600 hover:bg-blue-700 text-white py-3 rounded font-medium transition-colors" onClick={handleSubmit}>
           Update
         </button>
       </div>

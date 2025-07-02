@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import { RiLockPasswordLine } from "react-icons/ri";
+import { loginUser } from "../store/slices/authSlice";
 
 export default function LoginPage() {
   const [credentials, setCredentials] = useState({
@@ -12,6 +14,7 @@ export default function LoginPage() {
     password: "",
   });
   const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -29,11 +32,13 @@ export default function LoginPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("handle submit cliekc : ");
-    localStorage.setItem("user", JSON.stringify(credentials));
+    console.log("handle submit click: ");
     
-    // Dispatch custom event to notify navbar of user state change
-    window.dispatchEvent(new Event('userStateChange'));
+    // Dispatch login action to Redux store
+    dispatch(loginUser({ 
+      user: credentials, 
+      token: `token_${Date.now()}` // Generate a mock token
+    }));
 
     if (credentials.role === "organizer") {
       navigate("/organizer");

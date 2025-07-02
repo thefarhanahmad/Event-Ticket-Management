@@ -1,60 +1,20 @@
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { FiUser, FiLogOut, FiSettings } from "react-icons/fi";
+import { logoutUser } from "../store/slices/authSlice";
 
 export default function Navbar() {
+  const { user, isAuthenticated } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-  const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // Check for user in localStorage on mount
-    const checkUser = () => {
-      const userData = localStorage.getItem("user");
-      if (userData) {
-        try {
-          setUser(JSON.parse(userData));
-        } catch (error) {
-          console.error("Error parsing user data:", error);
-          setUser(null);
-        }
-      } else {
-        setUser(null);
-      }
-    };
-
-    // Initial check
-    checkUser();
-
-    // Listen for storage changes (for cross-tab updates)
-    const handleStorageChange = (e) => {
-      if (e.key === "user") {
-        checkUser();
-      }
-    };
-
-    // Listen for custom user state changes within the same tab
-    const handleUserChange = () => {
-      checkUser();
-    };
-
-    window.addEventListener("storage", handleStorageChange);
-    window.addEventListener("userStateChange", handleUserChange);
-
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-      window.removeEventListener("userStateChange", handleUserChange);
-    };
-  }, []);
-
   const handleLogout = () => {
-    localStorage.removeItem("user");
-    setUser(null);
+    dispatch(logoutUser());
     setIsUserMenuOpen(false);
-    // Dispatch custom event to notify other components
-    window.dispatchEvent(new Event("userStateChange"));
+    setIsMenuOpen(false);
     navigate("/");
   };
 
@@ -131,7 +91,7 @@ export default function Navbar() {
               ))}
 
               {/* User Authentication Section */}
-              {user ? (
+              {isAuthenticated ? (
                 <>
                   <motion.div
                     whileHover={{ scale: 1.05, y: -2 }}
@@ -170,7 +130,7 @@ export default function Navbar() {
                     >
                       <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
                         <span className="text-white text-sm font-bold">
-                          {getFirstLetter(user.name || user.email)}
+                          {getFirstLetter(user?.name || user?.email)}
                         </span>
                       </div>
                     </motion.button>
@@ -282,12 +242,12 @@ export default function Navbar() {
                 >
                   <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
                     <span className="text-white font-bold">
-                      {getFirstLetter(user.name || user.email)}
+                      {getFirstLetter(user?.name || user?.email)}
                     </span>
                   </div>
                   <div className="flex-1">
                     <p className="text-white font-semibold">
-                      {user.name || user.email?.split("@")[0] || "User"}
+                      {user?.name || user?.email?.split("@")[0] || "User"}
                     </p>
                   </div>
                 </motion.div>
@@ -332,7 +292,7 @@ export default function Navbar() {
               ))}
 
               {/* Auth or User Actions */}
-              {user ? (
+              {isAuthenticated ? (
                 <div className="space-y-2 pt-2 border-t border-slate-700">
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
