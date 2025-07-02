@@ -1,17 +1,18 @@
 import { Link, useNavigate, Outlet, useLocation } from "react-router-dom";
 import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { FiUser, FiLogOut } from "react-icons/fi";
+import { logoutUser } from "../store/slices/authSlice";
 
 export default function AttendeeDashboard() {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
   const [activeTab, setActiveTab] = useState("my-bookings");
-  const user = JSON.parse(localStorage.getItem("user"));
+  const { user } = useSelector((state) => state.auth);
 
   const handleLogout = () => {
-    localStorage.removeItem("user");
-    // Dispatch custom event to notify navbar of user state change
-    window.dispatchEvent(new Event('userStateChange'));
+    dispatch(logoutUser());
     navigate("/login");
   };
 
